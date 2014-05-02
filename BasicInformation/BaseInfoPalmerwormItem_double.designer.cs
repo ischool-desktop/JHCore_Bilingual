@@ -1,6 +1,6 @@
 ﻿namespace BasicInformation
 {
-    partial class BaseInfoPalmerwormItem
+    partial class BaseInfoPalmerwormItem_double
     {
         /// <summary> 
         /// 設計工具所需的變數。
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseInfoPalmerwormItem));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseInfoPalmerwormItem_double));
             this.label77 = new System.Windows.Forms.Label();
             this.label76 = new System.Windows.Forms.Label();
             this.txtSSN = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -69,10 +69,12 @@
             this.comboItem4 = new DevComponents.Editors.ComboItem();
             this.comboItem5 = new DevComponents.Editors.ComboItem();
             this.lbChineseName = new System.Windows.Forms.Label();
-            this.tbChineseName = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtChineseName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.textBoxX2 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.label5 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.txtPassportNumber = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.tbPassportNumber = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pic1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contextMenuBar1)).BeginInit();
@@ -465,20 +467,20 @@
             this.lbChineseName.TabIndex = 4;
             this.lbChineseName.Text = "中文姓名";
             // 
-            // tbChineseName
+            // txtChineseName
             // 
             // 
             // 
             // 
-            this.tbChineseName.Border.Class = "TextBoxBorder";
-            this.tbChineseName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbChineseName.Location = new System.Drawing.Point(366, 81);
-            this.tbChineseName.Margin = new System.Windows.Forms.Padding(4);
-            this.tbChineseName.MaxLength = 30;
-            this.tbChineseName.Name = "tbChineseName";
-            this.tbChineseName.Size = new System.Drawing.Size(138, 25);
-            this.tbChineseName.TabIndex = 5;
-            this.tbChineseName.WatermarkText = "如:王佳仁";
+            this.txtChineseName.Border.Class = "TextBoxBorder";
+            this.txtChineseName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtChineseName.Location = new System.Drawing.Point(366, 81);
+            this.txtChineseName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtChineseName.MaxLength = 30;
+            this.txtChineseName.Name = "txtChineseName";
+            this.txtChineseName.Size = new System.Drawing.Size(138, 25);
+            this.txtChineseName.TabIndex = 5;
+            this.txtChineseName.WatermarkText = "如:王佳仁";
             // 
             // textBoxX2
             // 
@@ -521,13 +523,41 @@
             this.linkLabel1.Text = "說明";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // BaseInfoPalmerwormItem
+            // txtPassportNumber
+            // 
+            // 
+            // 
+            // 
+            this.txtPassportNumber.Border.Class = "TextBoxBorder";
+            this.txtPassportNumber.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtPassportNumber.Location = new System.Drawing.Point(108, 143);
+            this.txtPassportNumber.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPassportNumber.MaxLength = 50;
+            this.txtPassportNumber.Name = "txtPassportNumber";
+            this.txtPassportNumber.Size = new System.Drawing.Size(138, 25);
+            this.txtPassportNumber.TabIndex = 216;
+            // 
+            // tbPassportNumber
+            // 
+            this.tbPassportNumber.AutoSize = true;
+            this.tbPassportNumber.BackColor = System.Drawing.Color.Transparent;
+            this.tbPassportNumber.Location = new System.Drawing.Point(36, 147);
+            this.tbPassportNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.tbPassportNumber.Name = "tbPassportNumber";
+            this.tbPassportNumber.Size = new System.Drawing.Size(60, 17);
+            this.tbPassportNumber.TabIndex = 215;
+            this.tbPassportNumber.Text = "護照號碼";
+            this.tbPassportNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // BaseInfoPalmerwormItem_double
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.txtPassportNumber);
+            this.Controls.Add(this.tbPassportNumber);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.lbChineseName);
-            this.Controls.Add(this.tbChineseName);
+            this.Controls.Add(this.txtChineseName);
             this.Controls.Add(this.textBoxX2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.contextMenuBar1);
@@ -553,7 +583,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.Name = "BaseInfoPalmerwormItem";
+            this.Name = "BaseInfoPalmerwormItem_double";
             this.Size = new System.Drawing.Size(550, 245);
             ((System.ComponentModel.ISupportInitialize)(this.pic1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic2)).EndInit();
@@ -605,9 +635,11 @@
         private DevComponents.DotNetBar.ButtonItem buttonItem6;
         private DevComponents.Editors.ComboItem comboItem6;
         internal System.Windows.Forms.Label lbChineseName;
-        internal DevComponents.DotNetBar.Controls.TextBoxX tbChineseName;
+        internal DevComponents.DotNetBar.Controls.TextBoxX txtChineseName;
         internal DevComponents.DotNetBar.Controls.TextBoxX textBoxX2;
         internal System.Windows.Forms.Label label5;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        internal DevComponents.DotNetBar.Controls.TextBoxX txtPassportNumber;
+        internal System.Windows.Forms.Label tbPassportNumber;
     }
 }

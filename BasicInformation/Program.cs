@@ -11,21 +11,15 @@ namespace BasicInformation
 {
     public class Program
     {
-        [MainMethod()]
+        [MainMethod(StartupPriority.FirstAsynchronized)]
         static public void Main()
         {
+            //覆蓋 - 學生基本資料項目
+            FISCA.InteractionService.RegisterAPI<JHSchool.API.DetailItemAPI>(new BasicItem_Test());
 
-            K12.Presentation.NLDPanels.Student.AddDetailBulider(new FISCA.Presentation.DetailBulider<BaseInfoPalmerwormItem>());
-
-            //RibbonBarItem check = K12.Presentation.NLDPanels.Student.RibbonBarItems["資料統計"];
-            //check["報表"]["學籍相關報表"]["畢業證書(高中,高職,進校)"].Enable = Permissions.列印畢業證書權限;
-            //check["報表"]["學籍相關報表"]["畢業證書(高中,高職,進校)"].Click += delegate
-            //{
-
-            //};
-
-            //Catalog detail1 = RoleAclSource.Instance["學生"]["報表"];
-            //detail1.Add(new RibbonFeature(Permissions.列印畢業證書, "畢業證書(高中,高職,進校)"));
+            //啟動更新事件
+            EventHandler eh = FISCA.InteractionService.PublishEvent("20140424_A001");
+            eh(null, EventArgs.Empty);
         }
     }
 }

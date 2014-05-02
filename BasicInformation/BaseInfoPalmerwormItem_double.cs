@@ -17,14 +17,15 @@ using K12StudentPhoto;
 
 namespace BasicInformation
 {
-    [FCode("JHSchool.Student.Detail0000", "基本資料")]
-    internal partial class BaseInfoPalmerwormItem : FISCA.Presentation.DetailContent
+    [FCode("JHSchool.Student.Detail0000", "雙語部基本資料")]
+    internal partial class BaseInfoPalmerwormItem_double : FISCA.Presentation.DetailContent
     {
         private bool _isInitialized = false;
         private EnhancedErrorProvider _errors = new EnhancedErrorProvider();
         private bool _isBGBusy = false;
         private BackgroundWorker _BGWorker;
         private JHStudentRecord _StudRec;
+        private StudentRecord_Ext _StudRec_Ext;
         private string _defaultLoginID = string.Empty;
         private string _defaultIDNumber = string.Empty;
 
@@ -37,7 +38,7 @@ namespace BasicInformation
         private ChangeListener _DataListener { get; set; }
         K12StudentPhoto.PermRecLogProcess prlp;
 
-        public BaseInfoPalmerwormItem()
+        public BaseInfoPalmerwormItem_double()
         {
             InitializeComponent();
             Group = "基本資料";
@@ -47,7 +48,8 @@ namespace BasicInformation
             _DataListener.Add(new TextBoxSource(txtBirthDate));
             _DataListener.Add(new TextBoxSource(txtBirthPlace));
             _DataListener.Add(new TextBoxSource(txtEngName));
-            _DataListener.Add(new TextBoxSource(tbChineseName)); //new 中文姓名
+            _DataListener.Add(new TextBoxSource(txtChineseName)); //new 中文姓名
+            _DataListener.Add(new TextBoxSource(txtPassportNumber)); //new 護照號碼
             _DataListener.Add(new TextBoxSource(txtLoginID));
             _DataListener.Add(new TextBoxSource(txtLoginPwd));
             _DataListener.Add(new ComboBoxSource(cboGender, ComboBoxSource.ListenAttribute.Text));
@@ -62,7 +64,7 @@ namespace BasicInformation
             Initialize();
             JHStudent.AfterChange += new EventHandler<K12.Data.DataChangedEventArgs>(JHStudent_AfterChange);
             JHStudent.AfterDelete += new EventHandler<K12.Data.DataChangedEventArgs>(JHStudent_AfterDelete);
-            Disposed += new EventHandler(BaseInfoPalmerwormItem_Disposed); 
+            Disposed += new EventHandler(BaseInfoPalmerwormItem_Disposed);
         }
 
         void JHStudent_AfterDelete(object sender, K12.Data.DataChangedEventArgs e)
@@ -76,7 +78,7 @@ namespace BasicInformation
             JHStudent.AfterDelete -= new EventHandler<K12.Data.DataChangedEventArgs>(JHStudent_AfterDelete);
         }
 
-        
+
         void JHStudent_AfterChange(object sender, K12.Data.DataChangedEventArgs e)
         {
             if (InvokeRequired)
@@ -120,7 +122,7 @@ namespace BasicInformation
 
             // 檢查生日
 
-            
+
             // 檢查性別
             List<string> checkGender = new List<string>();
             checkGender.Add("男");
@@ -130,7 +132,7 @@ namespace BasicInformation
             if (!checkGender.Contains(cboGender.Text))
             {
                 _errors.SetError(cboGender, "性別錯誤，請確認資料。");
-                return;            
+                return;
             }
 
             DateTime dt;
@@ -145,7 +147,7 @@ namespace BasicInformation
             }
             else
             {
-                _StudRec.Birthday = null;            
+                _StudRec.Birthday = null;
             }
 
             List<string> checkID = new List<string>();
@@ -157,7 +159,7 @@ namespace BasicInformation
                 checkID.Add(studRec.SALoginName);
                 checkSSN.Add(studRec.IDNumber);
             }
-            if(!string.IsNullOrEmpty(_StudRec.SALoginName ))
+            if (!string.IsNullOrEmpty(_StudRec.SALoginName))
                 if (checkID.Contains(_StudRec.SALoginName))
                 {
                     if (_defaultLoginID != _StudRec.SALoginName)
@@ -166,7 +168,7 @@ namespace BasicInformation
                         return;
                     }
                 }
-            if(!string.IsNullOrEmpty (_StudRec.IDNumber))
+            if (!string.IsNullOrEmpty(_StudRec.IDNumber))
                 if (checkSSN.Contains(_StudRec.IDNumber))
                 {
                     if (_defaultIDNumber != _StudRec.IDNumber)
@@ -199,6 +201,9 @@ namespace BasicInformation
             _StudRec.Nationality = cboNationality.Text;
             _StudRec.SALoginName = txtLoginID.Text;
             _StudRec.SAPassword = txtLoginPwd.Text;
+
+            _StudRec_Ext.ChineseName = txtChineseName.Text; //中文姓名
+            _StudRec_Ext.PassportNumber = txtPassportNumber.Text; //護照號碼
         }
 
         protected override void OnCancelButtonClick(EventArgs e)
@@ -222,10 +227,32 @@ namespace BasicInformation
 
             // studentRec
             _StudRec = JHStudent.SelectByID(PrimaryKey);
+            List<StudentRecord_Ext> StudExtList = tool._A.Select<StudentRecord_Ext>("ref_student_id=" + PrimaryKey);
+            if (StudExtList.Count == 1)
+            {
+                //每名學生只會有一筆延申資料
+                _StudRec_Ext = StudExtList[0];
+            }
+            else if (StudExtList.Count == 0)
+            {
+                //如果沒有延申資料
+                _StudRec_Ext = new StudentRecord_Ext();
+                _StudRec_Ext.RefStudentID = PrimaryKey;
+            }
+            else if (StudExtList.Count > 1)
+            {
+                //每名學生只會有一筆延申資料
+                _StudRec_Ext = StudExtList[0];
+                //移除保留的延申資料
+                StudExtList.Remove(_StudRec_Ext);
+                //刪除多餘資料
+                tool._A.DeletedValues(StudExtList);
+            }
+
         }
 
 
-        
+
         protected override void OnPrimaryKeyChanged(EventArgs e)
         {
             _errors.Clear();
@@ -239,9 +266,10 @@ namespace BasicInformation
         //將畫面清空
         private void ClearFormValue()
         {
-            tbChineseName.Text = txtBirthDate.Text = txtBirthPlace.Text = txtEngName.Text = txtLoginID.Text = txtName.Text = txtSSN.Text = cboAccountType.Text = cboGender.Text = cboNationality.Text = string.Empty;           
+            txtChineseName.Text = txtPassportNumber.Text = string.Empty;
+            txtChineseName.Text = txtBirthDate.Text = txtBirthPlace.Text = txtEngName.Text = txtLoginID.Text = txtName.Text = txtSSN.Text = cboAccountType.Text = cboGender.Text = cboNationality.Text = string.Empty;
         }
-        
+
         private void BindDataToForm()
         {
             // 主要加當學生被刪除時檢查
@@ -271,9 +299,10 @@ namespace BasicInformation
             prlp.SetBeforeSaveText("性別", cboGender.Text);
             prlp.SetBeforeSaveText("國籍", cboNationality.Text);
             prlp.SetBeforeSaveText("出生地", txtBirthPlace.Text);
-            prlp.SetBeforeSaveText("英文姓名", txtEngName.Text);
+            prlp.SetBeforeSaveText("英文全名", txtEngName.Text);
             prlp.SetBeforeSaveText("登入帳號", txtLoginID.Text);
-            prlp.SetBeforeSaveText("帳號類型", cboAccountType.Text);        
+            prlp.SetBeforeSaveText("帳號類型", cboAccountType.Text);
+            prlp.SetBeforeSaveText("中文姓名", txtChineseName.Text);  //new
         }
 
         private void SetAfterEditLog()
@@ -287,16 +316,17 @@ namespace BasicInformation
             prlp.SetAfterSaveText("英文姓名", txtEngName.Text);
             prlp.SetAfterSaveText("登入帳號", txtLoginID.Text);
             prlp.SetAfterSaveText("帳號類型", cboAccountType.Text);
+            prlp.SetAfterSaveText("中文姓名", txtChineseName.Text);  //new
             prlp.SetActionBy("學籍", "學生基本資料");
             prlp.SetAction("修改學生基本資料");
-            prlp.SetDescTitle("姓名:"+_StudRec.Name+",學號:"+_StudRec.StudentNumber +",");
+            prlp.SetDescTitle("姓名:" + _StudRec.Name + ",學號:" + _StudRec.StudentNumber + ",");
             prlp.SaveLog("", "", "Student", PrimaryKey);
-            
+
         }
 
         private void LoadDALDataToForm()
         {
-            if(_StudRec.Birthday.HasValue )
+            if (_StudRec.Birthday.HasValue)
                 txtBirthDate.Text = _StudRec.Birthday.Value.ToShortDateString();
             txtBirthPlace.Text = _StudRec.BirthPlace;
             txtEngName.Text = _StudRec.EnglishName;
@@ -307,10 +337,14 @@ namespace BasicInformation
             cboAccountType.Text = _StudRec.AccountType;
             cboGender.Text = _StudRec.Gender;
             cboNationality.Text = _StudRec.Nationality;
+
+            txtChineseName.Text = _StudRec_Ext.ChineseName;
+            txtPassportNumber.Text = _StudRec_Ext.PassportNumber;
+
             // 解析
             try
             {
-                             
+
                 pic1.Image = Photo.ConvertFromBase64Encoding(_FreshmanPhotoStr, pic1.Width, pic1.Height);
             }
             catch (Exception)
@@ -319,7 +353,7 @@ namespace BasicInformation
             }
 
             try
-            {                
+            {
                 pic2.Image = Photo.ConvertFromBase64Encoding(_GraduatePhotoStr, pic2.Width, pic2.Height);
             }
             catch (Exception)
@@ -331,7 +365,7 @@ namespace BasicInformation
 
         public DetailContent GetContent()
         {
-            return new BaseInfoPalmerwormItem();
+            return new BaseInfoPalmerwormItem_double();
         }
 
         private void Initialize()
@@ -384,7 +418,7 @@ namespace BasicInformation
             //this.cboNationality.Items.Add("其他");
 
             cboGender.Items.AddRange(new string[] { "男", "女" });
-          
+
 
 
 
@@ -409,7 +443,7 @@ namespace BasicInformation
                     pic1.Image = newBmp;
 
                     _FreshmanPhotoStr = ToBase64String(Photo.Resize(new Bitmap(orgBmp)));
-                    K12.Data.Photo.UpdateFreshmanPhoto(_FreshmanPhotoStr, PrimaryKey);                    
+                    K12.Data.Photo.UpdateFreshmanPhoto(_FreshmanPhotoStr, PrimaryKey);
                 }
                 catch (Exception ex)
                 {
@@ -525,8 +559,8 @@ namespace BasicInformation
             }
 
             if (QueryStudent.IDNumberExists(PrimaryKey, txtSSN.Text))
-                _errors.SetError(txtSSN, "身分證號重覆，請確認資料。");           
-                
+                _errors.SetError(txtSSN, "身分證號重覆，請確認資料。");
+
         }
 
         private void ValidateLoginID()
@@ -570,7 +604,7 @@ namespace BasicInformation
             {
                 _GraduatePhotoStr = string.Empty;
                 pic2.Image = pic2.InitialImage;
-                K12.Data.Photo.UpdateGraduatePhoto("",PrimaryKey );
+                K12.Data.Photo.UpdateGraduatePhoto("", PrimaryKey);
             }
             catch (Exception ex)
             {
