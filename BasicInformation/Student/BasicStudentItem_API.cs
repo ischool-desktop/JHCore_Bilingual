@@ -5,11 +5,11 @@ using System.Text;
 
 namespace BasicInformation
 {
-    class BasicItem_Test : JHSchool.API.DetailItemAPI
+    class BasicStudentItem_API : JHSchool.API.IStudentDetailItemAPI
     {
         public FISCA.Presentation.IDetailBulider CreateBasicInfo()
         {
-            return new FISCA.Presentation.DetailBulider<BaseInfoPalmerwormItem_double>();
+            return new FISCA.Presentation.DetailBulider<StudentItem>();
         }
     }
 }

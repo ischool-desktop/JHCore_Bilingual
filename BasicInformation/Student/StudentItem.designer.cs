@@ -1,6 +1,6 @@
 ﻿namespace BasicInformation
 {
-    partial class BaseInfoPalmerwormItem_double
+    partial class StudentItem
     {
         /// <summary> 
         /// 設計工具所需的變數。
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseInfoPalmerwormItem_double));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentItem));
             this.label77 = new System.Windows.Forms.Label();
             this.label76 = new System.Windows.Forms.Label();
             this.txtSSN = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -151,11 +151,9 @@
             this.txtName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtName.Location = new System.Drawing.Point(366, 48);
             this.txtName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtName.MaxLength = 10;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(138, 25);
             this.txtName.TabIndex = 3;
-            this.txtName.WatermarkText = "如:WANG, JIA-REN";
             // 
             // label81
             // 
@@ -182,7 +180,6 @@
             this.txtEngName.Name = "txtEngName";
             this.txtEngName.Size = new System.Drawing.Size(138, 25);
             this.txtEngName.TabIndex = 1;
-            this.txtEngName.WatermarkText = "如:Amy Wang";
             // 
             // label80
             // 
@@ -480,7 +477,6 @@
             this.txtChineseName.Name = "txtChineseName";
             this.txtChineseName.Size = new System.Drawing.Size(138, 25);
             this.txtChineseName.TabIndex = 5;
-            this.txtChineseName.WatermarkText = "如:王佳仁";
             // 
             // textBoxX2
             // 

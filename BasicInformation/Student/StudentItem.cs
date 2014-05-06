@@ -17,8 +17,8 @@ using K12StudentPhoto;
 
 namespace BasicInformation
 {
-    [FCode("JHSchool.Student.Detail0000", "雙語部基本資料")]
-    internal partial class BaseInfoPalmerwormItem_double : FISCA.Presentation.DetailContent
+    [FCode("JHSchool.Student.Detail0000", "學生基本資料_雙語部")]
+    internal partial class StudentItem : FISCA.Presentation.DetailContent
     {
         private bool _isInitialized = false;
         private EnhancedErrorProvider _errors = new EnhancedErrorProvider();
@@ -38,10 +38,10 @@ namespace BasicInformation
         private ChangeListener _DataListener { get; set; }
         K12StudentPhoto.PermRecLogProcess prlp;
 
-        public BaseInfoPalmerwormItem_double()
+        public StudentItem()
         {
             InitializeComponent();
-            Group = "基本資料";
+            Group = "學生基本資料_雙語部";
             _DataListener = new ChangeListener();
             _DataListener.Add(new TextBoxSource(txtName));
             _DataListener.Add(new TextBoxSource(txtSSN));
@@ -63,6 +63,9 @@ namespace BasicInformation
             prlp = new K12StudentPhoto.PermRecLogProcess();
             Initialize();
             JHStudent.AfterChange += new EventHandler<K12.Data.DataChangedEventArgs>(JHStudent_AfterChange);
+
+
+
             JHStudent.AfterDelete += new EventHandler<K12.Data.DataChangedEventArgs>(JHStudent_AfterDelete);
             Disposed += new EventHandler(BaseInfoPalmerwormItem_Disposed);
         }
@@ -81,6 +84,7 @@ namespace BasicInformation
 
         void JHStudent_AfterChange(object sender, K12.Data.DataChangedEventArgs e)
         {
+
             if (InvokeRequired)
             {
                 Invoke(new Action<object, K12.Data.DataChangedEventArgs>(JHStudent_AfterChange), sender, e);
@@ -160,6 +164,7 @@ namespace BasicInformation
                 checkSSN.Add(studRec.IDNumber);
             }
             if (!string.IsNullOrEmpty(_StudRec.SALoginName))
+            {
                 if (checkID.Contains(_StudRec.SALoginName))
                 {
                     if (_defaultLoginID != _StudRec.SALoginName)
@@ -168,7 +173,9 @@ namespace BasicInformation
                         return;
                     }
                 }
+            }
             if (!string.IsNullOrEmpty(_StudRec.IDNumber))
+            {
                 if (checkSSN.Contains(_StudRec.IDNumber))
                 {
                     if (_defaultIDNumber != _StudRec.IDNumber)
@@ -177,6 +184,21 @@ namespace BasicInformation
                         return;
                     }
                 }
+            }
+
+            //儲存延伸資料
+            List<StudentRecord_Ext> list = new List<StudentRecord_Ext>();
+            list.Add(_StudRec_Ext);
+            if (string.IsNullOrEmpty(_StudRec_Ext.UID))
+            {
+                tool._A.UpdateValues(list);
+            }
+            else
+            {
+                tool._A.InsertValues(list);
+            }
+
+
 
             JHStudent.Update(_StudRec);
             SetAfterEditLog();
@@ -227,19 +249,28 @@ namespace BasicInformation
 
             // studentRec
             _StudRec = JHStudent.SelectByID(PrimaryKey);
-            List<StudentRecord_Ext> StudExtList = tool._A.Select<StudentRecord_Ext>("ref_student_id=" + PrimaryKey);
+
+            #region 取得學生延伸資料
+
+            List<StudentRecord_Ext> StudExtList = tool._A.Select<StudentRecord_Ext>("ref_student_id='" + PrimaryKey + "'");
             if (StudExtList.Count == 1)
             {
                 //每名學生只會有一筆延申資料
                 _StudRec_Ext = StudExtList[0];
             }
-            else if (StudExtList.Count == 0)
+            else if (StudExtList.Count < 1)
             {
                 //如果沒有延申資料
                 _StudRec_Ext = new StudentRecord_Ext();
                 _StudRec_Ext.RefStudentID = PrimaryKey;
+                StudExtList.Add(_StudRec_Ext);
+                tool._A.InsertValues(StudExtList);
+
+                //取回資料
+                StudExtList = tool._A.Select<StudentRecord_Ext>("ref_student_id='" + PrimaryKey + "'");
+                _StudRec_Ext = StudExtList[0];
             }
-            else if (StudExtList.Count > 1)
+            else
             {
                 //每名學生只會有一筆延申資料
                 _StudRec_Ext = StudExtList[0];
@@ -249,9 +280,9 @@ namespace BasicInformation
                 tool._A.DeletedValues(StudExtList);
             }
 
+            #endregion
+
         }
-
-
 
         protected override void OnPrimaryKeyChanged(EventArgs e)
         {
@@ -267,7 +298,7 @@ namespace BasicInformation
         private void ClearFormValue()
         {
             txtChineseName.Text = txtPassportNumber.Text = string.Empty;
-            txtChineseName.Text = txtBirthDate.Text = txtBirthPlace.Text = txtEngName.Text = txtLoginID.Text = txtName.Text = txtSSN.Text = cboAccountType.Text = cboGender.Text = cboNationality.Text = string.Empty;
+            txtBirthDate.Text = txtBirthPlace.Text = txtEngName.Text = txtLoginID.Text = txtName.Text = txtSSN.Text = cboAccountType.Text = cboGender.Text = cboNationality.Text = string.Empty;
         }
 
         private void BindDataToForm()
@@ -303,6 +334,7 @@ namespace BasicInformation
             prlp.SetBeforeSaveText("登入帳號", txtLoginID.Text);
             prlp.SetBeforeSaveText("帳號類型", cboAccountType.Text);
             prlp.SetBeforeSaveText("中文姓名", txtChineseName.Text);  //new
+            prlp.SetBeforeSaveText("護照號碼", txtPassportNumber.Text);  //new
         }
 
         private void SetAfterEditLog()
@@ -317,6 +349,8 @@ namespace BasicInformation
             prlp.SetAfterSaveText("登入帳號", txtLoginID.Text);
             prlp.SetAfterSaveText("帳號類型", cboAccountType.Text);
             prlp.SetAfterSaveText("中文姓名", txtChineseName.Text);  //new
+            prlp.SetAfterSaveText("護照號碼", txtPassportNumber.Text);  //new
+
             prlp.SetActionBy("學籍", "學生基本資料");
             prlp.SetAction("修改學生基本資料");
             prlp.SetDescTitle("姓名:" + _StudRec.Name + ",學號:" + _StudRec.StudentNumber + ",");
@@ -365,7 +399,7 @@ namespace BasicInformation
 
         public DetailContent GetContent()
         {
-            return new BaseInfoPalmerwormItem_double();
+            return new StudentItem();
         }
 
         private void Initialize()

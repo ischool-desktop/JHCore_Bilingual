@@ -38,7 +38,7 @@
             this.buttonX1.AutoSize = true;
             this.buttonX1.BackColor = System.Drawing.Color.Transparent;
             this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Location = new System.Drawing.Point(271, 100);
+            this.buttonX1.Location = new System.Drawing.Point(382, 101);
             this.buttonX1.Name = "buttonX1";
             this.buttonX1.Size = new System.Drawing.Size(75, 25);
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -57,15 +57,16 @@
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.Location = new System.Drawing.Point(13, 13);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(315, 73);
+            this.labelX1.Size = new System.Drawing.Size(445, 73);
             this.labelX1.TabIndex = 1;
-            this.labelX1.Text = "說明內容：\r\n姓名：校內對學生之慣用稱呼\r\n中文姓名：學生的中文姓名\r\n英文全名：通常用於官方正式文件或國外證明成績單";
+            this.labelX1.Text = "說明內容：\r\n姓名：校內對學生之慣用稱呼　如:Amy Wang\r\n中文姓名：學生的中文姓名　如:王佳仁\r\n英文全名：通常用於官方正式文件或國外證明成績單　如:WA" +
+    "NG, JIA-REN";
             // 
             // HelpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(356, 131);
+            this.ClientSize = new System.Drawing.Size(462, 131);
             this.Controls.Add(this.labelX1);
             this.Controls.Add(this.buttonX1);
             this.DoubleBuffered = true;

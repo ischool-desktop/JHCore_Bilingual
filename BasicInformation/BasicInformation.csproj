@@ -116,23 +116,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseInfoPalmerwormItem_double.cs">
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\StudentItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaseInfoPalmerwormItem_double.designer.cs">
-      <DependentUpon>BaseInfoPalmerwormItem_double.cs</DependentUpon>
+    <Compile Include="Student\StudentItem.designer.cs">
+      <DependentUpon>StudentItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="BasicItem_Test.cs" />
-    <Compile Include="HelpForm.cs">
+    <Compile Include="Student\BasicStudentItem_API.cs" />
+    <Compile Include="Student\HelpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HelpForm.Designer.cs">
+    <Compile Include="Student\HelpForm.Designer.cs">
       <DependentUpon>HelpForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Teacher\TeacherItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Teacher\TeacherItem.designer.cs">
+      <DependentUpon>TeacherItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\BasicTeacherItem_API.cs" />
     <Compile Include="tool.cs" />
     <Compile Include="UDT\StudentRecord_Ext.cs" />
+    <Compile Include="UDT\TeacherRecord_Ext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Library\DevComponents.DotNetBar2.dll" />
@@ -171,15 +184,24 @@
     <Content Include="Library\SmartSchool.Common.DotNetBar.xml" />
     <Content Include="Library\SmartSchool.Common.pdb" />
     <Content Include="Library\SmartSchool.Common.xml" />
+    <None Include="Resources\People.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BaseInfoPalmerwormItem_double.resx">
-      <DependentUpon>BaseInfoPalmerwormItem_double.cs</DependentUpon>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="HelpForm.resx">
+    <EmbeddedResource Include="Student\StudentItem.resx">
+      <DependentUpon>StudentItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Student\HelpForm.resx">
       <DependentUpon>HelpForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Teacher\TeacherItem.resx">
+      <DependentUpon>TeacherItem.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
