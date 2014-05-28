@@ -32,6 +32,9 @@ namespace BasicInformation
         K12StudentPhoto.PermRecLogProcess prlp;
         private ChangeListener _DataListener;
 
+        EventHandler eh;
+        string EventCord = "Res_TeacherExt";
+
         private TeacherRecord_Ext _TeacherRec_Ext;
 
         public TeacherItem()
@@ -53,7 +56,7 @@ namespace BasicInformation
             _DataListener.Add(new TextBoxSource(txtCategory));
             _DataListener.Add(new TextBoxSource(txtSTLoginAccount));
             _DataListener.Add(new TextBoxSource(txtSTLoginPwd));
-            _DataListener.Add(new TextBoxSource(txtChineseName));
+            _DataListener.Add(new TextBoxSource(txtCellPhone));
             _DataListener.Add(new ComboBoxSource(cboAccountType, ComboBoxSource.ListenAttribute.Text));
             _DataListener.Add(new ComboBoxSource(cboGender, ComboBoxSource.ListenAttribute.Text));            
             _DataListener.StatusChanged += new EventHandler<ChangeEventArgs>(_DataListener_StatusChanged);
@@ -61,6 +64,9 @@ namespace BasicInformation
             JHTeacher.AfterChange += new EventHandler<K12.Data.DataChangedEventArgs>(JHTeacher_AfterChange);
             JHTeacher.AfterDelete += new EventHandler<K12.Data.DataChangedEventArgs>(JHTeacher_AfterDelete);
             Disposed += new EventHandler(BaseInfoItem_Disposed);
+
+            //啟動更新事件
+            eh = FISCA.InteractionService.PublishEvent(EventCord);
         }
 
         void JHTeacher_AfterDelete(object sender, K12.Data.DataChangedEventArgs e)
@@ -131,7 +137,7 @@ namespace BasicInformation
             txtSTLoginAccount.Text = _TeacherRec.TALoginName;
             txtSTLoginPwd.Text = _TeacherRec.TAPassword;
             cboAccountType.Text = _TeacherRec.AccountType;
-            txtChineseName.Text = _TeacherRec_Ext.ChineseName;
+            txtCellPhone.Text = _TeacherRec_Ext.CellPhone;
             try
             {
 
@@ -147,7 +153,7 @@ namespace BasicInformation
             // Log
             prlp.SetBeforeSaveText("姓名", txtName.Text);
             prlp.SetBeforeSaveText("身分證號", txtIDNumber.Text);
-            prlp.SetBeforeSaveText("中文姓名", txtChineseName.Text);
+            prlp.SetBeforeSaveText("中文姓名", txtCellPhone.Text);
             prlp.SetBeforeSaveText("性別", cboGender.Text);
             prlp.SetBeforeSaveText("暱稱", txtNickname.Text);
             prlp.SetBeforeSaveText("聯絡電話", txtPhone.Text);
@@ -182,6 +188,14 @@ namespace BasicInformation
                         _AllIDNumberDict.Add(TR.IDNumber, TR.ID);
             }
 
+            UpdateUDTData();
+
+            // 讀取教師資料
+            _TeacherRec = JHTeacher.SelectByID(PrimaryKey);
+        }
+
+        void UpdateUDTData()
+        {
             #region 取得老師延伸資料
 
             List<TeacherRecord_Ext> TeacherExtList = tool._A.Select<TeacherRecord_Ext>("ref_teacher_id='" + PrimaryKey + "'");
@@ -205,12 +219,10 @@ namespace BasicInformation
                 TeacherExtList.Remove(_TeacherRec_Ext);
                 //刪除多餘資料
                 tool._A.DeletedValues(TeacherExtList);
-            } 
+            }
 
             #endregion
 
-            // 讀取教師資料
-            _TeacherRec = JHTeacher.SelectByID(PrimaryKey);
         }
 
         protected override void OnPrimaryKeyChanged(EventArgs e)
@@ -278,7 +290,7 @@ namespace BasicInformation
             _TeacherRec.Name = txtName.Text;
             _TeacherRec.Nickname = txtNickname.Text;
             _TeacherRec.TAPassword = txtSTLoginPwd.Text;
-            _TeacherRec_Ext.ChineseName = txtChineseName.Text;
+            _TeacherRec_Ext.CellPhone = txtCellPhone.Text;
             
             // 存檔
             JHTeacher.Update(_TeacherRec);
@@ -295,9 +307,15 @@ namespace BasicInformation
                 tool._A.InsertValues(list);
             }
 
+            UpdateUDTData();
+
+            //
+            eh(this, EventArgs.Empty);
+
+
             // Save Log
             prlp.SetAfterSaveText("姓名", txtName.Text);
-            prlp.SetAfterSaveText("中文姓名", txtChineseName.Text);
+            prlp.SetAfterSaveText("中文姓名", txtCellPhone.Text);
             prlp.SetAfterSaveText("身分證號", txtIDNumber.Text);
             prlp.SetAfterSaveText("性別", cboGender.Text);
             prlp.SetAfterSaveText("暱稱", txtNickname.Text);

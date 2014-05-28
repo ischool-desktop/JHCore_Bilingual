@@ -1,11 +1,12 @@
-﻿using System;
+﻿using IRewriteAPI_JH;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace BasicInformation
 {
-    class BasicStudentItem_API : JHSchool.API.IStudentDetailItemAPI
+    class BasicStudentItem_API : IStudentDetailItemAPI
     {
         public FISCA.Presentation.IDetailBulider CreateBasicInfo()
         {

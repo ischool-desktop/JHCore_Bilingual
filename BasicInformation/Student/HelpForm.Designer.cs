@@ -59,8 +59,8 @@
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(445, 73);
             this.labelX1.TabIndex = 1;
-            this.labelX1.Text = "說明內容：\r\n姓名：校內對學生之慣用稱呼　如:Amy Wang\r\n中文姓名：學生的中文姓名　如:王佳仁\r\n英文全名：通常用於官方正式文件或國外證明成績單　如:WA" +
-    "NG, JIA-REN";
+            this.labelX1.Text = "說明內容：\r\n姓名：學生的中文姓名　如:王佳仁\r\n慣稱：校內對學生之慣用稱呼　如:Amy Wang\r\n英文全名：通常用於官方正式文件或國外證明成績單　如:WANG" +
+    ", JIA-REN";
             // 
             // HelpForm
             // 

@@ -63,7 +63,7 @@
             this.buttonItem2 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem5 = new DevComponents.DotNetBar.ButtonItem();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtChineseName = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtCellPhone = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pic1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errors)).BeginInit();
@@ -152,7 +152,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 17);
             this.label4.TabIndex = 7;
-            this.label4.Text = "聯絡電話";
+            this.label4.Text = "家用電話";
             // 
             // txtEmail
             // 
@@ -284,7 +284,7 @@
             // 
             this.txtNickname.Border.Class = "TextBoxBorder";
             this.txtNickname.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtNickname.Location = new System.Drawing.Point(363, 105);
+            this.txtNickname.Location = new System.Drawing.Point(363, 46);
             this.txtNickname.Name = "txtNickname";
             this.txtNickname.Size = new System.Drawing.Size(140, 25);
             this.txtNickname.TabIndex = 4;
@@ -292,7 +292,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(285, 109);
+            this.label10.Location = new System.Drawing.Point(285, 50);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(60, 17);
             this.label10.TabIndex = 1;
@@ -367,39 +367,40 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(285, 49);
+            this.label11.Location = new System.Drawing.Point(285, 109);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(60, 17);
             this.label11.TabIndex = 212;
-            this.label11.Text = "中文姓名";
+            this.label11.Text = "行動電話";
             // 
-            // txtChineseName
-            // 
-            // 
+            // txtCellPhone
             // 
             // 
-            this.txtChineseName.Border.Class = "TextBoxBorder";
-            this.txtChineseName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtChineseName.Location = new System.Drawing.Point(363, 45);
-            this.txtChineseName.Name = "txtChineseName";
-            this.txtChineseName.Size = new System.Drawing.Size(140, 25);
-            this.txtChineseName.TabIndex = 213;
+            // 
+            // 
+            this.txtCellPhone.Border.Class = "TextBoxBorder";
+            this.txtCellPhone.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtCellPhone.Location = new System.Drawing.Point(363, 105);
+            this.txtCellPhone.Name = "txtCellPhone";
+            this.txtCellPhone.Size = new System.Drawing.Size(140, 25);
+            this.txtCellPhone.TabIndex = 213;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(360, 224);
+            this.label12.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label12.Location = new System.Drawing.Point(282, 219);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(68, 17);
             this.label12.TabIndex = 214;
             this.label12.Text = "(居留證號)";
             // 
-            // BaseInfoItem_double
+            // TeacherItem
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.txtChineseName);
+            this.Controls.Add(this.txtCellPhone);
             this.Controls.Add(this.contextMenuBar1);
             this.Controls.Add(this.cboAccountType);
             this.Controls.Add(this.txtCategory);
@@ -422,7 +423,7 @@
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtNickname);
-            this.Name = "BaseInfoItem_double";
+            this.Name = "TeacherItem";
             this.Size = new System.Drawing.Size(550, 250);
             ((System.ComponentModel.ISupportInitialize)(this.pic1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errors)).EndInit();
@@ -469,6 +470,6 @@
         private DevComponents.DotNetBar.ButtonItem buttonItem5;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtChineseName;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtCellPhone;
     }
 }

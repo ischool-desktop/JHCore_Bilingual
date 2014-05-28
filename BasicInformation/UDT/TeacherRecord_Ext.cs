@@ -6,6 +6,7 @@ using System.Text;
 
 namespace BasicInformation
 {
+    [TableName("JHCore_Bilingual.TeacherRecordExt")]
     class TeacherRecord_Ext : ActiveRecord
     {
         /// <summary>
@@ -16,9 +17,9 @@ namespace BasicInformation
 
 
         /// <summary>
-        /// 中文姓名
+        /// 行動電話
         /// </summary>
-        [Field(Field = "chinese_name", Indexed = true)]
-        public string ChineseName { get; set; }
+        [Field(Field = "cell_phone", Indexed = true)]
+        public string CellPhone { get; set; }
     }
 }

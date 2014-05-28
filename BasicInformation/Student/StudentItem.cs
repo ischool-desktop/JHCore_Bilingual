@@ -17,7 +17,7 @@ using K12StudentPhoto;
 
 namespace BasicInformation
 {
-    [FCode("JHSchool.Student.Detail0000", "學生基本資料_雙語部")]
+    [FCode("JHSchool.Student.Detail0000", "基本資料_雙語部")]
     internal partial class StudentItem : FISCA.Presentation.DetailContent
     {
         private bool _isInitialized = false;
@@ -28,6 +28,9 @@ namespace BasicInformation
         private StudentRecord_Ext _StudRec_Ext;
         private string _defaultLoginID = string.Empty;
         private string _defaultIDNumber = string.Empty;
+
+        EventHandler eh;
+        string EventCode = "Res_StudentExt";
 
         // 入學照片
         private string _FreshmanPhotoStr = string.Empty;
@@ -41,7 +44,7 @@ namespace BasicInformation
         public StudentItem()
         {
             InitializeComponent();
-            Group = "學生基本資料_雙語部";
+            Group = "基本資料_雙語部";
             _DataListener = new ChangeListener();
             _DataListener.Add(new TextBoxSource(txtName));
             _DataListener.Add(new TextBoxSource(txtSSN));
@@ -65,6 +68,7 @@ namespace BasicInformation
             JHStudent.AfterChange += new EventHandler<K12.Data.DataChangedEventArgs>(JHStudent_AfterChange);
 
 
+            eh = FISCA.InteractionService.PublishEvent(EventCode);
 
             JHStudent.AfterDelete += new EventHandler<K12.Data.DataChangedEventArgs>(JHStudent_AfterDelete);
             Disposed += new EventHandler(BaseInfoPalmerwormItem_Disposed);
@@ -72,7 +76,7 @@ namespace BasicInformation
 
         void JHStudent_AfterDelete(object sender, K12.Data.DataChangedEventArgs e)
         {
-            Student.Instance.SyncAllBackground();
+            JHSchool.Student.Instance.SyncAllBackground();
         }
 
         void BaseInfoPalmerwormItem_Disposed(object sender, EventArgs e)
@@ -189,7 +193,7 @@ namespace BasicInformation
             //儲存延伸資料
             List<StudentRecord_Ext> list = new List<StudentRecord_Ext>();
             list.Add(_StudRec_Ext);
-            if (string.IsNullOrEmpty(_StudRec_Ext.UID))
+            if (!string.IsNullOrEmpty(_StudRec_Ext.UID))
             {
                 tool._A.UpdateValues(list);
             }
@@ -198,11 +202,14 @@ namespace BasicInformation
                 tool._A.InsertValues(list);
             }
 
+            UpdateUDTData();
+
+            eh(null, EventArgs.Empty);
 
 
             JHStudent.Update(_StudRec);
             SetAfterEditLog();
-            Student.Instance.SyncDataBackground(PrimaryKey);
+            JHSchool.Student.Instance.SyncDataBackground(PrimaryKey);
             _errors.Clear();
             //BindDataToForm();
         }
@@ -224,7 +231,7 @@ namespace BasicInformation
             _StudRec.SALoginName = txtLoginID.Text;
             _StudRec.SAPassword = txtLoginPwd.Text;
 
-            _StudRec_Ext.ChineseName = txtChineseName.Text; //中文姓名
+            _StudRec_Ext.Nickname = txtChineseName.Text; //中文姓名
             _StudRec_Ext.PassportNumber = txtPassportNumber.Text; //護照號碼
         }
 
@@ -247,9 +254,14 @@ namespace BasicInformation
             _FreshmanPhotoStr = K12.Data.Photo.SelectFreshmanPhoto(PrimaryKey);
             _GraduatePhotoStr = K12.Data.Photo.SelectGraduatePhoto(PrimaryKey);
 
+            UpdateUDTData();
             // studentRec
             _StudRec = JHStudent.SelectByID(PrimaryKey);
 
+        }
+
+        void UpdateUDTData()
+        {
             #region 取得學生延伸資料
 
             List<StudentRecord_Ext> StudExtList = tool._A.Select<StudentRecord_Ext>("ref_student_id='" + PrimaryKey + "'");
@@ -281,7 +293,6 @@ namespace BasicInformation
             }
 
             #endregion
-
         }
 
         protected override void OnPrimaryKeyChanged(EventArgs e)
@@ -372,7 +383,7 @@ namespace BasicInformation
             cboGender.Text = _StudRec.Gender;
             cboNationality.Text = _StudRec.Nationality;
 
-            txtChineseName.Text = _StudRec_Ext.ChineseName;
+            txtChineseName.Text = _StudRec_Ext.Nickname;
             txtPassportNumber.Text = _StudRec_Ext.PassportNumber;
 
             // 解析

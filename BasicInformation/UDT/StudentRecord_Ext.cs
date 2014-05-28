@@ -18,10 +18,10 @@ namespace BasicInformation
 
 
         /// <summary>
-        /// 中文姓名
+        /// 暱稱
         /// </summary>
-        [Field(Field = "chinese_name", Indexed = true)]
-        public string ChineseName { get; set; }
+        [Field(Field = "nick_name", Indexed = true)]
+        public string Nickname { get; set; }
 
         /// <summary>
         /// 護照號碼

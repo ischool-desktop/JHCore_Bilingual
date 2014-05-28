@@ -1,8 +1,10 @@
 ﻿using FISCA;
 using FISCA.Permission;
 using FISCA.Presentation;
+using IRewriteAPI_JH;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,14 +17,10 @@ namespace BasicInformation
         static public void Main1()
         {
             //覆蓋 - 學生基本資料項目
-            FISCA.InteractionService.RegisterAPI<JHSchool.API.IStudentDetailItemAPI>(new BasicStudentItem_API());
+            FISCA.InteractionService.RegisterAPI<IStudentDetailItemAPI>(new BasicStudentItem_API());
 
             //覆蓋 - 教師基本資料項目
-            FISCA.InteractionService.RegisterAPI<JHSchool.API.ITeacherDatailtemAPI>(new BasicTeacherItem_API());
-
-            //啟動更新事件
-            EventHandler eh = FISCA.InteractionService.PublishEvent("Res_StudentExt");
-            eh(null, EventArgs.Empty);
+            FISCA.InteractionService.RegisterAPI<ITeacherDatailtemAPI>(new BasicTeacherItem_API());
         }
 
         [MainMethod()]
@@ -32,6 +30,7 @@ namespace BasicInformation
             ResStudentData();
             //處理教師資料
             ResTeacherData();
+
         }
 
         /// <summary>
@@ -40,18 +39,29 @@ namespace BasicInformation
         private static void ResStudentData()
         {
             Dictionary<string, StudentRecord_Ext> StudentExtDic = GetStudentExt();
+            Dictionary<string, string> StudentEnName = GetStudentExName();
 
-            #region 學生 中文姓名&護照號碼
+            #region 學生 暱稱&護照號碼
 
-            ListPaneField StudentChineseNameField = new ListPaneField("中文姓名");
-            StudentChineseNameField.GetVariable += delegate(object sender, GetVariableEventArgs e)
+            ListPaneField StudentNicknameField = new ListPaneField("慣稱");
+            StudentNicknameField.GetVariable += delegate(object sender, GetVariableEventArgs e)
             {
                 if (StudentExtDic.ContainsKey(e.Key))
                 {
-                    e.Value = StudentExtDic[e.Key].ChineseName;
+                    e.Value = StudentExtDic[e.Key].Nickname;
                 }
             };
-            K12.Presentation.NLDPanels.Student.AddListPaneField(StudentChineseNameField);
+            K12.Presentation.NLDPanels.Student.AddListPaneField(StudentNicknameField);
+
+            ListPaneField StudentEnglishNameField = new ListPaneField("英文姓名");
+            StudentEnglishNameField.GetVariable += delegate(object sender, GetVariableEventArgs e)
+            {
+                if (StudentEnName.ContainsKey(e.Key))
+                {
+                    e.Value = StudentEnName[e.Key];
+                }
+            };
+            K12.Presentation.NLDPanels.Student.AddListPaneField(StudentEnglishNameField);
 
             ListPaneField PassportNumberField = new ListPaneField("護照號碼");
             PassportNumberField.GetVariable += delegate(object sender, GetVariableEventArgs e)
@@ -63,7 +73,35 @@ namespace BasicInformation
             };
             K12.Presentation.NLDPanels.Student.AddListPaneField(PassportNumberField);
 
+            FISCA.InteractionService.SubscribeEvent("Res_StudentExt", (sender, args) =>
+            {
+                //取得更新資料
+                StudentExtDic = GetStudentExt();
+                StudentEnName = GetStudentExName();
+                //重讀
+                StudentNicknameField.Reload();
+                PassportNumberField.Reload();
+                StudentEnglishNameField.Reload();
+            });
             #endregion
+        }
+
+        private static Dictionary<string, string> GetStudentExName()
+        {
+
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            DataTable dt = tool._Q.Select("select id,english_name from student");
+            foreach (DataRow row in dt.Rows)
+            {
+                string id = "" + row["id"];
+                string english_name = "" + row["english_name"];
+                if (!dic.ContainsKey(id))
+                {
+                    dic.Add(id, english_name);
+                }
+            }
+            return dic;
+
         }
 
         /// <summary>
@@ -92,15 +130,23 @@ namespace BasicInformation
         {
             Dictionary<string, TeacherRecord_Ext> TeacherExtDic = GetTeacherExt();
 
-            ListPaneField TeacherChineseNameField = new ListPaneField("中文姓名");
-            TeacherChineseNameField.GetVariable += delegate(object sender, GetVariableEventArgs e)
+            ListPaneField TeacherCellPhoneField = new ListPaneField("手機電話");
+            TeacherCellPhoneField.GetVariable += delegate(object sender, GetVariableEventArgs e)
             {
                 if (TeacherExtDic.ContainsKey(e.Key))
                 {
-                    e.Value = TeacherExtDic[e.Key].ChineseName;
+                    e.Value = TeacherExtDic[e.Key].CellPhone;
                 }
             };
-            K12.Presentation.NLDPanels.Teacher.AddListPaneField(TeacherChineseNameField);
+            K12.Presentation.NLDPanels.Teacher.AddListPaneField(TeacherCellPhoneField);
+
+            FISCA.InteractionService.SubscribeEvent("Res_TeacherExt", (sender, args) =>
+            {
+
+                TeacherExtDic = GetTeacherExt();
+                TeacherCellPhoneField.Reload();
+            });
+
         }
 
         /// <summary>
