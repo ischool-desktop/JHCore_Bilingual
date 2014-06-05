@@ -53,7 +53,7 @@ namespace BasicInformation
             };
             K12.Presentation.NLDPanels.Student.AddListPaneField(StudentNicknameField);
 
-            ListPaneField StudentEnglishNameField = new ListPaneField("英文姓名");
+            ListPaneField StudentEnglishNameField = new ListPaneField("英文全名");
             StudentEnglishNameField.GetVariable += delegate(object sender, GetVariableEventArgs e)
             {
                 if (StudentEnName.ContainsKey(e.Key))
@@ -130,7 +130,7 @@ namespace BasicInformation
         {
             Dictionary<string, TeacherRecord_Ext> TeacherExtDic = GetTeacherExt();
 
-            ListPaneField TeacherCellPhoneField = new ListPaneField("手機電話");
+            ListPaneField TeacherCellPhoneField = new ListPaneField("行動電話");
             TeacherCellPhoneField.GetVariable += delegate(object sender, GetVariableEventArgs e)
             {
                 if (TeacherExtDic.ContainsKey(e.Key))

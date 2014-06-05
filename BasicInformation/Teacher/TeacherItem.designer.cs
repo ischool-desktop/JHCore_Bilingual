@@ -152,7 +152,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 17);
             this.label4.TabIndex = 7;
-            this.label4.Text = "家用電話";
+            this.label4.Text = "聯絡電話";
             // 
             // txtEmail
             // 
