@@ -69,5 +69,45 @@ namespace BasicInformation.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
+        internal static byte[] 班級名條_範本 {
+            get {
+                object obj = ResourceManager.GetObject("班級名條_範本", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
+        internal static byte[] 班級點名單_週報表樣式範本_ {
+            get {
+                object obj = ResourceManager.GetObject("班級點名單_週報表樣式範本_", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
+        internal static byte[] 班級點名表_合併欄位總表 {
+            get {
+                object obj = ResourceManager.GetObject("班級點名表_合併欄位總表", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
+        internal static byte[] 缺曠週報表_依假別 {
+            get {
+                object obj = ResourceManager.GetObject("缺曠週報表_依假別", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

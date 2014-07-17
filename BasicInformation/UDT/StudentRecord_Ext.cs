@@ -18,7 +18,7 @@ namespace BasicInformation
 
 
         /// <summary>
-        /// 暱稱
+        /// 英文別名
         /// </summary>
         [Field(Field = "nick_name", Indexed = true)]
         public string Nickname { get; set; }

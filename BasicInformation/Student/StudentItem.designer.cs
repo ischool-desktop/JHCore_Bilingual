@@ -85,18 +85,18 @@
             // 
             this.label77.AutoSize = true;
             this.label77.BackColor = System.Drawing.Color.Transparent;
-            this.label77.Location = new System.Drawing.Point(295, 85);
+            this.label77.Location = new System.Drawing.Point(294, 52);
             this.label77.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label77.Name = "label77";
             this.label77.Size = new System.Drawing.Size(60, 17);
             this.label77.TabIndex = 2;
-            this.label77.Text = "英文全名";
+            this.label77.Text = "英文姓名";
             // 
             // label76
             // 
             this.label76.AutoSize = true;
             this.label76.BackColor = System.Drawing.Color.Transparent;
-            this.label76.Location = new System.Drawing.Point(295, 19);
+            this.label76.Location = new System.Drawing.Point(294, 19);
             this.label76.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(60, 17);
@@ -110,7 +110,7 @@
             // 
             this.txtSSN.Border.Class = "TextBoxBorder";
             this.txtSSN.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSSN.Location = new System.Drawing.Point(366, 114);
+            this.txtSSN.Location = new System.Drawing.Point(367, 114);
             this.txtSSN.Margin = new System.Windows.Forms.Padding(4);
             this.txtSSN.MaxLength = 20;
             this.txtSSN.Name = "txtSSN";
@@ -122,7 +122,7 @@
             // 
             this.label78.AutoSize = true;
             this.label78.BackColor = System.Drawing.Color.Transparent;
-            this.label78.Location = new System.Drawing.Point(295, 149);
+            this.label78.Location = new System.Drawing.Point(294, 149);
             this.label78.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(60, 17);
@@ -134,7 +134,7 @@
             // 
             this.label82.AutoSize = true;
             this.label82.BackColor = System.Drawing.Color.Transparent;
-            this.label82.Location = new System.Drawing.Point(295, 178);
+            this.label82.Location = new System.Drawing.Point(294, 178);
             this.label82.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label82.Name = "label82";
             this.label82.Size = new System.Drawing.Size(60, 17);
@@ -149,7 +149,7 @@
             // 
             this.txtName.Border.Class = "TextBoxBorder";
             this.txtName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtName.Location = new System.Drawing.Point(366, 15);
+            this.txtName.Location = new System.Drawing.Point(367, 15);
             this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(138, 25);
@@ -159,7 +159,7 @@
             // 
             this.label81.AutoSize = true;
             this.label81.BackColor = System.Drawing.Color.Transparent;
-            this.label81.Location = new System.Drawing.Point(295, 117);
+            this.label81.Location = new System.Drawing.Point(294, 117);
             this.label81.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label81.Name = "label81";
             this.label81.Size = new System.Drawing.Size(60, 17);
@@ -174,7 +174,7 @@
             // 
             this.txtEngName.Border.Class = "TextBoxBorder";
             this.txtEngName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtEngName.Location = new System.Drawing.Point(366, 81);
+            this.txtEngName.Location = new System.Drawing.Point(367, 48);
             this.txtEngName.Margin = new System.Windows.Forms.Padding(4);
             this.txtEngName.MaxLength = 30;
             this.txtEngName.Name = "txtEngName";
@@ -339,7 +339,7 @@
             this.txtBirthDate.Border.Class = "TextBoxBorder";
             this.txtBirthDate.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtBirthDate.EmptyString = "";
-            this.txtBirthDate.Location = new System.Drawing.Point(366, 145);
+            this.txtBirthDate.Location = new System.Drawing.Point(367, 145);
             this.txtBirthDate.Name = "txtBirthDate";
             this.txtBirthDate.Size = new System.Drawing.Size(138, 25);
             this.txtBirthDate.TabIndex = 9;
@@ -410,7 +410,7 @@
             this.cboGender.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cboGender.FormattingEnabled = true;
             this.cboGender.ItemHeight = 16;
-            this.cboGender.Location = new System.Drawing.Point(366, 176);
+            this.cboGender.Location = new System.Drawing.Point(367, 176);
             this.cboGender.Name = "cboGender";
             this.cboGender.Size = new System.Drawing.Size(138, 22);
             this.cboGender.TabIndex = 11;
@@ -423,7 +423,7 @@
             this.cboNationality.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cboNationality.FormattingEnabled = true;
             this.cboNationality.ItemHeight = 16;
-            this.cboNationality.Location = new System.Drawing.Point(366, 206);
+            this.cboNationality.Location = new System.Drawing.Point(367, 206);
             this.cboNationality.Margin = new System.Windows.Forms.Padding(4);
             this.cboNationality.Name = "cboNationality";
             this.cboNationality.Size = new System.Drawing.Size(139, 22);
@@ -457,12 +457,12 @@
             // 
             this.lbChineseName.AutoSize = true;
             this.lbChineseName.BackColor = System.Drawing.Color.Transparent;
-            this.lbChineseName.Location = new System.Drawing.Point(295, 52);
+            this.lbChineseName.Location = new System.Drawing.Point(294, 85);
             this.lbChineseName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbChineseName.Name = "lbChineseName";
             this.lbChineseName.Size = new System.Drawing.Size(60, 17);
             this.lbChineseName.TabIndex = 4;
-            this.lbChineseName.Text = "慣　　稱";
+            this.lbChineseName.Text = "英文別名";
             // 
             // txtChineseName
             // 
@@ -471,7 +471,7 @@
             // 
             this.txtChineseName.Border.Class = "TextBoxBorder";
             this.txtChineseName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtChineseName.Location = new System.Drawing.Point(367, 48);
+            this.txtChineseName.Location = new System.Drawing.Point(367, 81);
             this.txtChineseName.Margin = new System.Windows.Forms.Padding(4);
             this.txtChineseName.MaxLength = 30;
             this.txtChineseName.Name = "txtChineseName";

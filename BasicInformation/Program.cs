@@ -31,6 +31,25 @@ namespace BasicInformation
             //處理教師資料
             ResTeacherData();
 
+
+            //雙語部 - 班級名條 & 班級點名單
+
+            FISCA.Presentation.MenuButton btn = FISCA.Presentation.MotherForm.RibbonBarItems["班級", "資料統計"]["報表"]["學務相關報表"];
+            btn["班級點名表(雙語部)"].Enable = Permissions.班級點名單_雙語部權限;
+            btn["班級點名表(雙語部)"].Click += delegate
+            {
+                new ClubPointForm().ShowDialog();
+            };
+
+            btn["缺曠週報表_依假別(雙語部)"].Enable = Permissions.班級點名單_雙語部權限;
+            btn["缺曠週報表_依假別(雙語部)"].Click += delegate
+            {
+                new Report().Print();
+            };
+
+            FISCA.Permission.Catalog TestCatalog = FISCA.Permission.RoleAclSource.Instance["班級"]["報表"];
+            TestCatalog.Add(new FISCA.Permission.RibbonFeature(Permissions.班級點名單_雙語部, "班級點名表(雙語部)"));
+            TestCatalog.Add(new FISCA.Permission.RibbonFeature(Permissions.缺曠週報表_依假別_雙語部, "缺曠週報表_依假別(雙語部)"));
         }
 
         /// <summary>
@@ -43,17 +62,7 @@ namespace BasicInformation
 
             #region 學生 暱稱&護照號碼
 
-            ListPaneField StudentNicknameField = new ListPaneField("慣稱");
-            StudentNicknameField.GetVariable += delegate(object sender, GetVariableEventArgs e)
-            {
-                if (StudentExtDic.ContainsKey(e.Key))
-                {
-                    e.Value = StudentExtDic[e.Key].Nickname;
-                }
-            };
-            K12.Presentation.NLDPanels.Student.AddListPaneField(StudentNicknameField);
-
-            ListPaneField StudentEnglishNameField = new ListPaneField("英文全名");
+            ListPaneField StudentEnglishNameField = new ListPaneField("英文姓名");
             StudentEnglishNameField.GetVariable += delegate(object sender, GetVariableEventArgs e)
             {
                 if (StudentEnName.ContainsKey(e.Key))
@@ -62,6 +71,16 @@ namespace BasicInformation
                 }
             };
             K12.Presentation.NLDPanels.Student.AddListPaneField(StudentEnglishNameField);
+
+            ListPaneField StudentNicknameField = new ListPaneField("英文別名");
+            StudentNicknameField.GetVariable += delegate(object sender, GetVariableEventArgs e)
+            {
+                if (StudentExtDic.ContainsKey(e.Key))
+                {
+                    e.Value = StudentExtDic[e.Key].Nickname;
+                }
+            };
+            K12.Presentation.NLDPanels.Student.AddListPaneField(StudentNicknameField);
 
             ListPaneField PassportNumberField = new ListPaneField("護照號碼");
             PassportNumberField.GetVariable += delegate(object sender, GetVariableEventArgs e)

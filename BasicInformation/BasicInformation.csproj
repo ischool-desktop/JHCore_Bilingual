@@ -31,6 +31,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=4.3.0.0, Culture=neutral, PublicKeyToken=9a40d5a4b59e5256, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Aspose.Cells.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Aspose.Words, Version=4.4.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Aspose.Words.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus.Report, Version=1.0.0.11, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Campus.Report.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DevComponents.DotNetBar2, Version=9.5.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\DevComponents.DotNetBar2.dll</HintPath>
@@ -40,9 +55,24 @@
       <HintPath>Library\FISCA.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="FISCA.Authentication, Version=1.9.0.18, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.Authentication.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="FISCA.Data, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\FISCA.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.DSAClient, Version=1.0.1.16, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.DSAClient.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.DSAUtil, Version=3.9.0.10, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.DSAUtil.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.Permission, Version=1.2.0.2, Culture=neutral, processorArchitecture=MSIL">
@@ -109,6 +139,11 @@
       <HintPath>Library\SmartSchool.Common.DotNetBar.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="SmartSchool.ErrorReporting, Version=1.0.2.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\SmartSchool.ErrorReporting.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -120,10 +155,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Permissions.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ClubPointForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\ClubPointForm.designer.cs">
+      <DependentUpon>ClubPointForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\缺曠週報表_依假別\CommonMethods.cs" />
+    <Compile Include="Report\缺曠週報表_依假別\Get.cs" />
+    <Compile Include="Report\缺曠週報表_依假別\IReport.cs" />
+    <Compile Include="Report\缺曠週報表_依假別\Report.cs" />
+    <Compile Include="Report\缺曠週報表_依假別\SelectDateRangeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\缺曠週報表_依假別\SelectDateRangeForm.designer.cs">
+      <DependentUpon>SelectDateRangeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\缺曠週報表_依假別\SelectTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\缺曠週報表_依假別\SelectTypeForm.designer.cs">
+      <DependentUpon>SelectTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\缺曠週報表_依假別\SelectWeekForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\缺曠週報表_依假別\SelectWeekForm.designer.cs">
+      <DependentUpon>SelectWeekForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\缺曠週報表_依假別\WARCByAbsence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\缺曠週報表_依假別\WARCByAbsence.designer.cs">
+      <DependentUpon>WARCByAbsence.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\缺曠週報表_依假別\WeekAbsenceReportConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\缺曠週報表_依假別\WeekAbsenceReportConfig.designer.cs">
+      <DependentUpon>WeekAbsenceReportConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Student\StudentItem.cs">
       <SubType>UserControl</SubType>
@@ -152,11 +228,26 @@
     <Compile Include="UDT\TeacherRecord_Ext.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Library\Aspose.Cells.dll" />
+    <Content Include="Library\Aspose.Cells.xml" />
+    <Content Include="Library\Aspose.Words.dll" />
+    <Content Include="Library\Aspose.Words.xml" />
+    <Content Include="Library\Campus.Report.dll" />
+    <Content Include="Library\Campus.Report.pdb" />
     <Content Include="Library\DevComponents.DotNetBar2.dll" />
+    <Content Include="Library\FISCA.Authentication.dll" />
+    <Content Include="Library\FISCA.Authentication.pdb" />
+    <Content Include="Library\FISCA.Authentication.xml" />
     <Content Include="Library\FISCA.Data.dll" />
     <Content Include="Library\FISCA.Data.pdb" />
     <Content Include="Library\FISCA.Data.xml" />
     <Content Include="Library\FISCA.dll" />
+    <Content Include="Library\FISCA.DSAClient.dll" />
+    <Content Include="Library\FISCA.DSAClient.pdb" />
+    <Content Include="Library\FISCA.DSAClient.xml" />
+    <Content Include="Library\FISCA.DSAUtil.dll" />
+    <Content Include="Library\FISCA.DSAUtil.pdb" />
+    <Content Include="Library\FISCA.DSAUtil.xml" />
     <Content Include="Library\FISCA.pdb" />
     <Content Include="Library\FISCA.Permission.dll" />
     <Content Include="Library\FISCA.Permission.pdb" />
@@ -188,12 +279,37 @@
     <Content Include="Library\SmartSchool.Common.DotNetBar.xml" />
     <Content Include="Library\SmartSchool.Common.pdb" />
     <Content Include="Library\SmartSchool.Common.xml" />
+    <Content Include="Library\SmartSchool.ErrorReporting.dll" />
+    <Content Include="Library\SmartSchool.ErrorReporting.pdb" />
+    <Content Include="Library\SmartSchool.ErrorReporting.xml" />
     <None Include="Resources\People.jpg" />
+    <None Include="Resources\班級名條_範本.doc" />
+    <None Include="Resources\班級點名單%28週報表樣式範本%29.doc" />
+    <None Include="Resources\班級點名表_合併欄位總表.doc" />
+    <None Include="Resources\缺曠週報表_依假別.xls" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ClubPointForm.resx">
+      <DependentUpon>ClubPointForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\缺曠週報表_依假別\SelectDateRangeForm.resx">
+      <DependentUpon>SelectDateRangeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\缺曠週報表_依假別\SelectTypeForm.resx">
+      <DependentUpon>SelectTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\缺曠週報表_依假別\SelectWeekForm.resx">
+      <DependentUpon>SelectWeekForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\缺曠週報表_依假別\WARCByAbsence.resx">
+      <DependentUpon>WARCByAbsence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\缺曠週報表_依假別\WeekAbsenceReportConfig.resx">
+      <DependentUpon>WeekAbsenceReportConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Student\StudentItem.resx">
       <DependentUpon>StudentItem.cs</DependentUpon>
