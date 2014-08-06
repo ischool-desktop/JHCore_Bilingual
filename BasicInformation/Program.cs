@@ -1,7 +1,9 @@
 ﻿using FISCA;
 using FISCA.Permission;
 using FISCA.Presentation;
+using FISCA.Presentation.Controls;
 using IRewriteAPI_JH;
+using K12.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,25 +33,122 @@ namespace BasicInformation
             //處理教師資料
             ResTeacherData();
 
+            FeatureAce UserPermission = FISCA.Permission.UserAcl.Current[Permissions.學生修課];
+            if (UserPermission.Editable || UserPermission.Viewable)
+                K12.Presentation.NLDPanels.Student.AddDetailBulider(new FISCA.Presentation.DetailBulider<CourseScoreItem>());
 
             //雙語部 - 班級名條 & 班級點名單
-
-            FISCA.Presentation.MenuButton btn = FISCA.Presentation.MotherForm.RibbonBarItems["班級", "資料統計"]["報表"]["學務相關報表"];
-            btn["班級點名表(雙語部)"].Enable = Permissions.班級點名單_雙語部權限;
-            btn["班級點名表(雙語部)"].Click += delegate
+            FISCA.Presentation.MenuButton btnC = FISCA.Presentation.MotherForm.RibbonBarItems["班級", "資料統計"]["報表"]["學務相關報表"];
+            btnC["班級點名表(雙語部)"].Enable = Permissions.班級點名單_雙語部權限;
+            btnC["班級點名表(雙語部)"].Click += delegate
             {
-                new ClubPointForm().ShowDialog();
+                if (K12.Presentation.NLDPanels.Class.SelectedSource.Count > 0)
+                {
+                    new ClubPointForm().ShowDialog();
+                }
+                else
+                {
+                    MsgBox.Show("請選擇班級!!");
+                }
             };
 
-            btn["缺曠週報表_依假別(雙語部)"].Enable = Permissions.班級點名單_雙語部權限;
-            btn["缺曠週報表_依假別(雙語部)"].Click += delegate
+            btnC["缺曠週報表_依假別(雙語部)"].Enable = Permissions.缺曠週報表_依假別_雙語部權限;
+            btnC["缺曠週報表_依假別(雙語部)"].Click += delegate
             {
-                new Report().Print();
+                if (K12.Presentation.NLDPanels.Class.SelectedSource.Count > 0)
+                {
+                    new Report().Print();
+                }
+                else
+                {
+                    MsgBox.Show("請選擇班級!!");
+                }
             };
 
-            FISCA.Permission.Catalog TestCatalog = FISCA.Permission.RoleAclSource.Instance["班級"]["報表"];
-            TestCatalog.Add(new FISCA.Permission.RibbonFeature(Permissions.班級點名單_雙語部, "班級點名表(雙語部)"));
-            TestCatalog.Add(new FISCA.Permission.RibbonFeature(Permissions.缺曠週報表_依假別_雙語部, "缺曠週報表_依假別(雙語部)"));
+            //班級
+            btnC["缺曠通知單(雙語部)"].Enable = Permissions.班級缺曠通知單_雙語部權限;
+            btnC["缺曠通知單(雙語部)"].Click += delegate
+            {
+                if (K12.Presentation.NLDPanels.Class.SelectedSource.Count > 0)
+                {
+                    new AbsenceNotification.Report("class").Print();
+                }
+                else
+                {
+                    MsgBox.Show("請選擇班級!!");
+                }
+            };
+
+            btnC["獎懲通知單(雙語部)"].Enable = Permissions.班級獎懲通知單_雙語部權限;
+            btnC["獎懲通知單(雙語部)"].Click += delegate
+            {
+                if (K12.Presentation.NLDPanels.Class.SelectedSource.Count > 0)
+                {
+                    new DisciplineNotification.Report("class").Print();
+                }
+                else
+                {
+                    MsgBox.Show("請選擇班級!!");
+                }
+            };
+
+            FISCA.Presentation.MenuButton btnS = FISCA.Presentation.MotherForm.RibbonBarItems["學生", "資料統計"]["報表"]["學務相關報表"];
+
+            //學生
+            btnS["缺曠通知單(雙語部)"].Enable = Permissions.學生缺曠通知單_雙語部權限;
+            btnS["缺曠通知單(雙語部)"].Click += delegate
+            {
+                if (K12.Presentation.NLDPanels.Student.SelectedSource.Count > 0)
+                {
+                    new AbsenceNotification.Report("student").Print();
+                }
+                else
+                {
+                    MsgBox.Show("請選擇學生!!");
+                }
+            };
+
+            //學生
+            btnS["獎懲通知單(雙語部)"].Enable = Permissions.學生獎懲通知單_雙語部權限;
+            btnS["獎懲通知單(雙語部)"].Click += delegate
+            {
+                if (K12.Presentation.NLDPanels.Student.SelectedSource.Count > 0)
+                {
+                    new DisciplineNotification.Report("student").Print();
+                }
+                else
+                {
+                    MsgBox.Show("請選擇學生!!");
+                }
+            };
+
+            FISCA.Presentation.MenuButton btnSDAdmin = FISCA.Presentation.MotherForm.RibbonBarItems["學務作業", "資料統計"]["報表"];
+            //學務作業
+            btnSDAdmin["獎懲公告單(雙語部)"].Enable = Permissions.獎懲公告單_雙語部權限;
+            btnSDAdmin["獎懲公告單(雙語部)"].Click += delegate
+            {
+                new AnnouncementSingle().ShowDialog();
+            };
+
+
+
+
+
+            FISCA.Permission.Catalog TestCatalog1 = FISCA.Permission.RoleAclSource.Instance["班級"]["報表"];
+            TestCatalog1.Add(new FISCA.Permission.RibbonFeature(Permissions.班級點名單_雙語部, "班級點名表(雙語部)"));
+            TestCatalog1.Add(new FISCA.Permission.RibbonFeature(Permissions.班級缺曠通知單_雙語部, "缺曠通知單(雙語部)"));
+            TestCatalog1.Add(new FISCA.Permission.RibbonFeature(Permissions.班級獎懲通知單_雙語部, "獎懲通知單(雙語部)"));
+            TestCatalog1.Add(new FISCA.Permission.RibbonFeature(Permissions.缺曠週報表_依假別_雙語部, "缺曠週報表_依假別(雙語部)"));
+
+            FISCA.Permission.Catalog TestCatalog2 = FISCA.Permission.RoleAclSource.Instance["學生"]["報表"];
+            TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.學生缺曠通知單_雙語部, "缺曠通知單(雙語部)"));
+            TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.學生獎懲通知單_雙語部, "獎懲通知單(雙語部)"));
+
+            FISCA.Permission.Catalog TestCatalog3 = FISCA.Permission.RoleAclSource.Instance["學務作業"]["報表"];
+            TestCatalog3.Add(new FISCA.Permission.RibbonFeature(Permissions.獎懲公告單_雙語部, "獎懲公告單(雙語部)"));
+
+            FISCA.Permission.Catalog detail1 = RoleAclSource.Instance["學生"]["資料項目"];
+            detail1.Add(new DetailItemFeature(Permissions.學生修課, "學生修課"));
         }
 
         /// <summary>

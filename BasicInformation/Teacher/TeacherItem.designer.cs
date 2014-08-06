@@ -87,7 +87,7 @@
             this.label1.Location = new System.Drawing.Point(285, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 17);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 0;
             this.label1.Text = "姓　　名";
             // 
             // label2
@@ -96,7 +96,7 @@
             this.label2.Location = new System.Drawing.Point(285, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 17);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 4;
             this.label2.Text = "性　　別";
             // 
             // label3
@@ -105,7 +105,7 @@
             this.label3.Location = new System.Drawing.Point(285, 196);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 17);
-            this.label3.TabIndex = 3;
+            this.label3.TabIndex = 12;
             this.label3.Text = "身分證號";
             // 
             // txtName
@@ -130,7 +130,7 @@
             this.txtIDNumber.Location = new System.Drawing.Point(363, 192);
             this.txtIDNumber.Name = "txtIDNumber";
             this.txtIDNumber.Size = new System.Drawing.Size(140, 25);
-            this.txtIDNumber.TabIndex = 2;
+            this.txtIDNumber.TabIndex = 13;
             this.txtIDNumber.TextChanged += new System.EventHandler(this.txtIDNumber_TextChanged);
             // 
             // txtPhone
@@ -143,7 +143,7 @@
             this.txtPhone.Location = new System.Drawing.Point(363, 134);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(140, 25);
-            this.txtPhone.TabIndex = 5;
+            this.txtPhone.TabIndex = 9;
             // 
             // label4
             // 
@@ -151,7 +151,7 @@
             this.label4.Location = new System.Drawing.Point(285, 138);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 17);
-            this.label4.TabIndex = 7;
+            this.label4.TabIndex = 8;
             this.label4.Text = "聯絡電話";
             // 
             // txtEmail
@@ -164,7 +164,7 @@
             this.txtEmail.Location = new System.Drawing.Point(363, 163);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(140, 25);
-            this.txtEmail.TabIndex = 6;
+            this.txtEmail.TabIndex = 11;
             // 
             // label5
             // 
@@ -172,7 +172,7 @@
             this.label5.Location = new System.Drawing.Point(285, 167);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 17);
-            this.label5.TabIndex = 9;
+            this.label5.TabIndex = 10;
             this.label5.Text = "電子信箱";
             // 
             // txtCategory
@@ -185,7 +185,7 @@
             this.txtCategory.Location = new System.Drawing.Point(108, 192);
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.Size = new System.Drawing.Size(140, 25);
-            this.txtCategory.TabIndex = 7;
+            this.txtCategory.TabIndex = 18;
             // 
             // label6
             // 
@@ -193,7 +193,7 @@
             this.label6.Location = new System.Drawing.Point(30, 197);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 17);
-            this.label6.TabIndex = 11;
+            this.label6.TabIndex = 17;
             this.label6.Text = "教師類別";
             // 
             // txtSTLoginAccount
@@ -206,7 +206,7 @@
             this.txtSTLoginAccount.Location = new System.Drawing.Point(108, 163);
             this.txtSTLoginAccount.Name = "txtSTLoginAccount";
             this.txtSTLoginAccount.Size = new System.Drawing.Size(140, 25);
-            this.txtSTLoginAccount.TabIndex = 8;
+            this.txtSTLoginAccount.TabIndex = 16;
             // 
             // label7
             // 
@@ -214,7 +214,7 @@
             this.label7.Location = new System.Drawing.Point(30, 166);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(60, 17);
-            this.label7.TabIndex = 13;
+            this.label7.TabIndex = 15;
             this.label7.Text = "登入帳號";
             // 
             // txtSTLoginPwd
@@ -263,7 +263,7 @@
             this.cboGender.Location = new System.Drawing.Point(363, 75);
             this.cboGender.Name = "cboGender";
             this.cboGender.Size = new System.Drawing.Size(140, 26);
-            this.cboGender.TabIndex = 3;
+            this.cboGender.TabIndex = 5;
             // 
             // comboItem1
             // 
@@ -287,7 +287,7 @@
             this.txtNickname.Location = new System.Drawing.Point(363, 46);
             this.txtNickname.Name = "txtNickname";
             this.txtNickname.Size = new System.Drawing.Size(140, 25);
-            this.txtNickname.TabIndex = 4;
+            this.txtNickname.TabIndex = 3;
             // 
             // label10
             // 
@@ -295,7 +295,7 @@
             this.label10.Location = new System.Drawing.Point(285, 50);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(60, 17);
-            this.label10.TabIndex = 1;
+            this.label10.TabIndex = 2;
             this.label10.Text = "暱　　稱";
             // 
             // cboAccountType
@@ -370,7 +370,7 @@
             this.label11.Location = new System.Drawing.Point(285, 109);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(60, 17);
-            this.label11.TabIndex = 212;
+            this.label11.TabIndex = 6;
             this.label11.Text = "行動電話";
             // 
             // txtCellPhone
@@ -383,7 +383,7 @@
             this.txtCellPhone.Location = new System.Drawing.Point(363, 105);
             this.txtCellPhone.Name = "txtCellPhone";
             this.txtCellPhone.Size = new System.Drawing.Size(140, 25);
-            this.txtCellPhone.TabIndex = 213;
+            this.txtCellPhone.TabIndex = 7;
             // 
             // label12
             // 
@@ -392,7 +392,7 @@
             this.label12.Location = new System.Drawing.Point(282, 219);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(68, 17);
-            this.label12.TabIndex = 214;
+            this.label12.TabIndex = 14;
             this.label12.Text = "(居留證號)";
             // 
             // TeacherItem

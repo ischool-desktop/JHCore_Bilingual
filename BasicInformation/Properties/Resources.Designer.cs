@@ -73,6 +73,36 @@ namespace BasicInformation.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
+        internal static byte[] 實驗中學_獎懲公告單 {
+            get {
+                object obj = ResourceManager.GetObject("實驗中學_獎懲公告單", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
+        internal static byte[] 獎懲公告單_功能變數總表 {
+            get {
+                object obj = ResourceManager.GetObject("獎懲公告單_功能變數總表", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
+        internal static byte[] 獎懲通知單 {
+            get {
+                object obj = ResourceManager.GetObject("獎懲通知單", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
         internal static byte[] 班級名條_範本 {
             get {
                 object obj = ResourceManager.GetObject("班級名條_範本", resourceCulture);
@@ -96,6 +126,16 @@ namespace BasicInformation.Properties {
         internal static byte[] 班級點名表_合併欄位總表 {
             get {
                 object obj = ResourceManager.GetObject("班級點名表_合併欄位總表", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
+        internal static byte[] 缺曠通知單 {
+            get {
+                object obj = ResourceManager.GetObject("缺曠通知單", resourceCulture);
                 return ((byte[])(obj));
             }
         }

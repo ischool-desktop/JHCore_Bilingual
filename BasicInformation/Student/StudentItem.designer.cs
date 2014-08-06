@@ -89,7 +89,7 @@
             this.label77.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label77.Name = "label77";
             this.label77.Size = new System.Drawing.Size(60, 17);
-            this.label77.TabIndex = 2;
+            this.label77.TabIndex = 3;
             this.label77.Text = "英文姓名";
             // 
             // label76
@@ -115,7 +115,7 @@
             this.txtSSN.MaxLength = 20;
             this.txtSSN.Name = "txtSSN";
             this.txtSSN.Size = new System.Drawing.Size(138, 25);
-            this.txtSSN.TabIndex = 7;
+            this.txtSSN.TabIndex = 8;
             this.txtSSN.Validating += new System.ComponentModel.CancelEventHandler(this.txtSSN_Validating);
             // 
             // label78
@@ -126,7 +126,7 @@
             this.label78.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(60, 17);
-            this.label78.TabIndex = 8;
+            this.label78.TabIndex = 9;
             this.label78.Text = "生　　日";
             this.label78.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -138,7 +138,7 @@
             this.label82.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label82.Name = "label82";
             this.label82.Size = new System.Drawing.Size(60, 17);
-            this.label82.TabIndex = 10;
+            this.label82.TabIndex = 11;
             this.label82.Text = "性　　別";
             this.label82.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -153,7 +153,7 @@
             this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(138, 25);
-            this.txtName.TabIndex = 3;
+            this.txtName.TabIndex = 1;
             // 
             // label81
             // 
@@ -163,7 +163,7 @@
             this.label81.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label81.Name = "label81";
             this.label81.Size = new System.Drawing.Size(60, 17);
-            this.label81.TabIndex = 6;
+            this.label81.TabIndex = 7;
             this.label81.Text = "身分證號";
             this.label81.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -179,7 +179,7 @@
             this.txtEngName.MaxLength = 30;
             this.txtEngName.Name = "txtEngName";
             this.txtEngName.Size = new System.Drawing.Size(138, 25);
-            this.txtEngName.TabIndex = 1;
+            this.txtEngName.TabIndex = 4;
             // 
             // label80
             // 
@@ -189,7 +189,7 @@
             this.label80.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label80.Name = "label80";
             this.label80.Size = new System.Drawing.Size(59, 17);
-            this.label80.TabIndex = 16;
+            this.label80.TabIndex = 19;
             this.label80.Text = "出  生  地";
             this.label80.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -312,7 +312,7 @@
             this.txtBirthPlace.MaxLength = 30;
             this.txtBirthPlace.Name = "txtBirthPlace";
             this.txtBirthPlace.Size = new System.Drawing.Size(138, 25);
-            this.txtBirthPlace.TabIndex = 17;
+            this.txtBirthPlace.TabIndex = 20;
             // 
             // label79
             // 
@@ -322,7 +322,7 @@
             this.label79.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label79.Name = "label79";
             this.label79.Size = new System.Drawing.Size(61, 17);
-            this.label79.TabIndex = 12;
+            this.label79.TabIndex = 13;
             this.label79.Text = "國         籍";
             this.label79.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -342,7 +342,7 @@
             this.txtBirthDate.Location = new System.Drawing.Point(367, 145);
             this.txtBirthDate.Name = "txtBirthDate";
             this.txtBirthDate.Size = new System.Drawing.Size(138, 25);
-            this.txtBirthDate.TabIndex = 9;
+            this.txtBirthDate.TabIndex = 10;
             this.txtBirthDate.WatermarkText = "yyyy/mm/dd";
             this.txtBirthDate.TextChanged += new System.EventHandler(this.txtBirthDate_TextChanged);
             this.txtBirthDate.Validated += new System.EventHandler(this.txtBirthDate_Validated_1);
@@ -355,7 +355,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 17);
-            this.label1.TabIndex = 14;
+            this.label1.TabIndex = 17;
             this.label1.Text = "登入帳號";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -371,7 +371,7 @@
             this.txtLoginID.MaxLength = 50;
             this.txtLoginID.Name = "txtLoginID";
             this.txtLoginID.Size = new System.Drawing.Size(138, 25);
-            this.txtLoginID.TabIndex = 15;
+            this.txtLoginID.TabIndex = 18;
             this.txtLoginID.Validating += new System.ComponentModel.CancelEventHandler(this.txtLoginID_Validating);
             // 
             // txtLoginPwd
@@ -413,7 +413,7 @@
             this.cboGender.Location = new System.Drawing.Point(367, 176);
             this.cboGender.Name = "cboGender";
             this.cboGender.Size = new System.Drawing.Size(138, 22);
-            this.cboGender.TabIndex = 11;
+            this.cboGender.TabIndex = 12;
             this.cboGender.TextChanged += new System.EventHandler(this.cboGender_TextChanged);
             // 
             // cboNationality
@@ -427,7 +427,7 @@
             this.cboNationality.Margin = new System.Windows.Forms.Padding(4);
             this.cboNationality.Name = "cboNationality";
             this.cboNationality.Size = new System.Drawing.Size(139, 22);
-            this.cboNationality.TabIndex = 13;
+            this.cboNationality.TabIndex = 14;
             // 
             // cboAccountType
             // 
@@ -461,7 +461,7 @@
             this.lbChineseName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbChineseName.Name = "lbChineseName";
             this.lbChineseName.Size = new System.Drawing.Size(60, 17);
-            this.lbChineseName.TabIndex = 4;
+            this.lbChineseName.TabIndex = 5;
             this.lbChineseName.Text = "英文別名";
             // 
             // txtChineseName
@@ -476,7 +476,7 @@
             this.txtChineseName.MaxLength = 30;
             this.txtChineseName.Name = "txtChineseName";
             this.txtChineseName.Size = new System.Drawing.Size(138, 25);
-            this.txtChineseName.TabIndex = 5;
+            this.txtChineseName.TabIndex = 6;
             // 
             // textBoxX2
             // 
@@ -514,7 +514,7 @@
             this.linkLabel1.Location = new System.Drawing.Point(511, 19);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(34, 17);
-            this.linkLabel1.TabIndex = 214;
+            this.linkLabel1.TabIndex = 2;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "說明";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
@@ -531,7 +531,7 @@
             this.txtPassportNumber.MaxLength = 50;
             this.txtPassportNumber.Name = "txtPassportNumber";
             this.txtPassportNumber.Size = new System.Drawing.Size(138, 25);
-            this.txtPassportNumber.TabIndex = 216;
+            this.txtPassportNumber.TabIndex = 16;
             // 
             // tbPassportNumber
             // 
@@ -541,7 +541,7 @@
             this.tbPassportNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tbPassportNumber.Name = "tbPassportNumber";
             this.tbPassportNumber.Size = new System.Drawing.Size(60, 17);
-            this.tbPassportNumber.TabIndex = 215;
+            this.tbPassportNumber.TabIndex = 15;
             this.tbPassportNumber.Text = "護照號碼";
             this.tbPassportNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 

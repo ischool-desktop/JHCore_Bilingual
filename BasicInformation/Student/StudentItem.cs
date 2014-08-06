@@ -276,10 +276,10 @@ namespace BasicInformation
                 _StudRec_Ext = new StudentRecord_Ext();
                 _StudRec_Ext.RefStudentID = PrimaryKey;
                 StudExtList.Add(_StudRec_Ext);
-                tool._A.InsertValues(StudExtList);
+                List<string> IDList = tool._A.InsertValues(StudExtList);
 
                 //取回資料
-                StudExtList = tool._A.Select<StudentRecord_Ext>("ref_student_id='" + PrimaryKey + "'");
+                StudExtList = tool._A.Select<StudentRecord_Ext>(IDList);
                 _StudRec_Ext = StudExtList[0];
             }
             else

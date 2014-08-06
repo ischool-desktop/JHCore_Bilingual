@@ -41,6 +41,11 @@
       <HintPath>Library\Aspose.Words.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Campus.Configuration, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Campus.Configuration.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Campus.Report, Version=1.0.0.11, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\Campus.Report.dll</HintPath>
@@ -73,6 +78,11 @@
     <Reference Include="FISCA.DSAUtil, Version=3.9.0.10, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\FISCA.DSAUtil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.LogAgent, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.LogAgent.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.Permission, Version=1.2.0.2, Culture=neutral, processorArchitecture=MSIL">
@@ -167,6 +177,42 @@
     <Compile Include="Report\ClubPointForm.designer.cs">
       <DependentUpon>ClubPointForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\獎懲公告單\AnnouncementSingle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\獎懲公告單\AnnouncementSingle.Designer.cs">
+      <DependentUpon>AnnouncementSingle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\獎懲通知單\DisciplineNotificationConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\獎懲通知單\DisciplineNotificationConfigForm.designer.cs">
+      <DependentUpon>DisciplineNotificationConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\獎懲通知單\DisciplineNotificationSelectDateRangeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\獎懲通知單\DisciplineNotificationSelectDateRangeForm.designer.cs">
+      <DependentUpon>DisciplineNotificationSelectDateRangeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\獎懲通知單\Report.cs" />
+    <Compile Include="Report\獎懲通知單\SortClassIndex.cs" />
+    <Compile Include="Report\獎懲通知單\StudentSortObj.cs" />
+    <Compile Include="Report\缺曠通知單\AbsenceNotificationConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\缺曠通知單\AbsenceNotificationConfigForm.designer.cs">
+      <DependentUpon>AbsenceNotificationConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\缺曠通知單\AbsenceNotificationSelectDateRangeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\缺曠通知單\AbsenceNotificationSelectDateRangeForm.designer.cs">
+      <DependentUpon>AbsenceNotificationSelectDateRangeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\缺曠通知單\ConfigOBJ.cs" />
+    <Compile Include="Report\缺曠通知單\Report.cs" />
+    <Compile Include="Report\缺曠通知單\StudentOBJ.cs" />
     <Compile Include="Report\缺曠週報表_依假別\CommonMethods.cs" />
     <Compile Include="Report\缺曠週報表_依假別\Get.cs" />
     <Compile Include="Report\缺曠週報表_依假別\IReport.cs" />
@@ -201,6 +247,19 @@
     <Compile Include="Report\缺曠週報表_依假別\WeekAbsenceReportConfig.designer.cs">
       <DependentUpon>WeekAbsenceReportConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="StudentExtendControls\CourseScoreItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\CourseScoreItem.designer.cs">
+      <DependentUpon>CourseScoreItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\CreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\CreateForm.designer.cs">
+      <DependentUpon>CreateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\StudentInfoConvertor.cs" />
     <Compile Include="Student\StudentItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -232,6 +291,8 @@
     <Content Include="Library\Aspose.Cells.xml" />
     <Content Include="Library\Aspose.Words.dll" />
     <Content Include="Library\Aspose.Words.xml" />
+    <Content Include="Library\Campus.Configuration.dll" />
+    <Content Include="Library\Campus.Configuration.pdb" />
     <Content Include="Library\Campus.Report.dll" />
     <Content Include="Library\Campus.Report.pdb" />
     <Content Include="Library\DevComponents.DotNetBar2.dll" />
@@ -248,6 +309,9 @@
     <Content Include="Library\FISCA.DSAUtil.dll" />
     <Content Include="Library\FISCA.DSAUtil.pdb" />
     <Content Include="Library\FISCA.DSAUtil.xml" />
+    <Content Include="Library\FISCA.LogAgent.dll" />
+    <Content Include="Library\FISCA.LogAgent.pdb" />
+    <Content Include="Library\FISCA.LogAgent.xml" />
     <Content Include="Library\FISCA.pdb" />
     <Content Include="Library\FISCA.Permission.dll" />
     <Content Include="Library\FISCA.Permission.pdb" />
@@ -283,18 +347,38 @@
     <Content Include="Library\SmartSchool.ErrorReporting.pdb" />
     <Content Include="Library\SmartSchool.ErrorReporting.xml" />
     <None Include="Resources\People.jpg" />
+    <None Include="Resources\實驗中學_獎懲公告單.doc" />
+    <None Include="Resources\獎懲公告單_功能變數總表.doc" />
+    <None Include="Resources\獎懲通知單.doc" />
     <None Include="Resources\班級名條_範本.doc" />
     <None Include="Resources\班級點名單%28週報表樣式範本%29.doc" />
     <None Include="Resources\班級點名表_合併欄位總表.doc" />
+    <None Include="Resources\缺曠通知單.doc" />
     <None Include="Resources\缺曠週報表_依假別.xls" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\ClubPointForm.resx">
       <DependentUpon>ClubPointForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\獎懲公告單\AnnouncementSingle.resx">
+      <DependentUpon>AnnouncementSingle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\獎懲通知單\DisciplineNotificationConfigForm.resx">
+      <DependentUpon>DisciplineNotificationConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\獎懲通知單\DisciplineNotificationSelectDateRangeForm.resx">
+      <DependentUpon>DisciplineNotificationSelectDateRangeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\缺曠通知單\AbsenceNotificationConfigForm.resx">
+      <DependentUpon>AbsenceNotificationConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\缺曠通知單\AbsenceNotificationSelectDateRangeForm.resx">
+      <DependentUpon>AbsenceNotificationSelectDateRangeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\缺曠週報表_依假別\SelectDateRangeForm.resx">
       <DependentUpon>SelectDateRangeForm.cs</DependentUpon>
@@ -310,6 +394,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\缺曠週報表_依假別\WeekAbsenceReportConfig.resx">
       <DependentUpon>WeekAbsenceReportConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\CourseScoreItem.resx">
+      <DependentUpon>CourseScoreItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\CreateForm.resx">
+      <DependentUpon>CreateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Student\StudentItem.resx">
       <DependentUpon>StudentItem.cs</DependentUpon>

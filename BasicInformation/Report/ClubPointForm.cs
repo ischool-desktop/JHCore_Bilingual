@@ -127,6 +127,7 @@ namespace BasicInformation
 
             DataTable table = new DataTable();
             table.Columns.Add("學校名稱");
+            table.Columns.Add("學校英文名稱");
             table.Columns.Add("班級名稱");
             table.Columns.Add("班導師");
             table.Columns.Add("學年度");
@@ -140,6 +141,7 @@ namespace BasicInformation
             for (int x = 1; x <= 日期多少天; x++)
             {
                 table.Columns.Add(string.Format("日期{0}", x));
+                table.Columns.Add(string.Format("日期{0}星期", x));
             }
 
             for (int x = 1; x <= 學生多少個; x++)
@@ -189,25 +191,18 @@ namespace BasicInformation
 
             //雙語部 - 英文別名欄位
             //學生ID : 英文別名
-            Dictionary<string, string> StudentEXTDic = new Dictionary<string, string>();
-            List<StudentRecord_Ext> StudentEXList = tool._A.Select<StudentRecord_Ext>(string.Format("ref_student_id in ('{0}')", string.Join("','", StudentIDList)));
-            foreach (StudentRecord_Ext ext in StudentEXList)
-            {
-                if (!StudentEXTDic.ContainsKey(ext.RefStudentID))
-                {
-                    StudentEXTDic.Add(ext.RefStudentID, ext.Nickname);
-                }
-            }
+            Dictionary<string, string> StudentEXTDic = tool.GetStudentEXT(StudentIDList);
 
 
             foreach (K12.Data.ClassRecord cr in crlt)
             {
                 DataRow row = table.NewRow();
                 row["學校名稱"] = K12.Data.School.ChineseName;
+                row["學校英文名稱"] = K12.Data.School.EnglishName;
                 row["班級名稱"] = cr.Name;
                 row["學年度"] = School.DefaultSchoolYear;
                 row["學期"] = School.DefaultSemester;
-                row["班導師"] = cr.Teacher.Name;
+                row["班導師"] = cr.Teacher != null ? cr.Teacher.Name : "";
 
                 row["列印日期"] = DateTime.Today.ToShortDateString();
                 row["上課開始"] = config[0];
@@ -216,6 +211,13 @@ namespace BasicInformation
                 for (int x = 1; x <= config.Count; x++)
                 {
                     row[string.Format("日期{0}", x)] = config[x - 1];
+
+                    DateTime dt = DateTime.Today;
+                    if (DateTime.TryParse(config[x - 1], out dt))
+                    {
+                        row[string.Format("日期{0}星期", x)] = tool.CheckWeek(dt.DayOfWeek.ToString());
+                    }
+
                 }
 
                 int y = 1;

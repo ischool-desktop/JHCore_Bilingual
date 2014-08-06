@@ -35,7 +35,6 @@
             this.lbTempAll = new System.Windows.Forms.LinkLabel();
             this.btnStart = new DevComponents.DotNetBar.ButtonX();
             this.btnExit = new DevComponents.DotNetBar.ButtonX();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.cbDay7 = new DevComponents.DotNetBar.Controls.CheckBoxX();
@@ -67,7 +66,7 @@
             this.lbDefTemp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbDefTemp.AutoSize = true;
             this.lbDefTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lbDefTemp.Location = new System.Drawing.Point(14, 526);
+            this.lbDefTemp.Location = new System.Drawing.Point(14, 480);
             this.lbDefTemp.Name = "lbDefTemp";
             this.lbDefTemp.Size = new System.Drawing.Size(60, 17);
             this.lbDefTemp.TabIndex = 0;
@@ -80,7 +79,7 @@
             this.lbTempAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbTempAll.AutoSize = true;
             this.lbTempAll.BackColor = System.Drawing.Color.Transparent;
-            this.lbTempAll.Location = new System.Drawing.Point(77, 526);
+            this.lbTempAll.Location = new System.Drawing.Point(77, 480);
             this.lbTempAll.Name = "lbTempAll";
             this.lbTempAll.Size = new System.Drawing.Size(86, 17);
             this.lbTempAll.TabIndex = 1;
@@ -94,7 +93,7 @@
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.BackColor = System.Drawing.Color.Transparent;
             this.btnStart.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnStart.Location = new System.Drawing.Point(278, 522);
+            this.btnStart.Location = new System.Drawing.Point(278, 476);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 25);
             this.btnStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -108,28 +107,13 @@
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExit.Location = new System.Drawing.Point(359, 522);
+            this.btnExit.Location = new System.Drawing.Point(359, 476);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 25);
             this.btnExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnExit.TabIndex = 3;
             this.btnExit.Text = "離開";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // labelX1
-            // 
-            this.labelX1.AutoSize = true;
-            this.labelX1.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX1.BackgroundStyle.Class = "";
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(19, 471);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(350, 39);
-            this.labelX1.TabIndex = 4;
-            this.labelX1.Text = "功能說明：\r\n本功能將列印出所選\"社團\"在可連線之\"部別\"所有學生清單";
             // 
             // linkLabel3
             // 
@@ -206,9 +190,6 @@
             // 
             this.cbDay7.BackgroundStyle.Class = "";
             this.cbDay7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.cbDay7.Checked = true;
-            this.cbDay7.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDay7.CheckValue = "Y";
             this.cbDay7.Location = new System.Drawing.Point(350, 25);
             this.cbDay7.Name = "cbDay7";
             this.cbDay7.Size = new System.Drawing.Size(40, 21);
@@ -224,9 +205,6 @@
             // 
             this.cbDay6.BackgroundStyle.Class = "";
             this.cbDay6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.cbDay6.Checked = true;
-            this.cbDay6.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDay6.CheckValue = "Y";
             this.cbDay6.Location = new System.Drawing.Point(296, 25);
             this.cbDay6.Name = "cbDay6";
             this.cbDay6.Size = new System.Drawing.Size(40, 21);
@@ -575,12 +553,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(444, 556);
+            this.ClientSize = new System.Drawing.Size(444, 510);
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.groupPanel1);
             this.Controls.Add(this.dataGridViewX1);
             this.Controls.Add(this.labelX6);
-            this.Controls.Add(this.labelX1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.lbTempAll);
@@ -604,7 +581,6 @@
         private System.Windows.Forms.LinkLabel lbTempAll;
         private DevComponents.DotNetBar.ButtonX btnStart;
         private DevComponents.DotNetBar.ButtonX btnExit;
-        private DevComponents.DotNetBar.LabelX labelX1;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel1;
         private DevComponents.DotNetBar.Controls.CheckBoxX cbDay7;

@@ -257,16 +257,7 @@ namespace BasicInformation
 
 
             //取得學生英文別名
-
-            Dictionary<string, string> StudentEXTDic = new Dictionary<string, string>();
-            List<StudentRecord_Ext> StudentEXList = tool._A.Select<StudentRecord_Ext>(string.Format("ref_student_id in ('{0}')", string.Join("','", allStudentID)));
-            foreach (StudentRecord_Ext ext in StudentEXList)
-            {
-                if (!StudentEXTDic.ContainsKey(ext.RefStudentID))
-                {
-                    StudentEXTDic.Add(ext.RefStudentID, ext.Nickname);
-                }
-            }
+            //Dictionary<string, string> StudentEXTDic = tool.GetStudentEXT(allStudentID);
 
 
 
@@ -285,13 +276,13 @@ namespace BasicInformation
 
             template.Open(new MemoryStream(Properties.Resources.缺曠週報表_依假別), FileFormatType.Excel2003);
 
-            Range tempStudent = template.Worksheets[0].Cells.CreateRange(0, 5, true);
-            Range tempEachColumn = template.Worksheets[0].Cells.CreateRange(5, 1, true);
+            Range tempStudent = template.Worksheets[0].Cells.CreateRange(0, 4, true);
+            Range tempEachColumn = template.Worksheets[0].Cells.CreateRange(4, 1, true);
 
             Workbook prototype = new Workbook();
             prototype.Copy(template);
 
-            prototype.Worksheets[0].Cells.CreateRange(0, 5, true).Copy(tempStudent);
+            prototype.Worksheets[0].Cells.CreateRange(0, 4, true).Copy(tempStudent);
 
             int titleRow = 2;
 
@@ -305,7 +296,7 @@ namespace BasicInformation
                 dayNumber = 5;
             }
 
-            int colIndex = 5;
+            int colIndex = 4;
 
             int dayStartIndex = colIndex;
             int dayEndIndex;
@@ -329,7 +320,7 @@ namespace BasicInformation
                     prototype.Worksheets[0].Cells[titleRow + 2, colIndex].PutValue(var);
                     columnTable.Add(SaveVar, colIndex - 3);
 
-                    if(!perList.Contains(SaveVar))
+                    if (!perList.Contains(SaveVar))
                     {
                         perList.Add(type + "_" + var);
                     }
@@ -379,7 +370,7 @@ namespace BasicInformation
 
             dayStartIndex += dayColumnNumber;
             prototype.Worksheets[0].Cells.CreateRange(dayStartIndex, dayColumnNumber, true).Copy(dayRange);
-            
+
             //2011/3/10 - 調整顯示字樣                
             prototype.Worksheets[0].Cells[titleRow, dayStartIndex].PutValue("本學期累計");
 
@@ -481,7 +472,7 @@ namespace BasicInformation
                         ws.Cells.CreateRange(index - 1, 0, 1, dayStartIndex).SetOutlineBorder(BorderType.BottomBorder, CellBorderType.Medium, Color.Black);
 
                     //複製 Header
-                    ws.Cells.CreateRange(index, 5, false).Copy(prototypeHeader);
+                    ws.Cells.CreateRange(index, 4, false).Copy(prototypeHeader);
 
                     //填寫基本資料
 
@@ -491,14 +482,14 @@ namespace BasicInformation
                         TeacherName = classInfo.Teacher.Name + " 老師";
                     }
 
-                    ws.Cells[index, 0].PutValue(K12.Data.School.DefaultSchoolYear + " 學年度 " + K12.Data.School.DefaultSemester + " 學期 " + School.ChineseName + " 缺曠週報表");
+                    ws.Cells[index, 0].PutValue(K12.Data.School.DefaultSchoolYear + " 學年度 第" + K12.Data.School.DefaultSemester + " 學期 " + School.ChineseName + " 學生缺曠課表");
                     if (CheckWeek) //new,True就是取得至星期日內
                     {
-                        ws.Cells[index + 1, 0].PutValue("班級名稱： " + classInfo.Name + "　　班導師： " + TeacherName + "　　缺曠統計區間： " + startDate.ToShortDateString() + " ~ " + endDate.ToShortDateString());
+                        ws.Cells[index + 1, 0].PutValue("班導師： " + TeacherName + "　　缺曠統計區間： " + startDate.ToShortDateString() + " ~ " + endDate.ToShortDateString() + "　　列印日期：" + DateTime.Today.ToShortDateString());
                     }
                     else
                     {
-                        ws.Cells[index + 1, 0].PutValue("班級名稱： " + classInfo.Name + "　　班導師： " + TeacherName + "　　缺曠統計區間： " + startDate.ToShortDateString() + " ~ " + endDate.AddDays(-2).ToShortDateString());
+                        ws.Cells[index + 1, 0].PutValue("班導師： " + TeacherName + "　　缺曠統計區間： " + startDate.ToShortDateString() + " ~ " + endDate.AddDays(-2).ToShortDateString() + "　　列印日期：" + DateTime.Today.ToShortDateString());
                     }
 
                     dataIndex = index + 5;
@@ -517,34 +508,34 @@ namespace BasicInformation
                         //填寫學生缺曠資料
                         StudentRecord student = classStudent[studentCount];
                         string studentID = student.ID;
-                        ws.Cells[dataIndex, 0].PutValue(student.StudentNumber);
+                        ws.Cells[dataIndex, 0].PutValue(student.Class != null ? student.Class.Name : "");
                         ws.Cells[dataIndex, 1].PutValue(student.SeatNo);
                         ws.Cells[dataIndex, 2].PutValue(student.Name);
                         ws.Cells[dataIndex, 3].PutValue(student.EnglishName);
                         //英文別名
-                        if (StudentEXTDic.ContainsKey(student.ID))
-                        {
-                            ws.Cells[dataIndex, 4].PutValue(StudentEXTDic[student.ID]);
-                        }
+                        //if (StudentEXTDic.ContainsKey(student.ID))
+                        //{
+                        //    ws.Cells[dataIndex, 4].PutValue(StudentEXTDic[student.ID]);
+                        //}
 
                         int startCol;
-                        if (studentAbsenceList.ContainsKey(studentID))
-                        {
-                            foreach (string date in studentAbsenceList[studentID].Keys)
-                            {
-                                Dictionary<string, int> dateAbsence = studentAbsenceList[studentID][date];
+                        //if (studentAbsenceList.ContainsKey(studentID))
+                        //{
+                        //    foreach (string date in studentAbsenceList[studentID].Keys)
+                        //    {
+                        //        Dictionary<string, int> dateAbsence = studentAbsenceList[studentID][date];
 
-                                startCol = columnTable[date];
+                        //        startCol = columnTable[date];
 
-                                foreach (string var in dateAbsence.Keys)
-                                {
-                                    if (columnTable.ContainsKey(var))
-                                    {
-                                        ws.Cells[dataIndex, startCol + columnTable[var]].PutValue(dateAbsence[var]);
-                                    }
-                                }
-                            }
-                        }
+                        //        foreach (string var in dateAbsence.Keys)
+                        //        {
+                        //            if (columnTable.ContainsKey(var))
+                        //            {
+                        //                ws.Cells[dataIndex, startCol + columnTable[var]].PutValue(dateAbsence[var]);
+                        //            }
+                        //        }
+                        //    }
+                        //}
 
                         if (studentWeekAbsenceList.ContainsKey(studentID))
                         {
