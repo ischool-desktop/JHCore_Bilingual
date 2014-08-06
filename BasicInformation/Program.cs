@@ -33,10 +33,6 @@ namespace BasicInformation
             //處理教師資料
             ResTeacherData();
 
-            FeatureAce UserPermission = FISCA.Permission.UserAcl.Current[Permissions.學生修課];
-            if (UserPermission.Editable || UserPermission.Viewable)
-                K12.Presentation.NLDPanels.Student.AddDetailBulider(new FISCA.Presentation.DetailBulider<CourseScoreItem>());
-
             //雙語部 - 班級名條 & 班級點名單
             FISCA.Presentation.MenuButton btnC = FISCA.Presentation.MotherForm.RibbonBarItems["班級", "資料統計"]["報表"]["學務相關報表"];
             btnC["班級點名表(雙語部)"].Enable = Permissions.班級點名單_雙語部權限;
@@ -122,8 +118,9 @@ namespace BasicInformation
                 }
             };
 
-            FISCA.Presentation.MenuButton btnSDAdmin = FISCA.Presentation.MotherForm.RibbonBarItems["學務作業", "資料統計"]["報表"];
+            FISCA.Presentation.RibbonBarButton btnSDAdmin = FISCA.Presentation.MotherForm.RibbonBarItems["學務作業", "資料統計"]["報表"];
             //學務作業
+            btnSDAdmin.Size = RibbonBarButton.MenuButtonSize.Large;
             btnSDAdmin["獎懲公告單(雙語部)"].Enable = Permissions.獎懲公告單_雙語部權限;
             btnSDAdmin["獎懲公告單(雙語部)"].Click += delegate
             {
@@ -146,9 +143,6 @@ namespace BasicInformation
 
             FISCA.Permission.Catalog TestCatalog3 = FISCA.Permission.RoleAclSource.Instance["學務作業"]["報表"];
             TestCatalog3.Add(new FISCA.Permission.RibbonFeature(Permissions.獎懲公告單_雙語部, "獎懲公告單(雙語部)"));
-
-            FISCA.Permission.Catalog detail1 = RoleAclSource.Instance["學生"]["資料項目"];
-            detail1.Add(new DetailItemFeature(Permissions.學生修課, "學生修課"));
         }
 
         /// <summary>

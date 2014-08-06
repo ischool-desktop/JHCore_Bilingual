@@ -61,15 +61,6 @@ namespace BasicInformation
             }
         }
 
-        public static string 學生修課 { get { return "JHSchool.Student.Detail0052"; } }
-        public static bool 學生修課權限
-        {
-            get
-            {
-                return FISCA.Permission.UserAcl.Current[學生修課].Executable;
-            }
-        }
-
         public static string 獎懲公告單_雙語部 { get { return "雙語部.BasicInformation.AnnouncementSingle.cs"; } }
         public static bool 獎懲公告單_雙語部權限
         {
