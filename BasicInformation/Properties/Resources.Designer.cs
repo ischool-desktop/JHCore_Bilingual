@@ -113,6 +113,46 @@ namespace BasicInformation.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
+        internal static byte[] 班級點名單_1_9早點名範本 {
+            get {
+                object obj = ResourceManager.GetObject("班級點名單_1_9早點名範本", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
+        internal static byte[] 班級點名單_10_12早點名範本 {
+            get {
+                object obj = ResourceManager.GetObject("班級點名單_10_12早點名範本", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
+        internal static byte[] 班級點名單_7_12午點名範本 {
+            get {
+                object obj = ResourceManager.GetObject("班級點名單_7_12午點名範本", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
+        internal static byte[] 班級點名單_升旗點名範本 {
+            get {
+                object obj = ResourceManager.GetObject("班級點名單_升旗點名範本", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
         internal static byte[] 班級點名單_週報表樣式範本_ {
             get {
                 object obj = ResourceManager.GetObject("班級點名單_週報表樣式範本_", resourceCulture);

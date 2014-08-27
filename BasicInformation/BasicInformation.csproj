@@ -111,7 +111,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="JHSchool">
-      <HintPath>..\..\..\ischool國中\modules\JHCore\JHSchool.dll</HintPath>
+      <HintPath>Library\JHSchool.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="JHSchool.Data, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
@@ -176,6 +176,12 @@
     </Compile>
     <Compile Include="Report\ClubPointForm.designer.cs">
       <DependentUpon>ClubPointForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\TempletChooseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\TempletChooseForm.Designer.cs">
+      <DependentUpon>TempletChooseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\獎懲公告單\AnnouncementSingle.cs">
       <SubType>Form</SubType>
@@ -339,6 +345,10 @@
     <None Include="Resources\獎懲通知單.doc" />
     <None Include="Resources\班級名條_範本.doc" />
     <None Include="Resources\班級點名單%28週報表樣式範本%29.doc" />
+    <None Include="Resources\班級點名單_10~12早點名範本.doc" />
+    <None Include="Resources\班級點名單_1~9早點名範本.doc" />
+    <None Include="Resources\班級點名單_7~12午點名範本.doc" />
+    <None Include="Resources\班級點名單_升旗點名範本.doc" />
     <None Include="Resources\班級點名表_合併欄位總表.doc" />
     <None Include="Resources\缺曠通知單.doc" />
     <None Include="Resources\缺曠週報表_依假別.xls" />
@@ -351,6 +361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\ClubPointForm.resx">
       <DependentUpon>ClubPointForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\TempletChooseForm.resx">
+      <DependentUpon>TempletChooseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\獎懲公告單\AnnouncementSingle.resx">
       <DependentUpon>AnnouncementSingle.cs</DependentUpon>

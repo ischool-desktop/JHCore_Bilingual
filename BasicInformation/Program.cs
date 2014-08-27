@@ -40,7 +40,7 @@ namespace BasicInformation
             {
                 if (K12.Presentation.NLDPanels.Class.SelectedSource.Count > 0)
                 {
-                    new ClubPointForm().ShowDialog();
+                    new TempletChooseForm().ShowDialog();
                 }
                 else
                 {
