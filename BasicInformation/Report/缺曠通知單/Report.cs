@@ -610,7 +610,7 @@ namespace BasicInformation.AbsenceNotification
                 }
 
 
-                mapping.Add("學年度", School.DefaultSchoolYear);
+                mapping.Add("學年度", tool.GetSchoolChange(School.DefaultSchoolYear));
                 mapping.Add("學期", School.DefaultSemester);
 
                 if (StudentSuperOBJ[studentID].studentAbsenceDetail.Count != 0)

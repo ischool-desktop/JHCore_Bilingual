@@ -200,7 +200,7 @@ namespace BasicInformation
                 row["學校名稱"] = K12.Data.School.ChineseName;
                 row["學校英文名稱"] = K12.Data.School.EnglishName;
                 row["班級名稱"] = cr.Name;
-                row["學年度"] = School.DefaultSchoolYear;
+                row["學年度"] = tool.GetSchoolChange(School.DefaultSchoolYear);
                 row["學期"] = School.DefaultSemester;
                 row["班導師"] = cr.Teacher != null ? cr.Teacher.Name : "";
 

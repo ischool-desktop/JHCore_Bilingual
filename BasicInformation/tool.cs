@@ -98,6 +98,25 @@ namespace BasicInformation
 
         }
 
+        /// <summary>
+        /// 取得西元年的學年度
+        /// </summary>
+        static public string GetSchoolChange(string p)
+        {
+            int x;
+            if (int.TryParse(p, out x))
+            {
+                int y = x + 1911;
+                int yy = y + 1;
+                string school = y.ToString() + "~" + yy.ToString();
+                return school;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
         public static string GetDay(int n)
         {
             string EngMonth = "";

@@ -482,7 +482,7 @@ namespace BasicInformation
                         TeacherName = classInfo.Teacher.Name + " 老師";
                     }
 
-                    ws.Cells[index, 0].PutValue(K12.Data.School.DefaultSchoolYear + " 學年度 第" + K12.Data.School.DefaultSemester + " 學期 " + School.ChineseName + " 學生缺曠課表");
+                    ws.Cells[index, 0].PutValue("SchoolYear:" + tool.GetSchoolChange(K12.Data.School.DefaultSchoolYear) + "　Semester:" + K12.Data.School.DefaultSemester + "　" + School.ChineseName + " 學生缺曠課表");
                     if (CheckWeek) //new,True就是取得至星期日內
                     {
                         ws.Cells[index + 1, 0].PutValue("班導師： " + TeacherName + "　　缺曠統計區間： " + startDate.ToShortDateString() + " ~ " + endDate.ToShortDateString() + "　　列印日期：" + DateTime.Today.ToShortDateString());

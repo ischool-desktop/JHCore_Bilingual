@@ -752,7 +752,7 @@ namespace BasicInformation.DisciplineNotification
                     mapping.Add("英文別名", "");
                 }
 
-                mapping.Add("學年度", School.DefaultSchoolYear);
+                mapping.Add("學年度", tool.GetSchoolChange(School.DefaultSchoolYear));
                 mapping.Add("學期", School.DefaultSemester);
 
                 Dictionary<string, int> eachStudentDiscipline = studentDiscipline[student];
