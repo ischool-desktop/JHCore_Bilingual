@@ -318,7 +318,7 @@ namespace BasicInformation
                     string SaveVar = type + "_" + var;
                     prototype.Worksheets[0].Cells.CreateRange(colIndex, 1, true).Copy(tempEachColumn);
                     prototype.Worksheets[0].Cells[titleRow + 2, colIndex].PutValue(var);
-                    columnTable.Add(SaveVar, colIndex - 3);
+                    columnTable.Add(SaveVar, colIndex - 4);
 
                     if (!perList.Contains(SaveVar))
                     {
@@ -472,7 +472,7 @@ namespace BasicInformation
                         ws.Cells.CreateRange(index - 1, 0, 1, dayStartIndex).SetOutlineBorder(BorderType.BottomBorder, CellBorderType.Medium, Color.Black);
 
                     //複製 Header
-                    ws.Cells.CreateRange(index, 4, false).Copy(prototypeHeader);
+                    ws.Cells.CreateRange(index, 5, false).Copy(prototypeHeader);
 
                     //填寫基本資料
 
