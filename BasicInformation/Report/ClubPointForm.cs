@@ -178,6 +178,8 @@ namespace BasicInformation
 
             List<string> StudentIDList = new List<string>();
             List<K12.Data.ClassRecord> crlt = K12.Data.Class.SelectByIDs(K12.Presentation.NLDPanels.Class.SelectedSource);
+            crlt.Sort(CommonMethods.ClassComparer);
+            
             foreach (K12.Data.ClassRecord cr in crlt)
             {
                 foreach (StudentRecord obj in cr.Students)

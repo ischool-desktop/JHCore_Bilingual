@@ -318,6 +318,8 @@ namespace BasicInformation
                     string SaveVar = type + "_" + var;
                     prototype.Worksheets[0].Cells.CreateRange(colIndex, 1, true).Copy(tempEachColumn);
                     prototype.Worksheets[0].Cells[titleRow + 2, colIndex].PutValue(var);
+                    Cell _c = prototype.Worksheets[0].Cells[titleRow + 2, colIndex];
+                    _c.Style.Rotation = -90; //將文字改為垂直
                     columnTable.Add(SaveVar, colIndex - 4);
 
                     if (!perList.Contains(SaveVar))
@@ -364,17 +366,17 @@ namespace BasicInformation
 
             //dayStartIndex += dayColumnNumber;
             //prototype.Worksheets[0].Cells.CreateRange(dayStartIndex, dayColumnNumber, true).Copy(dayRange);
-            prototype.Worksheets[0].Cells[titleRow, dayStartIndex].PutValue("本週合計");
-            columnTable.Add("本週合計", dayStartIndex);
+            prototype.Worksheets[0].Cells[titleRow, dayStartIndex].PutValue("本週合計(Week)");
+            columnTable.Add("本週合計(Week)", dayStartIndex);
             _BGWAbsenceWeekListByAbsence.ReportProgress((int)(((double)current++ * 100.0) / (double)all));
 
             dayStartIndex += dayColumnNumber;
             prototype.Worksheets[0].Cells.CreateRange(dayStartIndex, dayColumnNumber, true).Copy(dayRange);
 
             //2011/3/10 - 調整顯示字樣                
-            prototype.Worksheets[0].Cells[titleRow, dayStartIndex].PutValue("本學期累計");
+            prototype.Worksheets[0].Cells[titleRow, dayStartIndex].PutValue("本學期累計(Semester)");
 
-            columnTable.Add("本學期累計", dayStartIndex);
+            columnTable.Add("本學期累計(Semester)", dayStartIndex);
             _BGWAbsenceWeekListByAbsence.ReportProgress((int)(((double)current++ * 100.0) / (double)all));
 
             dayStartIndex += dayColumnNumber;
@@ -539,7 +541,7 @@ namespace BasicInformation
 
                         if (studentWeekAbsenceList.ContainsKey(studentID))
                         {
-                            startCol = columnTable["本週合計"];
+                            startCol = columnTable["本週合計(Week)"];
 
                             Dictionary<string, int> studentWeek = studentWeekAbsenceList[studentID];
 
@@ -552,7 +554,7 @@ namespace BasicInformation
 
                         if (studentSemesterAbsenceList.ContainsKey(studentID))
                         {
-                            startCol = columnTable["本學期累計"];
+                            startCol = columnTable["本學期累計(Semester)"];
 
                             Dictionary<string, int> studentSemester = studentSemesterAbsenceList[studentID];
 

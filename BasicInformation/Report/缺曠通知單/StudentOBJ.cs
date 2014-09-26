@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using K12.Data;
 
-namespace BasicInformation.AbsenceNotification
+namespace BasicInformation
 {
     class StudentOBJ
     {
@@ -41,6 +41,11 @@ namespace BasicInformation.AbsenceNotification
 
         public string TeacherName { get; set; }
         public string ClassName{get;set;}
+
+        /// <summary>
+        /// 年級
+        /// </summary>
+        public string GradeYear { get; set; }
         public string SeatNo { get; set; }
         public string StudentNumber { get; set; }
 

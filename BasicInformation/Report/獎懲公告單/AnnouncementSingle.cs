@@ -175,7 +175,7 @@ namespace BasicInformation
             string Print2 = string.Format("　{0}　{1},{2}", tool.GetMonth(dateTimeInput2.Value.Month), tool.GetDay(dateTimeInput2.Value.Day), dateTimeInput2.Value.Year.ToString());
             row["日期區間"] = Print1 + " To " + Print2;
 
-            row["資料"] = StudentInfoDic;
+            row["資料"] = "";
 
             table.Rows.Add(row);
 

@@ -176,16 +176,28 @@ namespace BasicInformation
 
         public static int ClassComparer(ClassRecord x, ClassRecord y)
         {
-            string xx = x.Name;
-            string yy = y.Name;
+            string xx = x.GradeYear.HasValue ? x.GradeYear.Value.ToString().PadLeft(3, '0') : "0";
+            string yy = y.GradeYear.HasValue ? y.GradeYear.Value.ToString().PadLeft(3, '0') : "0";
+
+            xx += x.DisplayOrder.PadLeft(3, '0');
+            yy += y.DisplayOrder.PadLeft(3, '0');
+
+            xx += x.Name.PadLeft(10, '0');
+            yy += y.Name.PadLeft(10, '0');
 
             return xx.CompareTo(yy);
         }
 
-        public static int CusClassComparer(ClassRecord x, ClassRecord y)
+        public static int StudentObjComparer(StudentOBJ x, StudentOBJ y)
         {
-            string xx = x.Name;
-            string yy = y.Name;
+            string xx = x.GradeYear.PadLeft(3, '0');
+            string yy = y.GradeYear.PadLeft(3, '0');
+
+            xx += x.ClassName.PadLeft(10, '0');
+            yy += y.ClassName.PadLeft(10, '0');
+
+            xx += x.student.Name.PadLeft(10, '0');
+            yy += y.student.Name.PadLeft(10, '0');
 
             return xx.CompareTo(yy);
         }

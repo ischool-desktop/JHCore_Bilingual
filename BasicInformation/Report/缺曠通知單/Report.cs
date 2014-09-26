@@ -168,6 +168,7 @@ namespace BasicInformation.AbsenceNotification
                 StudentSuperOBJ[studentID].TeacherName = aStudent.Class != null ? (aStudent.Class.Teacher != null ? aStudent.Class.Teacher.Name : "") : "";
                 StudentSuperOBJ[studentID].ClassName = aStudent.Class != null ? aStudent.Class.Name : "";
                 StudentSuperOBJ[studentID].SeatNo = aStudent.SeatNo.HasValue ? aStudent.SeatNo.Value.ToString() : "";
+                StudentSuperOBJ[studentID].GradeYear = aStudent.Class != null ? (aStudent.Class.GradeYear.HasValue ? aStudent.Class.GradeYear.Value.ToString() : "") : "";
                 StudentSuperOBJ[studentID].StudentNumber = aStudent.StudentNumber;
             }
             #endregion
@@ -535,15 +536,22 @@ namespace BasicInformation.AbsenceNotification
             Document doc = new Document();
             doc.Sections.Clear();
 
-            foreach (string studentID in StudentSuperOBJ.Keys)
+            List<StudentOBJ> StudentList = new List<StudentOBJ>();
+            foreach (StudentOBJ each in StudentSuperOBJ.Values)
             {
-                if (!DelStudent.Contains(studentID)) //如果不包含在內,就離開
+                StudentList.Add(each);
+            }
+            StudentList.Sort(CommonMethods.StudentObjComparer);
+
+            foreach (StudentOBJ studentObj in StudentList)
+            {
+                if (!DelStudent.Contains(studentObj.student.ID)) //如果不包含在內,就離開
                     continue;
 
                 if (obj.PrintHasRecordOnly)
                 {
                     //明細等於0
-                    if (StudentSuperOBJ[studentID].studentAbsenceDetail.Count == 0)
+                    if (studentObj.studentAbsenceDetail.Count == 0)
                     {
                         currentStudentCount++;
                         continue;
@@ -573,36 +581,36 @@ namespace BasicInformation.AbsenceNotification
                 mapping.Add("學校電話", School.Telephone);
 
                 //學生資料
-                mapping.Add("學生姓名", StudentSuperOBJ[studentID].student.Name);
-                mapping.Add("英文姓名", StudentSuperOBJ[studentID].student.EnglishName);
-                mapping.Add("班級", StudentSuperOBJ[studentID].ClassName);
-                mapping.Add("座號", StudentSuperOBJ[studentID].SeatNo);
-                mapping.Add("學號", StudentSuperOBJ[studentID].StudentNumber);
-                mapping.Add("導師", StudentSuperOBJ[studentID].TeacherName);
+                mapping.Add("學生姓名", studentObj.student.Name);
+                mapping.Add("英文姓名", studentObj.student.EnglishName);
+                mapping.Add("班級", studentObj.ClassName);
+                mapping.Add("座號", studentObj.SeatNo);
+                mapping.Add("學號", studentObj.StudentNumber);
+                mapping.Add("導師", studentObj.TeacherName);
                 mapping.Add("資料期間", obj.StartDate.ToShortDateString() + " 至 " + obj.EndDate.ToShortDateString());
 
                 //收件人資料
                 if (obj.ReceiveName == "監護人姓名")
-                    mapping.Add("收件人姓名", StudentSuperOBJ[studentID].CustodianName);
+                    mapping.Add("收件人姓名", studentObj.CustodianName);
                 else if (obj.ReceiveName == "父親姓名")
-                    mapping.Add("收件人姓名", StudentSuperOBJ[studentID].FatherName);
+                    mapping.Add("收件人姓名", studentObj.FatherName);
                 else if (obj.ReceiveName == "母親姓名")
-                    mapping.Add("收件人姓名", StudentSuperOBJ[studentID].MotherName);
+                    mapping.Add("收件人姓名", studentObj.MotherName);
                 else
-                    mapping.Add("收件人姓名", StudentSuperOBJ[studentID].student.Name);
+                    mapping.Add("收件人姓名", studentObj.student.Name);
 
                 //收件人地址資料
-                mapping.Add("收件人地址", StudentSuperOBJ[studentID].address);
-                mapping.Add("郵遞區號", StudentSuperOBJ[studentID].ZipCode);
-                mapping.Add("0", StudentSuperOBJ[studentID].ZipCode1);
-                mapping.Add("1", StudentSuperOBJ[studentID].ZipCode2);
-                mapping.Add("2", StudentSuperOBJ[studentID].ZipCode3);
-                mapping.Add("4", StudentSuperOBJ[studentID].ZipCode4);
-                mapping.Add("5", StudentSuperOBJ[studentID].ZipCode5);
+                mapping.Add("收件人地址", studentObj.address);
+                mapping.Add("郵遞區號", studentObj.ZipCode);
+                mapping.Add("0", studentObj.ZipCode1);
+                mapping.Add("1", studentObj.ZipCode2);
+                mapping.Add("2", studentObj.ZipCode3);
+                mapping.Add("4", studentObj.ZipCode4);
+                mapping.Add("5", studentObj.ZipCode5);
 
-                if (StudentEXTDic.ContainsKey(studentID))
+                if (StudentEXTDic.ContainsKey(studentObj.student.ID))
                 {
-                    mapping.Add("英文別名", StudentEXTDic[studentID]);
+                    mapping.Add("英文別名", StudentEXTDic[studentObj.student.ID]);
                 }
                 else
                 {
@@ -613,9 +621,9 @@ namespace BasicInformation.AbsenceNotification
                 mapping.Add("學年度", tool.GetSchoolChange(School.DefaultSchoolYear));
                 mapping.Add("學期", School.DefaultSemester);
 
-                if (StudentSuperOBJ[studentID].studentAbsenceDetail.Count != 0)
+                if (studentObj.studentAbsenceDetail.Count != 0)
                 {
-                    object[] objectValues = new object[] { StudentSuperOBJ[studentID].studentAbsenceDetail, periodList };
+                    object[] objectValues = new object[] { studentObj.studentAbsenceDetail, periodList };
                     mapping.Add("缺曠明細", objectValues);
                 }
                 else
@@ -647,13 +655,13 @@ namespace BasicInformation.AbsenceNotification
                         string dataValue = "0";
                         string semesterDataValue = "0";
                         string PeriodAndAbsence = attendanceType + "," + absenceType;
-                        if (StudentSuperOBJ[studentID].studentAbsence.ContainsKey(PeriodAndAbsence))
+                        if (studentObj.studentAbsence.ContainsKey(PeriodAndAbsence))
                         {
-                            dataValue = StudentSuperOBJ[studentID].studentAbsence[PeriodAndAbsence].ToString();
+                            dataValue = studentObj.studentAbsence[PeriodAndAbsence].ToString();
                         }
-                        if (StudentSuperOBJ[studentID].studentSemesterAbsence.ContainsKey(PeriodAndAbsence))
+                        if (studentObj.studentSemesterAbsence.ContainsKey(PeriodAndAbsence))
                         {
-                            semesterDataValue = StudentSuperOBJ[studentID].studentSemesterAbsence[PeriodAndAbsence].ToString();
+                            semesterDataValue = studentObj.studentSemesterAbsence[PeriodAndAbsence].ToString();
                         }
                         eachTable.Rows[startRowIndex + 3].Cells[columnIndex].Paragraphs[0].Runs[0].Text = dataValue;
                         eachTable.Rows[startRowIndex + 2].Cells[columnIndex].Paragraphs[0].Runs[0].Text = semesterDataValue;
@@ -684,42 +692,42 @@ namespace BasicInformation.AbsenceNotification
                 wb.Worksheets[0].Cells[CountRow, 6].PutValue("收件人姓名");
                 wb.Worksheets[0].Cells[CountRow, 7].PutValue("地址");
                 CountRow++;
-                foreach (string each in StudentSuperOBJ.Keys)
+                foreach (StudentOBJ studentObj in StudentList)
                 {
-                    if (!DelStudent.Contains(each)) //如果不包含在內,就離開
+                    if (!DelStudent.Contains(studentObj.student.ID)) //如果不包含在內,就離開
                         continue;
 
                     if (obj.PrintHasRecordOnly)
                     {
                         //明細等於0
-                        if (StudentSuperOBJ[each].studentAbsenceDetail.Count == 0)
+                        if (studentObj.studentAbsenceDetail.Count == 0)
                         {
                             currentStudentCount++;
                             continue;
                         }
                     }
 
-                    wb.Worksheets[0].Cells[CountRow, 0].PutValue(StudentSuperOBJ[each].ClassName);
-                    wb.Worksheets[0].Cells[CountRow, 1].PutValue(StudentSuperOBJ[each].SeatNo);
-                    wb.Worksheets[0].Cells[CountRow, 2].PutValue(StudentSuperOBJ[each].StudentNumber);
-                    wb.Worksheets[0].Cells[CountRow, 3].PutValue(StudentSuperOBJ[each].student.Name);
-                    wb.Worksheets[0].Cells[CountRow, 4].PutValue(StudentSuperOBJ[each].student.EnglishName);
-                    if (StudentEXTDic.ContainsKey(each))
+                    wb.Worksheets[0].Cells[CountRow, 0].PutValue(studentObj.ClassName);
+                    wb.Worksheets[0].Cells[CountRow, 1].PutValue(studentObj.SeatNo);
+                    wb.Worksheets[0].Cells[CountRow, 2].PutValue(studentObj.StudentNumber);
+                    wb.Worksheets[0].Cells[CountRow, 3].PutValue(studentObj.student.Name);
+                    wb.Worksheets[0].Cells[CountRow, 4].PutValue(studentObj.student.EnglishName);
+                    if (StudentEXTDic.ContainsKey(studentObj.student.ID))
                     {
-                        wb.Worksheets[0].Cells[CountRow, 5].PutValue(StudentEXTDic[each]);
+                        wb.Worksheets[0].Cells[CountRow, 5].PutValue(StudentEXTDic[studentObj.student.ID]);
                     }
 
                     //收件人資料
                     if (obj.ReceiveName == "監護人姓名")
-                        wb.Worksheets[0].Cells[CountRow, 6].PutValue(StudentSuperOBJ[each].CustodianName);
+                        wb.Worksheets[0].Cells[CountRow, 6].PutValue(studentObj.CustodianName);
                     else if (obj.ReceiveName == "父親姓名")
-                        wb.Worksheets[0].Cells[CountRow, 6].PutValue(StudentSuperOBJ[each].FatherName);
+                        wb.Worksheets[0].Cells[CountRow, 6].PutValue(studentObj.FatherName);
                     else if (obj.ReceiveName == "母親姓名")
-                        wb.Worksheets[0].Cells[CountRow, 6].PutValue(StudentSuperOBJ[each].MotherName);
+                        wb.Worksheets[0].Cells[CountRow, 6].PutValue(studentObj.MotherName);
                     else
-                        wb.Worksheets[0].Cells[CountRow, 6].PutValue(StudentSuperOBJ[each].student.Name);
+                        wb.Worksheets[0].Cells[CountRow, 6].PutValue(studentObj.student.Name);
 
-                    wb.Worksheets[0].Cells[CountRow, 7].PutValue(StudentSuperOBJ[each].ZipCode + " " + StudentSuperOBJ[each].address);
+                    wb.Worksheets[0].Cells[CountRow, 7].PutValue(studentObj.ZipCode + " " + studentObj.address);
                     CountRow++;
                 }
                 wb.Worksheets[0].AutoFitColumns();
