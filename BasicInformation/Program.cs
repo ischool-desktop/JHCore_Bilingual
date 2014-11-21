@@ -153,7 +153,7 @@ namespace BasicInformation
             Dictionary<string, StudentRecord_Ext> StudentExtDic = GetStudentExt();
             Dictionary<string, string> StudentEnName = GetStudentExName();
 
-            #region 學生 暱稱&護照號碼
+            #region 學生 暱稱&居留證號
 
             ListPaneField StudentEnglishNameField = new ListPaneField("英文姓名");
             StudentEnglishNameField.GetVariable += delegate(object sender, GetVariableEventArgs e)
@@ -175,7 +175,7 @@ namespace BasicInformation
             };
             K12.Presentation.NLDPanels.Student.AddListPaneField(StudentNicknameField);
 
-            ListPaneField PassportNumberField = new ListPaneField("護照號碼");
+            ListPaneField PassportNumberField = new ListPaneField("居留證號");
             PassportNumberField.GetVariable += delegate(object sender, GetVariableEventArgs e)
             {
                 if (StudentExtDic.ContainsKey(e.Key))

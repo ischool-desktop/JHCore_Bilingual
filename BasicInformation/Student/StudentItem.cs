@@ -52,7 +52,7 @@ namespace BasicInformation
             _DataListener.Add(new TextBoxSource(txtBirthPlace));
             _DataListener.Add(new TextBoxSource(txtEngName));
             _DataListener.Add(new TextBoxSource(txtChineseName)); //new 中文姓名
-            _DataListener.Add(new TextBoxSource(txtPassportNumber)); //new 護照號碼
+            _DataListener.Add(new TextBoxSource(txtPassportNumber)); //new 居留證號
             _DataListener.Add(new TextBoxSource(txtLoginID));
             _DataListener.Add(new TextBoxSource(txtLoginPwd));
             _DataListener.Add(new ComboBoxSource(cboGender, ComboBoxSource.ListenAttribute.Text));
@@ -232,7 +232,7 @@ namespace BasicInformation
             _StudRec.SAPassword = txtLoginPwd.Text;
 
             _StudRec_Ext.Nickname = txtChineseName.Text; //中文姓名
-            _StudRec_Ext.PassportNumber = txtPassportNumber.Text; //護照號碼
+            _StudRec_Ext.PassportNumber = txtPassportNumber.Text; //居留證號
         }
 
         protected override void OnCancelButtonClick(EventArgs e)
@@ -345,7 +345,7 @@ namespace BasicInformation
             prlp.SetBeforeSaveText("登入帳號", txtLoginID.Text);
             prlp.SetBeforeSaveText("帳號類型", cboAccountType.Text);
             prlp.SetBeforeSaveText("中文姓名", txtChineseName.Text);  //new
-            prlp.SetBeforeSaveText("護照號碼", txtPassportNumber.Text);  //new
+            prlp.SetBeforeSaveText("居留證號", txtPassportNumber.Text);  //new
         }
 
         private void SetAfterEditLog()
@@ -360,7 +360,7 @@ namespace BasicInformation
             prlp.SetAfterSaveText("登入帳號", txtLoginID.Text);
             prlp.SetAfterSaveText("帳號類型", cboAccountType.Text);
             prlp.SetAfterSaveText("中文姓名", txtChineseName.Text);  //new
-            prlp.SetAfterSaveText("護照號碼", txtPassportNumber.Text);  //new
+            prlp.SetAfterSaveText("居留證號", txtPassportNumber.Text);  //new
 
             prlp.SetActionBy("學籍", "學生基本資料");
             prlp.SetAction("修改學生基本資料");

@@ -24,7 +24,7 @@ namespace BasicInformation
         public string Nickname { get; set; }
 
         /// <summary>
-        /// 護照號碼
+        /// 居留證號
         /// </summary>
         [Field(Field = "passport_number", Indexed = true)]
         public string PassportNumber { get; set; }
