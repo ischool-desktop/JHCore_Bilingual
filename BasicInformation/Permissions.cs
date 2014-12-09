@@ -69,5 +69,14 @@ namespace BasicInformation
                 return FISCA.Permission.UserAcl.Current[獎懲公告單_雙語部].Executable;
             }
         }
+
+        public static string 批次修改入學及畢業年度_雙語部 { get { return "雙語部.BasicInformation.SchoolYearEditor.cs"; } }
+        public static bool 批次修改入學及畢業年度_雙語部權限
+        {
+            get
+            {
+                return FISCA.Permission.UserAcl.Current[批次修改入學及畢業年度_雙語部].Executable;
+            }
+        }
     }
 }

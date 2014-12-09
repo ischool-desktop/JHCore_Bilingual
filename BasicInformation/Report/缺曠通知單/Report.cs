@@ -110,7 +110,7 @@ namespace BasicInformation.AbsenceNotification
             else if (entityName.ToLower() == "class") //班級模式
             {
                 SelectedStudents = new List<StudentRecord>();
-                foreach (StudentRecord each in Student.SelectByClassIDs(K12.Presentation.NLDPanels.Class.SelectedSource))
+                foreach (StudentRecord each in K12.Data.Student.SelectByClassIDs(K12.Presentation.NLDPanels.Class.SelectedSource))
                 {
                     if (each.Status != StudentRecord.StudentStatus.一般)
                         continue;
@@ -353,7 +353,7 @@ namespace BasicInformation.AbsenceNotification
             #endregion
 
             #region 取得所有學生缺曠紀錄，學期累計
-            foreach (AttendanceRecord attendance in K12.Data.Attendance.SelectBySchoolYearAndSemester(Student.SelectByIDs(allStudentID), int.Parse(School.DefaultSchoolYear), int.Parse(School.DefaultSemester)))
+            foreach (AttendanceRecord attendance in K12.Data.Attendance.SelectBySchoolYearAndSemester(K12.Data.Student.SelectByIDs(allStudentID), int.Parse(School.DefaultSchoolYear), int.Parse(School.DefaultSemester)))
             {
                 //1(大於),0(等於)-1(小於)
                 if (obj.EndDate.CompareTo(attendance.OccurDate) == -1)

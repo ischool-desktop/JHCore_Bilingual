@@ -58,6 +58,8 @@ namespace BasicInformation
             _DataListener.Add(new ComboBoxSource(cboGender, ComboBoxSource.ListenAttribute.Text));
             _DataListener.Add(new ComboBoxSource(cboNationality, ComboBoxSource.ListenAttribute.Text));
             _DataListener.Add(new ComboBoxSource(cboAccountType, ComboBoxSource.ListenAttribute.Text));
+            _DataListener.Add(new TextBoxSource(txtEntranceSchoolYear));
+            _DataListener.Add(new TextBoxSource(txtGraduateSchoolYear));
             _DataListener.StatusChanged += new EventHandler<ChangeEventArgs>(_DataListener_StatusChanged);
 
             _BGWorker = new BackgroundWorker();
@@ -125,6 +127,35 @@ namespace BasicInformation
 
         protected override void OnSaveButtonClick(EventArgs e)
         {
+            if (!string.IsNullOrWhiteSpace(txtEntranceSchoolYear.Text))
+            {
+                int i = 0;
+                if (int.TryParse(txtEntranceSchoolYear.Text, out i))
+                {
+                    _errors.SetError(txtEntranceSchoolYear, string.Empty);
+                    _StudRec_Ext.EntranceSchoolYear = i;
+                }
+                else
+                {
+                    _errors.SetError(txtEntranceSchoolYear, "入學學年必須是整數數字");
+                    return;
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtGraduateSchoolYear.Text))
+            {
+                int i = 0;
+                if (int.TryParse(txtGraduateSchoolYear.Text, out i))
+                {
+                    _errors.SetError(txtGraduateSchoolYear, string.Empty);
+                    _StudRec_Ext.GraduateSchoolYear = i;
+                }
+                else
+                {
+                    _errors.SetError(txtGraduateSchoolYear, "畢業學年必須是整數數字");
+                    return;
+                }
+            }
 
             SetFormDataToDALRec();
 
@@ -308,7 +339,7 @@ namespace BasicInformation
         //將畫面清空
         private void ClearFormValue()
         {
-            txtChineseName.Text = txtPassportNumber.Text = string.Empty;
+            txtChineseName.Text = txtPassportNumber.Text = txtEntranceSchoolYear.Text = txtGraduateSchoolYear.Text = string.Empty;
             txtBirthDate.Text = txtBirthPlace.Text = txtEngName.Text = txtLoginID.Text = txtName.Text = txtSSN.Text = cboAccountType.Text = cboGender.Text = cboNationality.Text = string.Empty;
         }
 
@@ -341,11 +372,13 @@ namespace BasicInformation
             prlp.SetBeforeSaveText("性別", cboGender.Text);
             prlp.SetBeforeSaveText("國籍", cboNationality.Text);
             prlp.SetBeforeSaveText("出生地", txtBirthPlace.Text);
-            prlp.SetBeforeSaveText("英文全名", txtEngName.Text);
+            prlp.SetBeforeSaveText("英文姓名", txtEngName.Text);
             prlp.SetBeforeSaveText("登入帳號", txtLoginID.Text);
             prlp.SetBeforeSaveText("帳號類型", cboAccountType.Text);
-            prlp.SetBeforeSaveText("中文姓名", txtChineseName.Text);  //new
+            prlp.SetBeforeSaveText("英文別名", txtChineseName.Text);  //new
             prlp.SetBeforeSaveText("居留證號", txtPassportNumber.Text);  //new
+            prlp.SetBeforeSaveText("入學年度", txtEntranceSchoolYear.Text);  //new
+            prlp.SetBeforeSaveText("畢業年度", txtGraduateSchoolYear.Text);  //new
         }
 
         private void SetAfterEditLog()
@@ -359,8 +392,10 @@ namespace BasicInformation
             prlp.SetAfterSaveText("英文姓名", txtEngName.Text);
             prlp.SetAfterSaveText("登入帳號", txtLoginID.Text);
             prlp.SetAfterSaveText("帳號類型", cboAccountType.Text);
-            prlp.SetAfterSaveText("中文姓名", txtChineseName.Text);  //new
+            prlp.SetAfterSaveText("英文別名", txtChineseName.Text);  //new
             prlp.SetAfterSaveText("居留證號", txtPassportNumber.Text);  //new
+            prlp.SetAfterSaveText("入學年度", txtEntranceSchoolYear.Text);  //new
+            prlp.SetAfterSaveText("畢業年度", txtGraduateSchoolYear.Text);  //new
 
             prlp.SetActionBy("學籍", "學生基本資料");
             prlp.SetAction("修改學生基本資料");
@@ -385,6 +420,8 @@ namespace BasicInformation
 
             txtChineseName.Text = _StudRec_Ext.Nickname;
             txtPassportNumber.Text = _StudRec_Ext.PassportNumber;
+            txtEntranceSchoolYear.Text = _StudRec_Ext.EntranceSchoolYear + "";
+            txtGraduateSchoolYear.Text = _StudRec_Ext.GraduateSchoolYear + "";
 
             // 解析
             try

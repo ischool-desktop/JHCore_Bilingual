@@ -9,13 +9,11 @@ namespace BasicInformation
     [TableName("JHCore_Bilingual.StudentRecordExt")]
     class StudentRecord_Ext : ActiveRecord
     {
-
         /// <summary>
         /// 學生系統編號
         /// </summary>
         [Field(Field = "ref_student_id", Indexed = true)]
         public string RefStudentID { get; set; }
-
 
         /// <summary>
         /// 英文別名
@@ -29,6 +27,16 @@ namespace BasicInformation
         [Field(Field = "passport_number", Indexed = true)]
         public string PassportNumber { get; set; }
 
+        /// <summary>
+        /// 入學學年度
+        /// </summary>
+        [Field(Field = "entrance_schoolyear", Indexed = true)]
+        public int EntranceSchoolYear { get; set; }
 
+        /// <summary>
+        /// 畢業學年度
+        /// </summary>
+        [Field(Field = "graduate_schoolyear", Indexed = true)]
+        public int GraduateSchoolYear { get; set; }
     }
 }

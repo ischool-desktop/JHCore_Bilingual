@@ -33,6 +33,19 @@ namespace BasicInformation
             //處理教師資料
             ResTeacherData();
 
+            //批次修改入學及畢業年度
+            FISCA.Presentation.MenuButton btnOrder = FISCA.Presentation.MotherForm.RibbonBarItems["學生", "指定"]["批次修改入學及畢業年度"];
+            btnOrder.Enable = false;
+            btnOrder.Click += delegate
+            {
+                new BasicInformation.Student.SchoolYearEditor().ShowDialog();
+            };
+
+            K12.Presentation.NLDPanels.Student.SelectedSourceChanged += delegate
+            {
+                btnOrder.Enable = Permissions.批次修改入學及畢業年度_雙語部權限 && K12.Presentation.NLDPanels.Student.SelectedSource.Count > 0;
+            };
+
             //雙語部 - 班級名條 & 班級點名單
             FISCA.Presentation.MenuButton btnC = FISCA.Presentation.MotherForm.RibbonBarItems["班級", "資料統計"]["報表"]["學務相關報表"];
             btnC["班級點名表(雙語部)"].Enable = Permissions.班級點名單_雙語部權限;
@@ -127,10 +140,6 @@ namespace BasicInformation
                 new AnnouncementSingle().ShowDialog();
             };
 
-
-
-
-
             FISCA.Permission.Catalog TestCatalog1 = FISCA.Permission.RoleAclSource.Instance["班級"]["報表"];
             TestCatalog1.Add(new FISCA.Permission.RibbonFeature(Permissions.班級點名單_雙語部, "班級點名表(雙語部)"));
             TestCatalog1.Add(new FISCA.Permission.RibbonFeature(Permissions.班級缺曠通知單_雙語部, "缺曠通知單(雙語部)"));
@@ -143,6 +152,9 @@ namespace BasicInformation
 
             FISCA.Permission.Catalog TestCatalog3 = FISCA.Permission.RoleAclSource.Instance["學務作業"]["報表"];
             TestCatalog3.Add(new FISCA.Permission.RibbonFeature(Permissions.獎懲公告單_雙語部, "獎懲公告單(雙語部)"));
+
+            FISCA.Permission.Catalog TestCatalog4 = FISCA.Permission.RoleAclSource.Instance["學生"]["功能按鈕"];
+            TestCatalog4.Add(new FISCA.Permission.RibbonFeature(Permissions.批次修改入學及畢業年度_雙語部, "批次修改入學及畢業年度"));
         }
 
         /// <summary>
