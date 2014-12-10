@@ -28,15 +28,15 @@ namespace BasicInformation
         public string PassportNumber { get; set; }
 
         /// <summary>
-        /// 入學學年度
+        /// 入學日期
         /// </summary>
-        [Field(Field = "entrance_schoolyear", Indexed = true)]
-        public int EntranceSchoolYear { get; set; }
+        [Field(Field = "entrance_date", Indexed = true)]
+        public DateTime? EntranceDate { get; set; }
 
         /// <summary>
-        /// 畢業學年度
+        /// 畢業日期
         /// </summary>
-        [Field(Field = "graduate_schoolyear", Indexed = true)]
-        public int GraduateSchoolYear { get; set; }
+        [Field(Field = "leaving_date", Indexed = true)]
+        public DateTime? LeavingDate { get; set; }
     }
 }

@@ -30,8 +30,9 @@ namespace BasicInformation.Student
             _ids = K12.Presentation.NLDPanels.Student.SelectedSource;
             lblCount.Text = _ids.Count + "";
 
-            numEntrance.Value = decimal.Parse(K12.Data.School.DefaultSchoolYear);
-            numGraduate.Value = decimal.Parse(K12.Data.School.DefaultSchoolYear);
+            dtEntrance.Value = DateTime.Today;
+            dtLeaving.Value = DateTime.Today;
+
             DataInit();
         }
 
@@ -68,23 +69,20 @@ namespace BasicInformation.Student
             {
                 //紀錄更新前的資料
                 LogObj obj = new LogObj(id);
-                obj.BeforeEn = _studExtDic[id].EntranceSchoolYear;
-                obj.BeforeGr = _studExtDic[id].GraduateSchoolYear;
+                obj.BeforeEn = _studExtDic[id].EntranceDate;
+                obj.BeforeLv = _studExtDic[id].LeavingDate;
                 _logDic.Add(id, obj);
             }
         }
 
         private void btnEntrance_Click(object sender, EventArgs e)
         {
-            //decimal先做四捨五入後轉int,預防小數點爆炸
-            decimal d = Math.Round(numEntrance.Value, 0, MidpointRounding.AwayFromZero);
-            int sy = int.Parse(d + "");
-            if (MessageBox.Show("確認將入學年度設為 " + sy + " ?", "ischool", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show("確認將入學日期設為 " + dtEntrance.Value.ToShortDateString() + " ?", "ischool", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 foreach (string id in _studExtDic.Keys)
                 {
-                    _studExtDic[id].EntranceSchoolYear = sy;
-                    _logDic[id].AfterEn = sy;
+                    _studExtDic[id].EntranceDate = dtEntrance.Value;
+                    _logDic[id].AfterEn = dtEntrance.Value;
                 }
 
                 Save(sender);
@@ -93,15 +91,12 @@ namespace BasicInformation.Student
 
         private void btnGraduate_Click(object sender, EventArgs e)
         {
-            //decimal先做四捨五入後轉int,預防小數點爆炸
-            decimal d = Math.Round(numGraduate.Value, 0, MidpointRounding.AwayFromZero);
-            int sy = int.Parse(d + "");
-            if (MessageBox.Show("確認將畢業年度設為 " + sy + " ?", "ischool", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show("確認將畢業日期設為 " + dtLeaving.Value.ToShortDateString() + " ?", "ischool", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 foreach (string id in _studExtDic.Keys)
                 {
-                    _studExtDic[id].GraduateSchoolYear = sy;
-                    _logDic[id].AfterGr = sy;
+                    _studExtDic[id].LeavingDate = dtLeaving.Value;
+                    _logDic[id].AfterLv = dtLeaving.Value;
                 }
 
                 Save(sender);
@@ -135,9 +130,9 @@ namespace BasicInformation.Student
 
             string title = "";
             if (sender == btnEntrance)
-                title = "入學年度";
+                title = "入學日期";
             else if (sender == btnGraduate)
-                title = "畢業年度";
+                title = "畢業日期";
 
             foreach (string id in _logDic.Keys)
             {
@@ -146,17 +141,21 @@ namespace BasicInformation.Student
 
                 if (sender == btnEntrance && obj.BeforeEn != obj.AfterEn)
                 {
-                    sb.AppendLine(string.Format("學生:{0} 學號:{1} 入學年度由「{2}」改為「{3}」", sr.Name, sr.StudentNumber, obj.BeforeEn, obj.AfterEn));
+                    string before_date = obj.BeforeEn.HasValue ? obj.BeforeEn.Value.ToShortDateString() : string.Empty;
+                    string after_date = obj.AfterEn.HasValue ? obj.AfterEn.Value.ToShortDateString() : string.Empty;
+                    sb.AppendLine(string.Format("學生:{0} 學號:{1} 入學日期由「{2}」改為「{3}」", sr.Name, sr.StudentNumber, before_date, after_date));
                 }
 
-                if (sender == btnGraduate && obj.BeforeGr != obj.AfterGr)
+                if (sender == btnGraduate && obj.BeforeLv != obj.AfterLv)
                 {
-                    sb.AppendLine(string.Format("學生:{0} 學號:{1} 畢業年度由「{2}」改為「{3}」", sr.Name, sr.StudentNumber, obj.BeforeGr, obj.AfterGr));
+                    string before_date = obj.BeforeLv.HasValue ? obj.BeforeLv.Value.ToShortDateString() : string.Empty;
+                    string after_date = obj.AfterLv.HasValue ? obj.AfterLv.Value.ToShortDateString() : string.Empty;
+                    sb.AppendLine(string.Format("學生:{0} 學號:{1} 畢業日期由「{2}」改為「{3}」", sr.Name, sr.StudentNumber, before_date, after_date));
                 }
             }
 
             if (!string.IsNullOrEmpty(sb.ToString()))
-                FISCA.LogAgent.ApplicationLog.Log("批次修改入學及畢業年度", "修改" + title, sb.ToString());
+                FISCA.LogAgent.ApplicationLog.Log("批次修改入學及畢業日期", "修改" + title, sb.ToString());
 
             MessageBox.Show(title + " 修改完成");
         }
@@ -165,10 +164,10 @@ namespace BasicInformation.Student
     class LogObj
     {
         public string ID;
-        public int BeforeEn;
-        public int AfterEn;
-        public int BeforeGr;
-        public int AfterGr;
+        public DateTime? BeforeEn;
+        public DateTime? AfterEn;
+        public DateTime? BeforeLv;
+        public DateTime? AfterLv;
 
         public LogObj(string id)
         {

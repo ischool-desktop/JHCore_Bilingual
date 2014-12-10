@@ -58,8 +58,8 @@ namespace BasicInformation
             _DataListener.Add(new ComboBoxSource(cboGender, ComboBoxSource.ListenAttribute.Text));
             _DataListener.Add(new ComboBoxSource(cboNationality, ComboBoxSource.ListenAttribute.Text));
             _DataListener.Add(new ComboBoxSource(cboAccountType, ComboBoxSource.ListenAttribute.Text));
-            _DataListener.Add(new TextBoxSource(txtEntranceSchoolYear));
-            _DataListener.Add(new TextBoxSource(txtGraduateSchoolYear));
+            _DataListener.Add(new TextBoxSource(txtEntranceDate));
+            _DataListener.Add(new TextBoxSource(txtLeavingDate));
             _DataListener.StatusChanged += new EventHandler<ChangeEventArgs>(_DataListener_StatusChanged);
 
             _BGWorker = new BackgroundWorker();
@@ -127,32 +127,32 @@ namespace BasicInformation
 
         protected override void OnSaveButtonClick(EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtEntranceSchoolYear.Text))
+            DateTime dt;
+
+            //入學日期檢查
+            if (!string.IsNullOrEmpty(txtEntranceDate.Text))
             {
-                int i = 0;
-                if (int.TryParse(txtEntranceSchoolYear.Text, out i))
+                if (DateTime.TryParse(txtEntranceDate.Text, out dt))
                 {
-                    _errors.SetError(txtEntranceSchoolYear, string.Empty);
-                    _StudRec_Ext.EntranceSchoolYear = i;
+                    _errors.SetError(txtEntranceDate, string.Empty);
                 }
                 else
                 {
-                    _errors.SetError(txtEntranceSchoolYear, "入學學年必須是整數數字");
+                    _errors.SetError(txtEntranceDate, "入學日期錯誤，請確認資料。");
                     return;
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(txtGraduateSchoolYear.Text))
+            //離校日期檢查
+            if (!string.IsNullOrEmpty(txtLeavingDate.Text))
             {
-                int i = 0;
-                if (int.TryParse(txtGraduateSchoolYear.Text, out i))
+                if (DateTime.TryParse(txtLeavingDate.Text, out dt))
                 {
-                    _errors.SetError(txtGraduateSchoolYear, string.Empty);
-                    _StudRec_Ext.GraduateSchoolYear = i;
+                    _errors.SetError(txtLeavingDate, string.Empty);
                 }
                 else
                 {
-                    _errors.SetError(txtGraduateSchoolYear, "畢業學年必須是整數數字");
+                    _errors.SetError(txtLeavingDate, "離校日期錯誤，請確認資料。");
                     return;
                 }
             }
@@ -174,7 +174,7 @@ namespace BasicInformation
                 return;
             }
 
-            DateTime dt;
+            //DateTime dt;
 
             if (!string.IsNullOrEmpty(txtBirthDate.Text))
             {
@@ -264,6 +264,16 @@ namespace BasicInformation
 
             _StudRec_Ext.Nickname = txtChineseName.Text; //中文姓名
             _StudRec_Ext.PassportNumber = txtPassportNumber.Text; //居留證號
+
+            if (DateTime.TryParse(txtEntranceDate.Text, out dt))
+                _StudRec_Ext.EntranceDate = dt;
+            else
+                _StudRec_Ext.EntranceDate = null;
+
+            if (DateTime.TryParse(txtLeavingDate.Text, out dt))
+                _StudRec_Ext.LeavingDate = dt;
+            else
+                _StudRec_Ext.LeavingDate = null;
         }
 
         protected override void OnCancelButtonClick(EventArgs e)
@@ -339,7 +349,7 @@ namespace BasicInformation
         //將畫面清空
         private void ClearFormValue()
         {
-            txtChineseName.Text = txtPassportNumber.Text = txtEntranceSchoolYear.Text = txtGraduateSchoolYear.Text = string.Empty;
+            txtChineseName.Text = txtPassportNumber.Text = txtEntranceDate.Text = txtLeavingDate.Text = string.Empty;
             txtBirthDate.Text = txtBirthPlace.Text = txtEngName.Text = txtLoginID.Text = txtName.Text = txtSSN.Text = cboAccountType.Text = cboGender.Text = cboNationality.Text = string.Empty;
         }
 
@@ -377,8 +387,8 @@ namespace BasicInformation
             prlp.SetBeforeSaveText("帳號類型", cboAccountType.Text);
             prlp.SetBeforeSaveText("英文別名", txtChineseName.Text);  //new
             prlp.SetBeforeSaveText("居留證號", txtPassportNumber.Text);  //new
-            prlp.SetBeforeSaveText("入學年度", txtEntranceSchoolYear.Text);  //new
-            prlp.SetBeforeSaveText("畢業年度", txtGraduateSchoolYear.Text);  //new
+            prlp.SetBeforeSaveText("入學日期", txtEntranceDate.Text);  //new
+            prlp.SetBeforeSaveText("畢業日期", txtLeavingDate.Text);  //new
         }
 
         private void SetAfterEditLog()
@@ -394,8 +404,8 @@ namespace BasicInformation
             prlp.SetAfterSaveText("帳號類型", cboAccountType.Text);
             prlp.SetAfterSaveText("英文別名", txtChineseName.Text);  //new
             prlp.SetAfterSaveText("居留證號", txtPassportNumber.Text);  //new
-            prlp.SetAfterSaveText("入學年度", txtEntranceSchoolYear.Text);  //new
-            prlp.SetAfterSaveText("畢業年度", txtGraduateSchoolYear.Text);  //new
+            prlp.SetAfterSaveText("入學日期", txtEntranceDate.Text);  //new
+            prlp.SetAfterSaveText("畢業日期", txtLeavingDate.Text);  //new
 
             prlp.SetActionBy("學籍", "學生基本資料");
             prlp.SetAction("修改學生基本資料");
@@ -420,8 +430,8 @@ namespace BasicInformation
 
             txtChineseName.Text = _StudRec_Ext.Nickname;
             txtPassportNumber.Text = _StudRec_Ext.PassportNumber;
-            txtEntranceSchoolYear.Text = _StudRec_Ext.EntranceSchoolYear + "";
-            txtGraduateSchoolYear.Text = _StudRec_Ext.GraduateSchoolYear + "";
+            txtEntranceDate.Text = _StudRec_Ext.EntranceDate.HasValue ? _StudRec_Ext.EntranceDate.Value.ToShortDateString() : "";
+            txtLeavingDate.Text = _StudRec_Ext.LeavingDate.HasValue ? _StudRec_Ext.LeavingDate.Value.ToShortDateString() : "";
 
             // 解析
             try

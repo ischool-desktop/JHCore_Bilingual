@@ -345,6 +345,7 @@
     <Content Include="Library\SmartSchool.ErrorReporting.dll" />
     <Content Include="Library\SmartSchool.ErrorReporting.pdb" />
     <Content Include="Library\SmartSchool.ErrorReporting.xml" />
+    <None Include="Resources\record_b_write_64.png" />
     <None Include="Resources\People.jpg" />
     <None Include="Resources\實驗中學_獎懲公告單.doc" />
     <None Include="Resources\獎懲公告單_功能變數總表.doc" />

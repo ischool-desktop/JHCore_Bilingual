@@ -70,12 +70,12 @@ namespace BasicInformation
             }
         }
 
-        public static string 批次修改入學及畢業年度_雙語部 { get { return "雙語部.BasicInformation.SchoolYearEditor.cs"; } }
-        public static bool 批次修改入學及畢業年度_雙語部權限
+        public static string 批次修改入學及畢業日期_雙語部 { get { return "雙語部.BasicInformation.SchoolYearEditor.cs"; } }
+        public static bool 批次修改入學及畢業日期_雙語部權限
         {
             get
             {
-                return FISCA.Permission.UserAcl.Current[批次修改入學及畢業年度_雙語部].Executable;
+                return FISCA.Permission.UserAcl.Current[批次修改入學及畢業日期_雙語部].Executable;
             }
         }
     }

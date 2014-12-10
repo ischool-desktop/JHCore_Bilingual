@@ -75,10 +75,10 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.txtPassportNumber = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.tbPassportNumber = new System.Windows.Forms.Label();
-            this.txtEntranceSchoolYear = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtEntranceDate = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtGraduateSchoolYear = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.labelGraduate = new System.Windows.Forms.Label();
+            this.txtLeavingDate = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelLeaving = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pic1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contextMenuBar1)).BeginInit();
@@ -549,19 +549,20 @@
             this.tbPassportNumber.Text = "居留證號";
             this.tbPassportNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // txtEntranceSchoolYear
+            // txtEntranceDate
             // 
             // 
             // 
             // 
-            this.txtEntranceSchoolYear.Border.Class = "TextBoxBorder";
-            this.txtEntranceSchoolYear.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtEntranceSchoolYear.Location = new System.Drawing.Point(108, 233);
-            this.txtEntranceSchoolYear.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEntranceSchoolYear.MaxLength = 30;
-            this.txtEntranceSchoolYear.Name = "txtEntranceSchoolYear";
-            this.txtEntranceSchoolYear.Size = new System.Drawing.Size(138, 25);
-            this.txtEntranceSchoolYear.TabIndex = 215;
+            this.txtEntranceDate.Border.Class = "TextBoxBorder";
+            this.txtEntranceDate.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtEntranceDate.Location = new System.Drawing.Point(108, 233);
+            this.txtEntranceDate.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEntranceDate.MaxLength = 30;
+            this.txtEntranceDate.Name = "txtEntranceDate";
+            this.txtEntranceDate.Size = new System.Drawing.Size(138, 25);
+            this.txtEntranceDate.TabIndex = 215;
+            this.txtEntranceDate.WatermarkText = "yyyy/mm/dd";
             // 
             // label2
             // 
@@ -572,42 +573,43 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 17);
             this.label2.TabIndex = 214;
-            this.label2.Text = "入學年度";
+            this.label2.Text = "入學日期";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // txtGraduateSchoolYear
+            // txtLeavingDate
             // 
             // 
             // 
             // 
-            this.txtGraduateSchoolYear.Border.Class = "TextBoxBorder";
-            this.txtGraduateSchoolYear.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtGraduateSchoolYear.Location = new System.Drawing.Point(367, 233);
-            this.txtGraduateSchoolYear.Margin = new System.Windows.Forms.Padding(4);
-            this.txtGraduateSchoolYear.MaxLength = 30;
-            this.txtGraduateSchoolYear.Name = "txtGraduateSchoolYear";
-            this.txtGraduateSchoolYear.Size = new System.Drawing.Size(139, 25);
-            this.txtGraduateSchoolYear.TabIndex = 217;
+            this.txtLeavingDate.Border.Class = "TextBoxBorder";
+            this.txtLeavingDate.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtLeavingDate.Location = new System.Drawing.Point(367, 233);
+            this.txtLeavingDate.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLeavingDate.MaxLength = 30;
+            this.txtLeavingDate.Name = "txtLeavingDate";
+            this.txtLeavingDate.Size = new System.Drawing.Size(139, 25);
+            this.txtLeavingDate.TabIndex = 217;
+            this.txtLeavingDate.WatermarkText = "yyyy/mm/dd";
             // 
-            // labelGraduate
+            // labelLeaving
             // 
-            this.labelGraduate.AutoSize = true;
-            this.labelGraduate.BackColor = System.Drawing.Color.Transparent;
-            this.labelGraduate.Location = new System.Drawing.Point(296, 236);
-            this.labelGraduate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelGraduate.Name = "labelGraduate";
-            this.labelGraduate.Size = new System.Drawing.Size(60, 17);
-            this.labelGraduate.TabIndex = 216;
-            this.labelGraduate.Text = "畢業年度";
-            this.labelGraduate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelLeaving.AutoSize = true;
+            this.labelLeaving.BackColor = System.Drawing.Color.Transparent;
+            this.labelLeaving.Location = new System.Drawing.Point(296, 236);
+            this.labelLeaving.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelLeaving.Name = "labelLeaving";
+            this.labelLeaving.Size = new System.Drawing.Size(60, 17);
+            this.labelLeaving.TabIndex = 216;
+            this.labelLeaving.Text = "離校日期";
+            this.labelLeaving.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // StudentItem
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.txtGraduateSchoolYear);
-            this.Controls.Add(this.labelGraduate);
-            this.Controls.Add(this.txtEntranceSchoolYear);
+            this.Controls.Add(this.txtLeavingDate);
+            this.Controls.Add(this.labelLeaving);
+            this.Controls.Add(this.txtEntranceDate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPassportNumber);
             this.Controls.Add(this.tbPassportNumber);
@@ -697,9 +699,9 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         internal DevComponents.DotNetBar.Controls.TextBoxX txtPassportNumber;
         internal System.Windows.Forms.Label tbPassportNumber;
-        internal DevComponents.DotNetBar.Controls.TextBoxX txtGraduateSchoolYear;
-        internal System.Windows.Forms.Label labelGraduate;
-        internal DevComponents.DotNetBar.Controls.TextBoxX txtEntranceSchoolYear;
+        internal DevComponents.DotNetBar.Controls.TextBoxX txtLeavingDate;
+        internal System.Windows.Forms.Label labelLeaving;
+        internal DevComponents.DotNetBar.Controls.TextBoxX txtEntranceDate;
         internal System.Windows.Forms.Label label2;
     }
 }

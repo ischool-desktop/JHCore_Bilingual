@@ -121,6 +121,9 @@
   <data name="People" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\People.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="record_b_write_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\record_b_write_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="實驗中學_獎懲公告單" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\實驗中學_獎懲公告單.doc;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

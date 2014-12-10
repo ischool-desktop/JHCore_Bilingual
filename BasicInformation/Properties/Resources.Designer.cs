@@ -71,6 +71,16 @@ namespace BasicInformation.Properties {
         }
         
         /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap record_b_write_64 {
+            get {
+                object obj = ResourceManager.GetObject("record_b_write_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
         internal static byte[] 實驗中學_獎懲公告單 {
