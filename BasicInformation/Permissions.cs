@@ -78,5 +78,23 @@ namespace BasicInformation
                 return FISCA.Permission.UserAcl.Current[批次修改入學及畢業日期_雙語部].Executable;
             }
         }
+
+        public static string 匯出學生基本資料_雙語部 { get { return "雙語部.BasicInformation.ExportSchoolObject.cs"; } }
+        public static bool 匯出學生基本資料_雙語部權限
+        {
+            get
+            {
+                return FISCA.Permission.UserAcl.Current[匯出學生基本資料_雙語部].Executable;
+            }
+        }
+
+        public static string 匯入學生基本資料_雙語部 { get { return "雙語部.BasicInformation.ImportSchoolObject.cs"; } }
+        public static bool 匯入學生基本資料_雙語部權限
+        {
+            get
+            {
+                return FISCA.Permission.UserAcl.Current[匯入學生基本資料_雙語部].Executable;
+            }
+        }
     }
 }

@@ -105,6 +105,10 @@
       <HintPath>Library\Framework.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="IntelliSchool.DSA.ClientFramework, Version=1.2.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\IntelliSchool.DSA.ClientFramework.dll</HintPath>
+    </Reference>
     <Reference Include="IRewriteAPI_JH, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\IRewriteAPI_JH.dll</HintPath>
@@ -139,6 +143,10 @@
       <HintPath>Library\K12StudentPhoto.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="SmartSchool.API.PlugIn, Version=0.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\SmartSchool.API.PlugIn.dll</HintPath>
+    </Reference>
     <Reference Include="SmartSchool.Common, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\SmartSchool.Common.dll</HintPath>
@@ -165,6 +173,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImportExport\ExportSchoolObject.cs" />
+    <Compile Include="ImportExport\ExportStudentV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportExport\ExportStudentV2.designer.cs">
+      <DependentUpon>ExportStudentV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportExport\ImportSchoolObject.cs" />
+    <Compile Include="ImportExport\ImportStudentV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportExport\ImportStudentV2.designer.cs">
+      <DependentUpon>ImportStudentV2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Permissions.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -322,6 +344,8 @@
     <Content Include="Library\FISCA.UDT.pdb" />
     <Content Include="Library\FISCA.UDT.xml" />
     <Content Include="Library\Framework.dll" />
+    <Content Include="Library\IntelliSchool.DSA.ClientFramework.dll" />
+    <Content Include="Library\IntelliSchool.DSA.ClientFramework.xml" />
     <Content Include="Library\IRewriteAPI_JH.dll" />
     <Content Include="Library\IRewriteAPI_JH.pdb" />
     <Content Include="Library\JHSchool.Data.dll" />
@@ -336,6 +360,7 @@
     <Content Include="Library\K12.Presentation.xml" />
     <Content Include="Library\K12StudentPhoto.dll" />
     <Content Include="Library\K12StudentPhoto.pdb" />
+    <Content Include="Library\SmartSchool.API.PlugIn.dll" />
     <Content Include="Library\SmartSchool.Common.dll" />
     <Content Include="Library\SmartSchool.Common.DotNetBar.dll" />
     <Content Include="Library\SmartSchool.Common.DotNetBar.pdb" />
@@ -361,6 +386,12 @@
     <None Include="Resources\缺曠週報表_依假別.xls" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ImportExport\ExportStudentV2.resx">
+      <DependentUpon>ExportStudentV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportExport\ImportStudentV2.resx">
+      <DependentUpon>ImportStudentV2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
