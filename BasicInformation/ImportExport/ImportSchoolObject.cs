@@ -37,12 +37,16 @@ namespace BasicInformation
 
             //必需要有的欄位
             wizard.RequiredFields.AddRange("學號");
+
             //驗證開始事件
             //wizard.ValidateStart += (sender, e) => Keys.Clear();
+
             //驗證每行資料的事件
             wizard.ValidateRow += new System.EventHandler<SmartSchool.API.PlugIn.Import.ValidateRowEventArgs>(wizard_ValidateRow);
+
             //實際匯入資料的事件
             wizard.ImportPackage += new System.EventHandler<SmartSchool.API.PlugIn.Import.ImportPackageEventArgs>(wizard_ImportPackage);
+
             //匯入完成
             wizard.ImportComplete += (sender, e) => MessageBox.Show("匯入完成!");
         }
@@ -136,17 +140,38 @@ namespace BasicInformation
 
                     if (StudentExtDic.ContainsKey(StudentNumber))
                     {
+                        StudentRecord_Ext record = StudentExtDic[StudentNumber];
+
                         DateTime Entrance = new DateTime();
-                        DateTime.TryParse("" + Row["入學日期"], out Entrance);
+                        if (Row.ContainsKey("入學日期"))
+                            DateTime.TryParse("" + Row["入學日期"], out Entrance);
+                        else
+                            Entrance = record.EntranceDate.HasValue ? record.EntranceDate.Value : new DateTime();
 
                         DateTime Leaving = new DateTime();
-                        DateTime.TryParse("" + Row["畢業日期"], out Leaving);
+                        if (Row.ContainsKey("畢業日期"))
+                            DateTime.TryParse("" + Row["畢業日期"], out Leaving);
+                        else
+                            Leaving = record.EntranceDate.HasValue ? record.EntranceDate.Value : new DateTime();
 
-                        StudentRecord_Ext record = StudentExtDic[StudentNumber];
+                        string Nickname = "";
+                        if (Row.ContainsKey("英文別名"))
+                            Nickname = "" + Row["英文別名"];
+                        else
+                            Nickname = record.Nickname;
+
+
+                        string PassportNumber = "";
+                        if (Row.ContainsKey("居留證號"))
+                            PassportNumber = "" + Row["居留證號"];
+                        else
+                            PassportNumber = record.PassportNumber;
+
+
                         LogSb.AppendLine("修改資料：");
                         LogSb.AppendLine(string.Format("班級「{0}」座號「{1}」學生「{2}」", ClassName, SeatNo, StudR.Name));
-                        LogSb.AppendLine(string.Format("英文別名由「{0}」改為「{1}」", record.Nickname, "" + Row["英文別名"]));
-                        LogSb.AppendLine(string.Format("居留證號由「{0}」改為「{1}」", record.PassportNumber, "" + Row["居留證號"]));
+                        LogSb.AppendLine(string.Format("英文別名由「{0}」改為「{1}」", record.Nickname, Nickname));
+                        LogSb.AppendLine(string.Format("居留證號由「{0}」改為「{1}」", record.PassportNumber, PassportNumber));
 
                         string entrance = record.EntranceDate.HasValue ? record.EntranceDate.Value.ToShortDateString() : "";
                         LogSb.AppendLine(string.Format("入學日期由「{0}」改為「{1}」", entrance, Entrance.ToShortDateString() != "0001/1/1" ? Entrance.ToShortDateString() : ""));
@@ -155,8 +180,8 @@ namespace BasicInformation
                         LogSb.AppendLine(string.Format("畢業日期由「{0}」改為「{1}」", leaving, Leaving.ToShortDateString() != "0001/1/1" ? Leaving.ToShortDateString() : ""));
                         LogSb.AppendLine();
 
-                        record.Nickname = "" + Row["英文別名"];
-                        record.PassportNumber = "" + Row["居留證號"];
+                        record.Nickname = Nickname;
+                        record.PassportNumber = PassportNumber;
 
                         if (Entrance.ToShortDateString() != "0001/1/1")
                             record.EntranceDate = Entrance;
@@ -172,17 +197,21 @@ namespace BasicInformation
                     }
                     else
                     {
-                        DateTime Entrance;
-                        DateTime.TryParse("" + Row["入學日期"], out Entrance);
+                        DateTime Entrance = new DateTime();
+                        if (Row.ContainsKey("入學日期"))
+                            DateTime.TryParse("" + Row["入學日期"], out Entrance);
 
-                        DateTime Leaving;
-                        DateTime.TryParse("" + Row["畢業日期"], out Leaving);
+                        DateTime Leaving = new DateTime();
+                        if (Row.ContainsKey("畢業日期"))
+                            DateTime.TryParse("" + Row["畢業日期"], out Leaving);
 
+                        string Nickname = Row.ContainsKey("英文別名") ? "" + Row["英文別名"] : "";
+                        string PassportNumber = Row.ContainsKey("居留證號") ? "" + Row["居留證號"] : "";
                         //Log         
                         LogSb.AppendLine("新增資料：");
                         LogSb.AppendLine(string.Format("班級「{0}」座號「{1}」學生「{2}」", ClassName, SeatNo, StudR.Name));
-                        LogSb.AppendLine(string.Format("英文別名「{0}」", "" + Row["英文別名"]));
-                        LogSb.AppendLine(string.Format("居留證號「{0}」", "" + Row["居留證號"]));
+                        LogSb.AppendLine(string.Format("英文別名「{0}」", Nickname));
+                        LogSb.AppendLine(string.Format("居留證號「{0}」", PassportNumber));
                         LogSb.AppendLine(string.Format("入學日期「{0}」", Entrance.ToShortDateString() != "0001/1/1" ? Entrance.ToShortDateString() : ""));
                         LogSb.AppendLine(string.Format("畢業日期「{0}」", Leaving.ToShortDateString() != "0001/1/1" ? Leaving.ToShortDateString() : ""));
                         LogSb.AppendLine();
@@ -193,8 +222,8 @@ namespace BasicInformation
 
                         record.RefStudentID = StudentNumberDic[StudentNumber].ID;
 
-                        record.Nickname = Row["英文別名"];
-                        record.PassportNumber = Row["居留證號"];
+                        record.Nickname = Nickname;
+                        record.PassportNumber = PassportNumber;
 
                         if (Entrance.ToShortDateString() != "0001/1/1")
                             record.EntranceDate = Entrance;
