@@ -28,10 +28,16 @@ namespace BasicInformation
         [MainMethod()]
         static public void Main2()
         {
+            // 學生聯絡電話
+            K12.Presentation.NLDPanels.Student.AddDetailBulider(new DetailBulider<Student.PhoneItem>());
+            Catalog catalog02 = RoleAclSource.Instance["學生"]["資料項目"];
+            catalog02.Add(new DetailItemFeature(typeof(Student.PhoneItem)));
+
+
             //處理學生資料
             ResStudentData();
             //處理教師資料
-            ResTeacherData();
+            ResTeacherData();                        
 
             //批次修改入學及畢業日期
             FISCA.Presentation.MenuButton btnOrder = FISCA.Presentation.MotherForm.RibbonBarItems["學生", "指定"]["批次修改入學及畢業日期"];
