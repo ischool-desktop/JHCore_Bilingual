@@ -1,0 +1,775 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AE2B2393-7AF7-46AC-BD5E-428117FEFB2F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JHSchool.Permrec</RootNamespace>
+    <AssemblyName>JHSchool.Permrec</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>http://localhost/JHSchool.Permrec/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.BarCode">
+      <HintPath>Library\Aspose.BarCode.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Aspose.Cells, Version=4.3.0.0, Culture=neutral, PublicKeyToken=9a40d5a4b59e5256, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Aspose.Cells.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Aspose.Words, Version=9.0.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Aspose.Words.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=7.9.0.5, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LibraryProject\DevComponents.DotNetBar2.dll</HintPath>
+    </Reference>
+    <Reference Include="FISCA, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Authentication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.Authentication.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Data, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.DSAClient">
+      <HintPath>Library\FISCA.DSAClient.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.DSAUtil, Version=3.2.21.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.DSAUtil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.LogAgent, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.LogAgent.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Presentation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.Presentation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Framework">
+      <HintPath>Library\Framework.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IntelliSchool.DSA.ClientFramework, Version=1.2.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <Private>False</Private>
+      <HintPath>Library\IntelliSchool.DSA.ClientFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="IRewriteAPI_JH">
+      <HintPath>..\..\JHCore\IRewriteAPI_JH\bin\Debug\IRewriteAPI_JH.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JHSchool">
+      <HintPath>Library\JHSchool.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JHSchool.Affair">
+      <HintPath>Library\JHSchool.Affair.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JHSchool.Data, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\JHSchool.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="K12.Data, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\K12.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="K12.Presentation">
+      <HintPath>Library\K12.Presentation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SmartSchool.API.PlugIn, Version=0.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <Private>False</Private>
+      <HintPath>Library\SmartSchool.API.PlugIn.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartSchool.Common, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\SmartSchool.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SmartSchool.Common.DotNetBar, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\SmartSchool.Common.DotNetBar.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SmartSchool.Customization.PlugIn, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>False</Private>
+      <HintPath>Library\SmartSchool.Customization.PlugIn.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Address.cs" />
+    <Compile Include="AddressRecord.cs" />
+    <Compile Include="BeforeInfoRec.cs" />
+    <Compile Include="ClassExtendControls\ClassScoreTransferformer.cs" />
+    <Compile Include="ClassExtendControls\ClassStudentItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClassExtendControls\ClassStudentItem.Designer.cs">
+      <DependentUpon>ClassStudentItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClassExtendControls\GenderCount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassExtendControls\GenderCount.Designer.cs">
+      <DependentUpon>GenderCount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClassExtendControls\PrintClassDomainSemesterScore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassExtendControls\PrintClassDomainSemesterScore.Designer.cs">
+      <DependentUpon>PrintClassDomainSemesterScore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClassExtendControls\PrintClassSubjectSemesterScore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassExtendControls\PrintClassSubjectSemesterScore.Designer.cs">
+      <DependentUpon>PrintClassSubjectSemesterScore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClassExtendControls\Reports\ClassAgePercentageRpt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassExtendControls\Reports\ClassAgePercentageRpt.Designer.cs">
+      <DependentUpon>ClassAgePercentageRpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClassExtendControls\Reports\ClassDistrictAreaCountRpt.cs" />
+    <Compile Include="ClassExtendControls\Reports\ClassGenderPercentageRpt.cs" />
+    <Compile Include="ClassExtendControls\Reports\ClassParentJobPercentageRpt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassExtendControls\Reports\ClassParentJobPercentageRpt.Designer.cs">
+      <DependentUpon>ClassParentJobPercentageRpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClassExtendControls\Reports\ClassCellReportManger.cs" />
+    <Compile Include="ClassExtendControls\Reports\ClassStudentListRpt.cs" />
+    <Compile Include="ClassExtendControls\Reports\ClassStudentListRptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassExtendControls\Reports\ClassStudentListRptForm.Designer.cs">
+      <DependentUpon>ClassStudentListRptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClassExtendControls\Reports\ClassStudentListRptManager.cs" />
+    <Compile Include="ClassExtendControls\Reports\ClassStudentTagCountRpt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassExtendControls\Reports\ClassStudentTagCountRpt.designer.cs">
+      <DependentUpon>ClassStudentTagCountRpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClassExtendControls\Reports\DAL\ClassStudentEntity.cs" />
+    <Compile Include="ClassExtendControls\Reports\DAL\StudentParentJobCounter.cs" />
+    <Compile Include="ClassExtendControls\Reports\DAL\ClassStudentCount.cs" />
+    <Compile Include="ClassExtendControls\Reports\DAL\DistrictAreaCounter.cs" />
+    <Compile Include="ClassExtendControls\Reports\DAL\DistrictAreaCounterBase.cs" />
+    <Compile Include="ClassExtendControls\Reports\DAL\StudentAgeCounter.cs" />
+    <Compile Include="ClassExtendControls\Reports\DAL\StudentEntity.cs" />
+    <Compile Include="ClassExtendControls\Reports\DAL\StudentTagCounter.cs" />
+    <Compile Include="ClassExtendControls\Reports\DAL\Transfer.cs" />
+    <Compile Include="ClassExtendControls\SelectExamPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassExtendControls\SelectExamPrint.Designer.cs">
+      <DependentUpon>SelectExamPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EduAdminExtendCotnrols\ClassUpgrade\ClassItem.cs" />
+    <Compile Include="EduAdminExtendCotnrols\ClassUpgrade\ClassUpgradeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EduAdminExtendCotnrols\ClassUpgrade\ClassUpgradeForm.Designer.cs">
+      <DependentUpon>ClassUpgradeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EduAdminExtendCotnrols\ClassUpgrade\DAL\UpgradeClassDAL.cs" />
+    <Compile Include="EduAdminExtendCotnrols\ClassUpgrade\StudentItem.cs" />
+    <Compile Include="EduAdminExtendCotnrols\EducationDataCreator\DAL\StudentEntity.cs" />
+    <Compile Include="EduAdminExtendCotnrols\EducationDataCreator\DAL\Transfer.cs" />
+    <Compile Include="EduAdminExtendCotnrols\EducationDataCreator\EducationDataCreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EduAdminExtendCotnrols\EducationDataCreator\EducationDataCreateForm.Designer.cs">
+      <DependentUpon>EducationDataCreateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EduAdminExtendCotnrols\EducationDataCreator\EducationDataCreator.cs" />
+    <Compile Include="EduAdminExtendCotnrols\StudGraduateDocNo\BatchStudGraduateDocNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EduAdminExtendCotnrols\StudGraduateDocNo\BatchStudGraduateDocNo.designer.cs">
+      <DependentUpon>BatchStudGraduateDocNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EduAdminExtendCotnrols\StudGraduateDocNo\DALTransfer.cs" />
+    <Compile Include="EduAdminExtendCotnrols\StudGraduateDocNo\StudDiplomaInfoJuniorDiplomaNumber.cs" />
+    <Compile Include="Feature\Legacy\Class.cs" />
+    <Compile Include="Feature\Legacy\Config.cs" />
+    <Compile Include="Feature\Legacy\EditStudent.cs" />
+    <Compile Include="Feature\Legacy\QueryClass.cs" />
+    <Compile Include="Feature\Legacy\QueryStudent.cs" />
+    <Compile Include="ImportExport\GraduateInfo\ExportGraduateInfo.cs" />
+    <Compile Include="ImportExport\GraduateInfo\ImportGraduateInfo.cs" />
+    <Compile Include="ImportExport\StudentTag\DAL\DALTransfer.cs" />
+    <Compile Include="ImportExport\StudentTag\DAL\StudentTagEntity.cs" />
+    <Compile Include="ImportExport\StudentTag\ExportStudentTag.cs" />
+    <Compile Include="ImportExport\StudentTag\ImportStudentTag.cs" />
+    <Compile Include="ImportExport\TeacherTag\DAL\DALTransfer.cs" />
+    <Compile Include="ImportExport\TeacherTag\DAL\TeacherTagEntity.cs" />
+    <Compile Include="ImportExport\TeacherTag\ExportTeacherTag.cs" />
+    <Compile Include="ImportExport\TeacherTag\ImportTeacherTag.cs" />
+    <Compile Include="ImportExport\ExportStudentV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportExport\ExportStudentV2.designer.cs">
+      <DependentUpon>ExportStudentV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportExport\ImportStudentV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportExport\ImportStudentV2.designer.cs">
+      <DependentUpon>ImportStudentV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportExport\ExportTeacherV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportExport\ExportTeacherV2.designer.cs">
+      <DependentUpon>ExportTeacherV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Legacy\DataValueManager.cs" />
+    <Compile Include="Legacy\PalmerwormItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Legacy\PalmerwormItem.Designer.cs">
+      <DependentUpon>PalmerwormItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Legacy\PalmerwormItemBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Legacy\PalmerwormItemBase.designer.cs">
+      <DependentUpon>PalmerwormItemBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Legacy\SMSForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Legacy\SMSForm.designer.cs">
+      <DependentUpon>SMSForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parent.cs" />
+    <Compile Include="ParentRecord.cs" />
+    <Compile Include="Phone.cs" />
+    <Compile Include="PhoneRecord.cs" />
+    <Compile Include="StudentExtendControls\BeforeEnrollmentItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\BeforeEnrollmentItem.Designer.cs">
+      <DependentUpon>BeforeEnrollmentItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\ClassItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\ClassItem.Designer.cs">
+      <DependentUpon>ClassItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\CountyTown.cs" />
+    <Compile Include="StudentExtendControls\MapForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\MapForm.Designer.cs">
+      <DependentUpon>MapForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\PhotosBatchImportExports\DAL\StudPhotoEntity.cs" />
+    <Compile Include="StudentExtendControls\PhotosBatchImportExports\DAL\Transfer.cs" />
+    <Compile Include="StudentExtendControls\PhotosBatchImportExports\Photo.cs" />
+    <Compile Include="StudentExtendControls\PhotosBatchImportExports\PhotoBatchFileManager.cs" />
+    <Compile Include="StudentExtendControls\PhotosBatchImportExports\PhotoCompleteMessage.cs" />
+    <Compile Include="StudentExtendControls\PhotosBatchImportExports\PhotoCompleteMessage.Designer.cs">
+      <DependentUpon>PhotoCompleteMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\PhotosBatchImportExports\PhotosBatchExportForm.cs" />
+    <Compile Include="StudentExtendControls\PhotosBatchImportExports\PhotosBatchExportForm.Designer.cs">
+      <DependentUpon>PhotosBatchExportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\PhotosBatchImportExports\PhotosBatchImportForm.cs" />
+    <Compile Include="StudentExtendControls\PhotosBatchImportExports\PhotosBatchImportForm.Designer.cs">
+      <DependentUpon>PhotosBatchImportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\DAL\DALTransfer.cs" />
+    <Compile Include="StudentExtendControls\Reports\DAL\StudentEntity.cs" />
+    <Compile Include="StudentExtendControls\Reports\DAL\StudentLeaveEntity.cs" />
+    <Compile Include="StudentExtendControls\Reports\DAL\StudGraduateCertficateEntity.cs" />
+    <Compile Include="StudentExtendControls\Reports\DAL\StudTransExportEntity.cs" />
+    <Compile Include="StudentExtendControls\Reports\RptResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudentAtSchoolCertificateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudentAtSchoolCertificateForm.Designer.cs">
+      <DependentUpon>StudentAtSchoolCertificateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudentAtSchoolCertificateManager.cs" />
+    <Compile Include="StudentExtendControls\Reports\StudentBackToArticleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudentBackToArticleForm.Designer.cs">
+      <DependentUpon>StudentBackToArticleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudentBackToArticleManager.cs" />
+    <Compile Include="StudentExtendControls\Reports\StudentGraduateInfo.cs" />
+    <Compile Include="StudentExtendControls\Reports\StudentIDCardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudentIDCardForm.Designer.cs">
+      <DependentUpon>StudentIDCardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudentIDCardManager.cs" />
+    <Compile Include="StudentExtendControls\Reports\StudentIDCardFormOld.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudentIDCardFormOld.Designer.cs">
+      <DependentUpon>StudentIDCardFormOld.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudentIDCardManagerOld.cs" />
+    <Compile Include="StudentExtendControls\Reports\StudentLeaveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudentLeaveForm.Designer.cs">
+      <DependentUpon>StudentLeaveForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudentLeaveManager.cs" />
+    <Compile Include="StudentExtendControls\Reports\StudentTransExportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudentTransExportForm.Designer.cs">
+      <DependentUpon>StudentTransExportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudentTransExportManager.cs" />
+    <Compile Include="StudentExtendControls\Reports\StudGraduateCertficateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudGraduateCertficateForm.Designer.cs">
+      <DependentUpon>StudGraduateCertficateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudGraduateCertficateFormA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudGraduateCertficateFormA.Designer.cs">
+      <DependentUpon>StudGraduateCertficateFormA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\Reports\StudGraduateCertficateManager.cs" />
+    <Compile Include="StudentExtendControls\Reports\StudGraduateCertficateManagerA.cs" />
+    <Compile Include="StudentExtendControls\Ribbon\BatchAddressLatitudeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\Ribbon\BatchAddressLatitudeForm.Designer.cs">
+      <DependentUpon>BatchAddressLatitudeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\Ribbon\BatchAddressLatitudeManager.cs" />
+    <Compile Include="StudentExtendControls\Ribbon\TemporaStudentManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\Ribbon\TemporaStudentManager.Designer.cs">
+      <DependentUpon>TemporaStudentManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\SemesterHistoryDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\SemesterHistoryDetail.designer.cs">
+      <DependentUpon>SemesterHistoryDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\StudentIdDoc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\AddressPalmerwormItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\AddressPalmerwormItem.designer.cs">
+      <DependentUpon>AddressPalmerwormItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\DiplomaInfoPalmerworm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\DiplomaInfoPalmerworm.designer.cs">
+      <DependentUpon>DiplomaInfoPalmerworm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\ExtensionValuesPalmerwormItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\ExtensionValuesPalmerwormItem.designer.cs">
+      <DependentUpon>ExtensionValuesPalmerwormItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\ParentInfoPalmerwormItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\ParentInfoPalmerwormItem.designer.cs">
+      <DependentUpon>ParentInfoPalmerwormItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\PhonePalmerwormItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\PhonePalmerwormItem.Designer.cs">
+      <DependentUpon>PhonePalmerwormItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Legacy\UpdateRecordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Legacy\UpdateRecordForm.designer.cs">
+      <DependentUpon>UpdateRecordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Legacy\UpdateRecordInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Legacy\UpdateRecordInfo.designer.cs">
+      <DependentUpon>UpdateRecordInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\Utility.cs" />
+    <Compile Include="Student_ExtendMethods.cs" />
+    <Compile Include="Feature\Legacy\UpdateRecordBatch.cs" />
+    <Compile Include="UpdateRecord.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ClassExtendControls\ClassStudentItem.resx">
+      <DependentUpon>ClassStudentItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClassExtendControls\GenderCount.resx">
+      <DependentUpon>GenderCount.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClassExtendControls\PrintClassDomainSemesterScore.resx">
+      <DependentUpon>PrintClassDomainSemesterScore.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClassExtendControls\PrintClassSubjectSemesterScore.resx">
+      <DependentUpon>PrintClassSubjectSemesterScore.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClassExtendControls\Reports\ClassAgePercentageRpt.resx">
+      <DependentUpon>ClassAgePercentageRpt.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClassExtendControls\Reports\ClassParentJobPercentageRpt.resx">
+      <DependentUpon>ClassParentJobPercentageRpt.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClassExtendControls\Reports\ClassStudentListRptForm.resx">
+      <DependentUpon>ClassStudentListRptForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClassExtendControls\Reports\ClassStudentTagCountRpt.resx">
+      <DependentUpon>ClassStudentTagCountRpt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClassExtendControls\SelectExamPrint.resx">
+      <DependentUpon>SelectExamPrint.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EduAdminExtendCotnrols\ClassUpgrade\ClassUpgradeForm.resx">
+      <DependentUpon>ClassUpgradeForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EduAdminExtendCotnrols\EducationDataCreator\EducationDataCreateForm.resx">
+      <DependentUpon>EducationDataCreateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EduAdminExtendCotnrols\StudGraduateDocNo\BatchStudGraduateDocNo.resx">
+      <DependentUpon>BatchStudGraduateDocNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportExport\ExportStudentV2.resx">
+      <DependentUpon>ExportStudentV2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportExport\ImportStudentV2.resx">
+      <DependentUpon>ImportStudentV2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportExport\ExportTeacherV2.resx">
+      <DependentUpon>ExportTeacherV2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Legacy\PalmerwormItem.resx">
+      <DependentUpon>PalmerwormItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Legacy\PalmerwormItemBase.resx">
+      <DependentUpon>PalmerwormItemBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Legacy\SMSForm.resx">
+      <DependentUpon>SMSForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\BeforeEnrollmentItem.resx">
+      <DependentUpon>BeforeEnrollmentItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\ClassItem.resx">
+      <DependentUpon>ClassItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\MapForm.resx">
+      <DependentUpon>MapForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\PhotosBatchImportExports\PhotoCompleteMessage.resx">
+      <DependentUpon>PhotoCompleteMessage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\PhotosBatchImportExports\PhotosBatchExportForm.resx">
+      <DependentUpon>PhotosBatchExportForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\PhotosBatchImportExports\PhotosBatchImportForm.resx">
+      <DependentUpon>PhotosBatchImportForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\Reports\RptResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RptResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\Reports\StudentAtSchoolCertificateForm.resx">
+      <DependentUpon>StudentAtSchoolCertificateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\Reports\StudentBackToArticleForm.resx">
+      <DependentUpon>StudentBackToArticleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\Reports\StudentIDCardForm.resx">
+      <DependentUpon>StudentIDCardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\Reports\StudentIDCardFormOld.resx">
+      <DependentUpon>StudentIDCardFormOld.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\Reports\StudentLeaveForm.resx">
+      <DependentUpon>StudentLeaveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\Reports\StudentTransExportForm.resx">
+      <DependentUpon>StudentTransExportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\Reports\StudGraduateCertficateForm.resx">
+      <DependentUpon>StudGraduateCertficateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\Reports\StudGraduateCertficateFormA.resx">
+      <DependentUpon>StudGraduateCertficateFormA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\Ribbon\BatchAddressLatitudeForm.resx">
+      <DependentUpon>BatchAddressLatitudeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\Ribbon\TemporaStudentManager.resx">
+      <DependentUpon>TemporaStudentManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\SemesterHistoryDetail.resx">
+      <DependentUpon>SemesterHistoryDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\AddressPalmerwormItem.resx">
+      <DependentUpon>AddressPalmerwormItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\DiplomaInfoPalmerworm.resx">
+      <DependentUpon>DiplomaInfoPalmerworm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\ExtensionValuesPalmerwormItem.resx">
+      <DependentUpon>ExtensionValuesPalmerwormItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\ParentInfoPalmerwormItem.resx">
+      <DependentUpon>ParentInfoPalmerwormItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\PhonePalmerwormItem.resx">
+      <DependentUpon>PhonePalmerwormItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Legacy\UpdateRecordForm.resx">
+      <DependentUpon>UpdateRecordForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Legacy\UpdateRecordInfo.resx">
+      <DependentUpon>UpdateRecordInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_write_64.png" />
+    <None Include="Resources\world_zoom_64.png" />
+    <None Include="Resources\defaultsearchimage.png" />
+    <None Include="Resources\capture_save_64.png" />
+    <None Include="Resources\graduated_write_64.png" />
+    <None Include="Resources\btnUpgrade.Image.png" />
+    <None Include="Resources\demographic_reload_64.png" />
+    <Content Include="Library\Aspose.BarCode.dll" />
+    <Content Include="Library\Aspose.Cells.dll" />
+    <Content Include="Library\Aspose.Words.dll" />
+    <Content Include="Library\Campus.Windows.dll" />
+    <Content Include="Library\Campus.Windows.pdb" />
+    <Content Include="Library\Campus.Windows.xml" />
+    <Content Include="Library\FISCA.Authentication.dll" />
+    <Content Include="Library\FISCA.Data.dll" />
+    <Content Include="Library\FISCA.Data.pdb" />
+    <Content Include="Library\FISCA.Data.xml" />
+    <Content Include="Library\FISCA.dll" />
+    <Content Include="Library\FISCA.DSAClient.dll" />
+    <Content Include="Library\FISCA.DSAUtil.dll" />
+    <Content Include="Library\FISCA.LogAgent.dll" />
+    <Content Include="Library\FISCA.pdb" />
+    <Content Include="Library\FISCA.Presentation.dll" />
+    <Content Include="Library\FISCA.Presentation.pdb" />
+    <Content Include="Library\FISCA.Presentation.xml" />
+    <Content Include="Library\FISCA.xml" />
+    <Content Include="Library\Framework.dll" />
+    <Content Include="Library\IntelliSchool.DSA.ClientFramework.dll" />
+    <Content Include="Library\JHSchool.Affair.dll" />
+    <Content Include="Library\JHSchool.Data.dll" />
+    <Content Include="Library\JHSchool.Data.pdb" />
+    <Content Include="Library\JHSchool.Data.xml" />
+    <Content Include="Library\JHSchool.dll" />
+    <Content Include="Library\K12.Data.dll" />
+    <Content Include="Library\K12.Presentation.dll" />
+    <Content Include="Library\SmartSchool.API.PlugIn.dll" />
+    <Content Include="Library\SmartSchool.Common.dll" />
+    <Content Include="Library\SmartSchool.Common.DotNetBar.dll" />
+    <Content Include="Library\SmartSchool.Common.pdb" />
+    <Content Include="Library\SmartSchool.Common.xml" />
+    <Content Include="Library\SmartSchool.Customization.PlugIn.dll" />
+    <Content Include="Resources\CountyTownBelong.xml" />
+    <Content Include="Resources\paste_64.png" />
+    <None Include="Resources\schedule_64.png" />
+    <None Include="Resources\report.png" />
+    <None Include="Resources\loading5.gif" />
+    <None Include="Resources\loading.gif" />
+    <None Include="Resources\People.jpg" />
+    <None Include="Resources\Template.doc" />
+    <None Include="Resources\學生證樣本.doc" />
+    <None Include="Resources\學生證樣板.doc" />
+    <None Include="Resources\班級學期科目成績一覽表.xls" />
+    <None Include="Resources\班級學期領域成績一覽表.xls" />
+    <None Include="Resources\班級定期評量.xls" />
+    <None Include="Resources\班級成績單.xls" />
+    <None Include="Resources\男女人數統計表.xls" />
+    <None Include="StudentExtendControls\Reports\RptTemplate\入學回覆單樣版%28高雄%29.doc" />
+    <None Include="StudentExtendControls\Reports\RptTemplate\在學證明書%28無成績%29新竹.doc" />
+    <None Include="StudentExtendControls\Reports\RptTemplate\在學證明書樣版%28高雄%29.doc" />
+    <None Include="StudentExtendControls\Reports\RptTemplate\學生證樣板%28新竹%29New.doc" />
+    <None Include="StudentExtendControls\Reports\RptTemplate\學生證樣板%28高雄%29.doc" />
+    <None Include="StudentExtendControls\Reports\RptTemplate\學生證樣版%28新竹%29.doc" />
+    <None Include="StudentExtendControls\Reports\RptTemplate\轉出回條樣版%28新竹%29.doc" />
+    <None Include="StudentExtendControls\Reports\RptTemplate\高雄休學證明書樣版.doc" />
+    <None Include="StudentExtendControls\Reports\RptTemplate\高雄畢業證明書樣版.doc" />
+    <None Include="StudentExtendControls\Reports\RptTemplate\高雄畢業證書樣版.doc" />
+    <None Include="StudentExtendControls\Reports\RptTemplate\高雄轉學證明書.doc" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Editor\" />
+    <Folder Include="TeacherExtendControls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
