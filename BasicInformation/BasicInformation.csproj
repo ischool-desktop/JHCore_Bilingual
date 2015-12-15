@@ -278,12 +278,6 @@
     <Compile Include="Report\缺曠週報表_依假別\WeekAbsenceReportConfig.designer.cs">
       <DependentUpon>WeekAbsenceReportConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Student\PhoneItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Student\PhoneItem.Designer.cs">
-      <DependentUpon>PhoneItem.cs</DependentUpon>
-    </Compile>
     <Compile Include="Student\SchoolYearEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -441,9 +435,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\缺曠週報表_依假別\WeekAbsenceReportConfig.resx">
       <DependentUpon>WeekAbsenceReportConfig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Student\PhoneItem.resx">
-      <DependentUpon>PhoneItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Student\SchoolYearEditor.resx">
       <DependentUpon>SchoolYearEditor.cs</DependentUpon>

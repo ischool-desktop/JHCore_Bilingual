@@ -1,4 +1,4 @@
-﻿namespace BasicInformation.Student
+﻿namespace JHSchool.Permrec.StudentExtendControls
 {
     partial class PhoneItem
     {

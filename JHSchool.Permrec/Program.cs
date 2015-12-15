@@ -56,6 +56,15 @@ namespace JHSchool.Permrec
                 JHSchool.Data.JHStudent.SelectAll();
             });
 
+
+            // 學生聯絡電話
+//            K12.Presentation.NLDPanels.Student.AddDetailBulider(new DetailBulider<StudentExtendControls.PhoneItem>());
+            Student.Instance.AddDetailBulider(new DetailBulider<StudentExtendControls.PhoneItem>());
+
+            Catalog catalog02 = RoleAclSource.Instance["學生"]["資料項目"];
+            catalog02.Add(new DetailItemFeature(typeof(StudentExtendControls.PhoneItem)));
+            
+
           // 班級學生資訊
             Class.Instance.AddDetailBulider(new FISCA.Presentation.DetailBulider<JHSchool.Permrec.ClassExtendControls.ClassStudentItem>());
             Student.Instance.AddDetailBulider(new DetailBulider<StudentExtendControls.AddressPalmerwormItem>());

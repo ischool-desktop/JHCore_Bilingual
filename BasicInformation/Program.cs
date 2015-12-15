@@ -19,20 +19,17 @@ namespace BasicInformation
         static public void Main1()
         {
             //覆蓋 - 學生基本資料項目
-            FISCA.InteractionService.RegisterAPI<IStudentDetailItemAPI>(new BasicStudentItem_API());
+            FISCA.InteractionService.RegisterAPI<IStudentDetailItemAPI>(new BasicStudentItem_API());  
 
             //覆蓋 - 教師基本資料項目
             FISCA.InteractionService.RegisterAPI<ITeacherDatailtemAPI>(new BasicTeacherItem_API());
+                       
         }
 
         [MainMethod()]
         static public void Main2()
         {
-            // 學生聯絡電話
-            K12.Presentation.NLDPanels.Student.AddDetailBulider(new DetailBulider<Student.PhoneItem>());
-            Catalog catalog02 = RoleAclSource.Instance["學生"]["資料項目"];
-            catalog02.Add(new DetailItemFeature(typeof(Student.PhoneItem)));
-
+                     
 
             //處理學生資料
             ResStudentData();

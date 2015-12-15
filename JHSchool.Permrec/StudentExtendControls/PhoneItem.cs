@@ -1,4 +1,5 @@
 ﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -8,10 +9,11 @@ using System.Text;
 using System.Windows.Forms;
 using Framework;
 using JHSchool.Data;
+using FCode = Framework.Security.FeatureCodeAttribute;
 
-namespace BasicInformation.Student
-{    
-    [FISCA.Permission.FeatureCode("JHSchool.Student.PhoneItem", "聯絡電話")]
+namespace JHSchool.Permrec.StudentExtendControls
+{
+    [FCode("JHSchool.Student.PhoneItem", "聯絡電話")]
     public partial class PhoneItem : FISCA.Presentation.DetailContent
     {
         private bool _isBGBusy = false;
@@ -31,7 +33,7 @@ namespace BasicInformation.Student
             _DataListener.Add(new TextBoxSource(txtFatherPhone));
             _DataListener.Add(new TextBoxSource(txtMotherPhone));
             _DataListener.Add(new TextBoxSource(txtGuardianPhone));
-            _DataListener.StatusChanged+=_DataListener_StatusChanged;
+            _DataListener.StatusChanged += _DataListener_StatusChanged;
             _BGWorker = new BackgroundWorker();
             _BGWorker.DoWork += _BGWorker_DoWork;
             _BGWorker.RunWorkerCompleted += _BGWorker_RunWorkerCompleted;
@@ -40,7 +42,7 @@ namespace BasicInformation.Student
             JHStudent.AfterChange += JHStudent_AfterChange;
             JHStudent.AfterDelete += new EventHandler<K12.Data.DataChangedEventArgs>(JHStudent_AfterDelete);
             Disposed += new EventHandler(PhonePalmerwormItem_Disposed);
-                
+
         }
 
         void PhonePalmerwormItem_Disposed(object sender, EventArgs e)
@@ -52,7 +54,7 @@ namespace BasicInformation.Student
 
         void JHStudent_AfterDelete(object sender, K12.Data.DataChangedEventArgs e)
         {
-            JHSchool.Student.Instance.SyncAllBackground();            
+            JHSchool.Student.Instance.SyncAllBackground();
         }
 
         void JHStudent_AfterChange(object sender, K12.Data.DataChangedEventArgs e)
@@ -123,7 +125,7 @@ namespace BasicInformation.Student
         }
         void _DataListener_StatusChanged(object sender, ChangeEventArgs e)
         {
-            SaveButtonVisible = (e.Status == ValueStatus.Dirty);            
+            SaveButtonVisible = (e.Status == ValueStatus.Dirty);
             CancelButtonVisible = (e.Status == ValueStatus.Dirty);
         }
 
@@ -132,12 +134,12 @@ namespace BasicInformation.Student
             prlp.SetBeforeSaveText("住家電話", txtHomePhone.Text);
             prlp.SetBeforeSaveText("父親電話", txtFatherPhone.Text);
             prlp.SetBeforeSaveText("母親電話", txtMotherPhone.Text);
-            prlp.SetBeforeSaveText("監護人電話", txtGuardianPhone.Text);         
+            prlp.SetBeforeSaveText("監護人電話", txtGuardianPhone.Text);
         }
 
         private void SetAfterEditLog()
         {
-            prlp.SetAfterSaveText("住家電話",txtHomePhone.Text);
+            prlp.SetAfterSaveText("住家電話", txtHomePhone.Text);
             prlp.SetAfterSaveText("父親電話", txtFatherPhone.Text);
             prlp.SetAfterSaveText("母親電話", txtMotherPhone.Text);
             prlp.SetAfterSaveText("監護人電話", txtGuardianPhone.Text);
@@ -150,7 +152,7 @@ namespace BasicInformation.Student
 
         protected override void OnCancelButtonClick(EventArgs e)
         {
-            _DataListener.SuspendListen();         
+            _DataListener.SuspendListen();
             ClearFormValue();
             LoadDALDataToForm();
             _DataListener.Reset();
@@ -170,7 +172,7 @@ namespace BasicInformation.Student
         protected override void OnSaveButtonClick(EventArgs e)
         {
             // 儲存資料
-            _DataListener.SuspendListen();         
+            _DataListener.SuspendListen();
             _PhoneRec.Contact = txtHomePhone.Text;
             _ParentRecord.Father.Phone = txtFatherPhone.Text;
             _ParentRecord.Mother.Phone = txtMotherPhone.Text;

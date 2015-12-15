@@ -104,6 +104,11 @@
       <HintPath>Library\FISCA.LogAgent.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="FISCA.Permission, Version=1.2.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.Permission.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="FISCA.Presentation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\FISCA.Presentation.dll</HintPath>
@@ -141,6 +146,11 @@
     </Reference>
     <Reference Include="K12.Presentation">
       <HintPath>Library\K12.Presentation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="K12StudentPhoto, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\K12StudentPhoto.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SmartSchool.API.PlugIn, Version=0.0.0.3, Culture=neutral, processorArchitecture=MSIL">
@@ -503,6 +513,12 @@
     <Compile Include="Legacy\UpdateRecordInfo.designer.cs">
       <DependentUpon>UpdateRecordInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="StudentExtendControls\PhoneItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\PhoneItem.Designer.cs">
+      <DependentUpon>PhoneItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="StudentExtendControls\Utility.cs" />
     <Compile Include="Student_ExtendMethods.cs" />
     <Compile Include="Feature\Legacy\UpdateRecordBatch.cs" />
@@ -694,6 +710,8 @@
     <Content Include="Library\FISCA.DSAUtil.dll" />
     <Content Include="Library\FISCA.LogAgent.dll" />
     <Content Include="Library\FISCA.pdb" />
+    <Content Include="Library\FISCA.Permission.dll" />
+    <Content Include="Library\FISCA.Permission.xml" />
     <Content Include="Library\FISCA.Presentation.dll" />
     <Content Include="Library\FISCA.Presentation.pdb" />
     <Content Include="Library\FISCA.Presentation.xml" />
@@ -707,6 +725,7 @@
     <Content Include="Library\JHSchool.dll" />
     <Content Include="Library\K12.Data.dll" />
     <Content Include="Library\K12.Presentation.dll" />
+    <Content Include="Library\K12StudentPhoto.dll" />
     <Content Include="Library\SmartSchool.API.PlugIn.dll" />
     <Content Include="Library\SmartSchool.Common.dll" />
     <Content Include="Library\SmartSchool.Common.DotNetBar.dll" />
