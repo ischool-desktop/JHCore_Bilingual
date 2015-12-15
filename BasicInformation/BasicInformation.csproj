@@ -115,7 +115,8 @@
       <HintPath>Library\IRewriteAPI_JH.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="JHSchool">
+    <Reference Include="JHSchool, Version=1.0.4.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\JHSchool.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -352,10 +353,10 @@
     <Content Include="Library\IRewriteAPI_JH.pdb" />
     <Content Include="Library\JHSchool.Data.dll" />
     <Content Include="Library\JHSchool.Data.pdb" />
-    <Content Include="Library\JHSchool.Data.xml" />
+    <Content Include="Library\JHSchool.dll" />
+    <Content Include="Library\JHSchool.pdb" />
     <Content Include="Library\K12.Data.dll" />
     <Content Include="Library\K12.Data.pdb" />
-    <Content Include="Library\K12.Data.xml" />
     <Content Include="Library\K12.EduAdminDataMapping.dll" />
     <Content Include="Library\K12.EduAdminDataMapping.pdb" />
     <Content Include="Library\K12.Presentation.dll" />

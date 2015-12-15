@@ -38,5 +38,24 @@ namespace BasicInformation
         /// </summary>
         [Field(Field = "leaving_date", Indexed = true)]
         public DateTime? LeavingDate { get; set; }
+
+        /// <summary>
+        /// GivenName
+        /// </summary>
+        [Field(Field = "given_name", Indexed = true)]
+        public string GivenName { get; set; }
+        
+        /// <summary>
+        /// MiddleName
+        /// </summary>
+        [Field(Field = "middle_name", Indexed = true)]
+        public string MiddleName { get; set; }
+
+        /// <summary>
+        /// FamilyName
+        /// </summary>
+        [Field(Field = "family_name", Indexed = true)]
+        public string FamilyName { get; set; }
+
     }
 }

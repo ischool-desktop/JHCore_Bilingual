@@ -60,6 +60,9 @@ namespace BasicInformation
             _DataListener.Add(new ComboBoxSource(cboAccountType, ComboBoxSource.ListenAttribute.Text));
             _DataListener.Add(new TextBoxSource(txtEntranceDate));
             _DataListener.Add(new TextBoxSource(txtLeavingDate));
+            _DataListener.Add(new TextBoxSource(txtGivenName));
+            _DataListener.Add(new TextBoxSource(txtMiddleName));
+            _DataListener.Add(new TextBoxSource(txtFamilyName));
             _DataListener.StatusChanged += new EventHandler<ChangeEventArgs>(_DataListener_StatusChanged);
 
             _BGWorker = new BackgroundWorker();
@@ -264,6 +267,9 @@ namespace BasicInformation
 
             _StudRec_Ext.Nickname = txtChineseName.Text; //中文姓名
             _StudRec_Ext.PassportNumber = txtPassportNumber.Text; //居留證號
+            _StudRec_Ext.GivenName = txtGivenName.Text;
+            _StudRec_Ext.MiddleName = txtMiddleName.Text;
+            _StudRec_Ext.FamilyName = txtFamilyName.Text;
 
             if (DateTime.TryParse(txtEntranceDate.Text, out dt))
                 _StudRec_Ext.EntranceDate = dt;
@@ -350,7 +356,7 @@ namespace BasicInformation
         private void ClearFormValue()
         {
             txtChineseName.Text = txtPassportNumber.Text = txtEntranceDate.Text = txtLeavingDate.Text = string.Empty;
-            txtBirthDate.Text = txtBirthPlace.Text = txtEngName.Text = txtLoginID.Text = txtName.Text = txtSSN.Text = cboAccountType.Text = cboGender.Text = cboNationality.Text = string.Empty;
+            txtGivenName.Text=txtMiddleName.Text=txtFamilyName.Text=txtBirthDate.Text = txtBirthPlace.Text = txtEngName.Text = txtLoginID.Text = txtName.Text = txtSSN.Text = cboAccountType.Text = cboGender.Text = cboNationality.Text = string.Empty;
         }
 
         private void BindDataToForm()
@@ -389,6 +395,9 @@ namespace BasicInformation
             prlp.SetBeforeSaveText("居留證號", txtPassportNumber.Text);  //new
             prlp.SetBeforeSaveText("入學日期", txtEntranceDate.Text);  //new
             prlp.SetBeforeSaveText("畢業日期", txtLeavingDate.Text);  //new
+            prlp.SetBeforeSaveText("GivenName", txtGivenName.Text);
+            prlp.SetBeforeSaveText("MiddleName", txtMiddleName.Text);
+            prlp.SetBeforeSaveText("FamilyName", txtFamilyName.Text);
         }
 
         private void SetAfterEditLog()
@@ -406,6 +415,9 @@ namespace BasicInformation
             prlp.SetAfterSaveText("居留證號", txtPassportNumber.Text);  //new
             prlp.SetAfterSaveText("入學日期", txtEntranceDate.Text);  //new
             prlp.SetAfterSaveText("畢業日期", txtLeavingDate.Text);  //new
+            prlp.SetAfterSaveText("GivenName", txtGivenName.Text);
+            prlp.SetAfterSaveText("MiddleName", txtMiddleName.Text);
+            prlp.SetAfterSaveText("FamilyName", txtFamilyName.Text);
 
             prlp.SetActionBy("學籍", "學生基本資料");
             prlp.SetAction("修改學生基本資料");
@@ -432,6 +444,10 @@ namespace BasicInformation
             txtPassportNumber.Text = _StudRec_Ext.PassportNumber;
             txtEntranceDate.Text = _StudRec_Ext.EntranceDate.HasValue ? _StudRec_Ext.EntranceDate.Value.ToShortDateString() : "";
             txtLeavingDate.Text = _StudRec_Ext.LeavingDate.HasValue ? _StudRec_Ext.LeavingDate.Value.ToShortDateString() : "";
+
+            txtGivenName.Text = _StudRec_Ext.GivenName;
+            txtMiddleName.Text = _StudRec_Ext.MiddleName;
+            txtFamilyName.Text = _StudRec_Ext.FamilyName;
 
             // 解析
             try
@@ -719,6 +735,11 @@ namespace BasicInformation
         {
             HelpForm hf = new HelpForm();
             hf.ShowDialog();
+        }
+
+        private void StudentItem_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
