@@ -88,6 +88,16 @@ namespace BasicInformation
             }
         }
 
+        public static string 匯出學生基本資料New_雙語部 { get { return "雙語部.BasicInformation.ExportStudentData.cs"; } }
+        public static bool 匯出學生基本資料New_雙語部權限
+        {
+            get
+            {
+                return FISCA.Permission.UserAcl.Current[匯出學生基本資料New_雙語部].Executable;
+            }
+        }
+
+
         public static string 匯入學生基本資料_雙語部 { get { return "雙語部.BasicInformation.ImportSchoolObject.cs"; } }
         public static bool 匯入學生基本資料_雙語部權限
         {

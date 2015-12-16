@@ -156,6 +156,16 @@ namespace BasicInformation
                 wizard.ShowDialog();
             };
 
+            rbItemExport["學籍相關匯出"]["匯出學生基本資料(測試版)"].Enable = Permissions.匯出學生基本資料New_雙語部權限;
+            rbItemExport["學籍相關匯出"]["匯出學生基本資料(測試版)"].Click += delegate
+            {
+                SmartSchool.API.PlugIn.Export.Exporter exporter = new ExportStudentData();
+                ExportStudentV2 wizard = new ExportStudentV2(exporter.Text, exporter.Image);
+                exporter.InitializeExport(wizard);
+                wizard.ShowDialog();
+            };
+
+
 
             FISCA.Presentation.RibbonBarButton btnSDAdmin = FISCA.Presentation.MotherForm.RibbonBarItems["學務作業", "資料統計"]["報表"];
             //學務作業
@@ -184,6 +194,7 @@ namespace BasicInformation
 
             TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.匯出學生基本資料_雙語部, "匯出學生基本資料(雙語部)"));
             TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.匯入學生基本資料_雙語部, "匯入學生基本資料(雙語部)"));
+            TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.匯出學生基本資料New_雙語部, "匯出學生基本資料(測試版)"));
 
         }
 

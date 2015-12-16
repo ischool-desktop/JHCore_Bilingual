@@ -177,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ImportExport\ExportSchoolObject.cs" />
+    <Compile Include="ImportExport\ExportStudentData.cs" />
     <Compile Include="ImportExport\ExportStudentV2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -353,10 +354,12 @@
     <Content Include="Library\IRewriteAPI_JH.pdb" />
     <Content Include="Library\JHSchool.Data.dll" />
     <Content Include="Library\JHSchool.Data.pdb" />
+    <Content Include="Library\JHSchool.Data.xml" />
     <Content Include="Library\JHSchool.dll" />
     <Content Include="Library\JHSchool.pdb" />
     <Content Include="Library\K12.Data.dll" />
     <Content Include="Library\K12.Data.pdb" />
+    <Content Include="Library\K12.Data.xml" />
     <Content Include="Library\K12.EduAdminDataMapping.dll" />
     <Content Include="Library\K12.EduAdminDataMapping.pdb" />
     <Content Include="Library\K12.Presentation.dll" />
