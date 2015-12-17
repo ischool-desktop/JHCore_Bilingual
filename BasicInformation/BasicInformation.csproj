@@ -185,6 +185,7 @@
       <DependentUpon>ExportStudentV2.cs</DependentUpon>
     </Compile>
     <Compile Include="ImportExport\ImportSchoolObject.cs" />
+    <Compile Include="ImportExport\ImportStudentData.cs" />
     <Compile Include="ImportExport\ImportStudentV2.cs">
       <SubType>Form</SubType>
     </Compile>

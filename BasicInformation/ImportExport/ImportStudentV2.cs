@@ -138,14 +138,7 @@ namespace BasicInformation
             _RequiredFields.ItemsChanged += new EventHandler(FieldsChanged);
             _ImportableFields.ItemsChanged += new EventHandler(FieldsChanged);
 
-            // 填入學生狀態選項
-            cboStudStatus.Items.Add("一般");
-            cboStudStatus.Items.Add("休學");
-            cboStudStatus.Items.Add("輟學");
-            cboStudStatus.Items.Add("畢業或離校");
-            cboStudStatus.Items.Add("刪除");
-            cboStudStatus.Text = "一般";
-            cboStudStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+       
         }
         Dictionary<VirtualCheckBox, DevComponents.DotNetBar.Controls.CheckBoxX> _CheckBoxs = new Dictionary<VirtualCheckBox, DevComponents.DotNetBar.Controls.CheckBoxX>();
         Dictionary<VirtualRadioButton, System.Windows.Forms.RadioButton> _RadioButtons = new Dictionary<VirtualRadioButton, System.Windows.Forms.RadioButton>();
@@ -404,25 +397,7 @@ namespace BasicInformation
             this.progressBarX1.Value = 0;
             // 讀取畫面上選取學生狀態
 
-            switch (cboStudStatus.Text)
-            {
-                case "一般":
-                    _StudStatus = K12.Data.StudentRecord.StudentStatus.一般;
-                    break;
-
-                case "休學":
-                    _StudStatus = K12.Data.StudentRecord.StudentStatus.休學;
-                    break;
-                case "輟學":
-                    _StudStatus = K12.Data.StudentRecord.StudentStatus.輟學;
-                    break;
-                case "畢業或離校":
-                    _StudStatus = K12.Data.StudentRecord.StudentStatus.畢業或離校;
-                    break;
-                case "刪除":
-                    _StudStatus = K12.Data.StudentRecord.StudentStatus.刪除;
-                    break;
-            }          
+       
             lblWarningCount.Text = lblErrCount.Text = "0";
             this.wizardPage3.FinishButtonEnabled = eWizardButtonState.False;
             linkLabel1.Visible = false;
@@ -545,6 +520,13 @@ namespace BasicInformation
 
             double progress = 0.0;
 
+            // 取得所有學生建立所引
+            Dictionary<string, JHStudentRecord> chkStudRecDict = new Dictionary<string, JHStudentRecord>();
+            List<JHStudentRecord> AllStudenRecList = JHStudent.SelectAll();
+            foreach (JHStudentRecord rec in AllStudenRecList)
+                chkStudRecDict.Add(rec.ID, rec);
+
+
             #region 產生RowData資料
             if (importFields.ContainsKey("學生系統編號"))
             {
@@ -553,56 +535,43 @@ namespace BasicInformation
                 {
                     // , "學號", "班級", "座號", "科別", "姓名"
                     string id = GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["學生系統編號"]].StringValue);
-                    if (id != "")
+                    if(chkStudRecDict.ContainsKey(id))
                     {
                         string rowError = "";
                         #region 驗明正身
-                        JHStudentRecord stu = JHStudent.SelectByID(id);
-                        if (stu != null)
-                        {
+                        JHStudentRecord stu = chkStudRecDict[id];
+                    
                             if (importFields.ContainsKey("學號") && GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["學號"]].StringValue) != stu.StudentNumber)
                             {
                                 //rowError = "學號與系統內學生資料不同!!";
                                 rowError += (rowError == "" ? "" : "、\n") + "系統內學生學號為\"" + stu.StudentNumber + "\"";
                             }
-                            //if (importFields.ContainsKey("班級") && GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["班級"]].StringValue) != (stu.Class != null ? stu.Class.Name : ""))
-                            //{
-                            //    //rowError = "班級與系統內學生資料不同!!";
-                            //    rowError += (rowError == "" ? "" : "、\n") + "系統內學生班級為\"" + (stu.Class != null ? stu.Class.Name : "") + "\"";
-                            //}
-                            //if (importFields.ContainsKey("座號") && GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["座號"]].StringValue) != "" + stu.SeatNo)
-                            //{
-                            //    //rowError = "座號與系統內學生資料不同!!";
-                            //    rowError += (rowError == "" ? "" : "、\n") + "系統內學生座號為\"" + stu.SeatNo + "\"";
-                            //}
+              
                             if (importFields.ContainsKey("姓名") && GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["姓名"]].StringValue) != stu.Name)
                             {
                                 //rowError = "姓名與系統內學生資料不同!!";
                                 rowError += (rowError == "" ? "" : "、\n") + "系統內學生姓名為\"" + stu.Name + "\"";
                             }
-                        }
-                        else
-                        {
-                            rowError = "學生不存在所選狀態內!!";
-                        }
+                    
                         #endregion
                         if (rowError == "")
                         {
-                            if (!(stu.Status == _StudStatus))
-                            {
-                                #region 警告非在校生
-                                errorSheet.Cells[errorSheetRowIndex, 0].PutValue(i + 1);
-                                errorSheet.Cells[errorSheetRowIndex, 1].PutValue("警告");
-                                errorSheet.Cells[errorSheetRowIndex, 2].PutValue("學生不是在所選狀態內。");
-                                errorSheet.Cells[errorSheetRowIndex, 0].Style = warningStyle;
-                                errorSheet.Cells[errorSheetRowIndex, 1].Style = warningStyle2;
-                                errorSheet.Cells[errorSheetRowIndex, 2].Style = warningStyle2;
-                                errorSheet.Hyperlinks.Add(errorSheetRowIndex, 0, 1, 1, "'" + wb.Worksheets[0].Name + "'!" + wb.Worksheets[0].Cells[i, 0].Name);
-                                errorSheet.AutoFitRow(errorSheetRowIndex);
-                                errorSheetRowIndex++;
-                                warningCount++;
-                                #endregion
-                            }
+                            // 同時驗證不同狀態，這段先註
+                            //if (!(stu.Status == _StudStatus))
+                            //{
+                            //    #region 警告非在校生
+                            //    errorSheet.Cells[errorSheetRowIndex, 0].PutValue(i + 1);
+                            //    errorSheet.Cells[errorSheetRowIndex, 1].PutValue("警告");
+                            //    errorSheet.Cells[errorSheetRowIndex, 2].PutValue("學生不是在所選狀態內。");
+                            //    errorSheet.Cells[errorSheetRowIndex, 0].Style = warningStyle;
+                            //    errorSheet.Cells[errorSheetRowIndex, 1].Style = warningStyle2;
+                            //    errorSheet.Cells[errorSheetRowIndex, 2].Style = warningStyle2;
+                            //    errorSheet.Hyperlinks.Add(errorSheetRowIndex, 0, 1, 1, "'" + wb.Worksheets[0].Name + "'!" + wb.Worksheets[0].Cells[i, 0].Name);
+                            //    errorSheet.AutoFitRow(errorSheetRowIndex);
+                            //    errorSheetRowIndex++;
+                            //    warningCount++;
+                            //    #endregion
+                            //}
                             RowData rowdata = new RowData();
                             rowdata.ID = id;
                             foreach (int index in fieldIndex.Keys)
@@ -645,16 +614,23 @@ namespace BasicInformation
                             errorCount++;
                             errorSheet.Cells[errorSheetRowIndex, 0].PutValue(i + 1);
                             errorSheet.Cells[errorSheetRowIndex, 1].PutValue("錯誤");
-                            errorSheet.Cells[errorSheetRowIndex, 2].PutValue("驗證欄位(學生系統編號)不得空白");
-                            errorSheet.Cells[errorSheetRowIndex, 0].Style = errorStyle;
-                            errorSheet.Cells[errorSheetRowIndex, 1].Style = errorStyle2;
-                            errorSheet.Cells[errorSheetRowIndex, 2].Style = errorStyle2;
-                            errorSheet.Hyperlinks.Add(errorSheetRowIndex, 0, 1, 1, "'" + wb.Worksheets[0].Name + "'!" + wb.Worksheets[0].Cells[i, 0].Name);
-                            wb.Worksheets[0].Hyperlinks.Add(i, 0, 1, 1, "'" + errorSheetName + "'!" + errorSheet.Cells[errorSheetRowIndex, 0].Name);
-                            errorSheet.AutoFitRow(errorSheetRowIndex);
-                            errorSheetRowIndex++;
-                            wb.Worksheets[0].Cells[i, 0].Style = errorStyle;
+                            errorSheet.Cells[errorSheetRowIndex, 2].PutValue("驗證欄位(學生系統編號)不得空白或不存在系統內");                         
+                        }else
+                        {
+                            errorCount++;
+                            errorSheet.Cells[errorSheetRowIndex, 0].PutValue(i + 1);
+                            errorSheet.Cells[errorSheetRowIndex, 1].PutValue("錯誤");
+                            errorSheet.Cells[errorSheetRowIndex, 2].PutValue("驗證欄位(學生系統編號)不存在系統內");                         
                         }
+
+                        errorSheet.Cells[errorSheetRowIndex, 0].Style = errorStyle;
+                        errorSheet.Cells[errorSheetRowIndex, 1].Style = errorStyle2;
+                        errorSheet.Cells[errorSheetRowIndex, 2].Style = errorStyle2;
+                        errorSheet.Hyperlinks.Add(errorSheetRowIndex, 0, 1, 1, "'" + wb.Worksheets[0].Name + "'!" + wb.Worksheets[0].Cells[i, 0].Name);
+                        wb.Worksheets[0].Hyperlinks.Add(i, 0, 1, 1, "'" + errorSheetName + "'!" + errorSheet.Cells[errorSheetRowIndex, 0].Name);
+                        errorSheet.AutoFitRow(errorSheetRowIndex);
+                        errorSheetRowIndex++;
+                        wb.Worksheets[0].Cells[i, 0].Style = errorStyle;
                     }
                     if (bkw.CancellationPending)
                     {
@@ -669,89 +645,66 @@ namespace BasicInformation
             }
             else if (importFields.ContainsKey("學號"))
             {
-                #region 用學號驗證資料
-                Dictionary<string, List<JHStudentRecord>> studentNumberStudents = new Dictionary<string, List<JHStudentRecord>>();
-                #region 整理學號對應學生清單(如索引欄不試系統編號時用)
-                foreach (JHStudentRecord stu in JHStudent.SelectAll())
+                // 建立學號狀態所引
+                Dictionary<string,JHStudentRecord> StudNumberStatusDict = new Dictionary<string,JHStudentRecord> ();
+                foreach(JHStudentRecord rec in AllStudenRecList)
                 {
-                    if (stu.Status == _StudStatus)
-                    {
-                        if (!studentNumberStudents.ContainsKey(stu.StudentNumber))
-                            studentNumberStudents.Add(stu.StudentNumber, new List<JHStudentRecord>(new JHStudentRecord[] { stu }));
-                        else
-                            studentNumberStudents[stu.StudentNumber].Add(stu);
-                    }
+                    string key =rec.StudentNumber+rec.StatusStr;
+                    if(!StudNumberStatusDict.ContainsKey(key))
+                        StudNumberStatusDict.Add(key,rec);
                 }
-                #endregion
+
                 for (int i = 1; i <= wb.Worksheets[0].Cells.MaxDataRow; i++)
-                {
-                    string num = GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["學號"]].StringValue);
-                    //wb.Worksheets[0].Cells.
+                {                    
+                    string StuStatus="一般";
+                    if (importFields.ContainsKey("狀態") && GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["狀態"]].StringValue) != "")
+                        StuStatus = GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["狀態"]].StringValue);
+                    string wtNum = GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["學號"]].StringValue);
+                    string num = wtNum+StuStatus;
                     if (num != "")
                     {
                         string rowError = "";
                         #region 驗明正身
                         JHStudentRecord stu = null;
-                        if (studentNumberStudents.ContainsKey(num))
+                        if (StudNumberStatusDict.ContainsKey(num))
                         {
-                            if (studentNumberStudents[num].Count > 1)
-                            {
-                                #region 必需要其他欄位做索引
-                                bool err = true;
-                                foreach (string validateKey in new string[] { "班級", "科別", "座號", "姓名" })
-                                {
-                                    if (importFields.ContainsKey(validateKey))
-                                    {
-                                        err = false;
-                                        foreach (JHStudentRecord var in studentNumberStudents[num])
-                                        {
-                                            bool pass = true;
-                                            //if (importFields.ContainsKey("班級") && GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["班級"]].StringValue) != (var.Class != null ? var.Class.Name : ""))
+                            JHStudentRecord var = StudNumberStatusDict[num];
+                            bool pass = true;
 
-                                            if (importFields.ContainsKey("姓名") && GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["姓名"]].StringValue) != var.Name)
-                                            {
-                                                if (studentNumberStudents[num].Count == 1)
-                                                    rowError += (rowError == "" ? "" : "、\n") + "系統內學生姓名為\"" + var.Name + "\"";
-                                                pass &= false;
-                                            }
-                                            if (pass)
-                                            {
-                                                stu = var;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    break;
-                                }
-                                if (err)
-                                {
-                                    rowError = "系統內發現多名相同學號學生且皆為在校學生，\n需要其他學生欄位進行識別。";
-                                }
-                                #endregion
+                            if (importFields.ContainsKey("姓名") && GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["姓名"]].StringValue) != var.Name)
+                            {
+                                rowError += (rowError == "" ? "" : "、\n") + "系統內學生姓名為\"" + var.Name + "\"";
+                                pass = false;
                             }
-                            if (studentNumberStudents[num].Count == 1)
+                            if (pass)
                             {
-                                JHStudentRecord var = studentNumberStudents[num][0];
-                                bool pass = true;
-
-                                if (importFields.ContainsKey("姓名") && GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["姓名"]].StringValue) != var.Name)
-                                {
-                                    if (studentNumberStudents[num].Count == 1)
-                                        rowError += (rowError == "" ? "" : "、\n") + "系統內學生姓名為\"" + var.Name + "\"";
-                                    pass &= false;
-                                }
-                                if (pass)
-                                {
-                                    stu = var;
-                                }
+                                stu = var;
                             }
                         }
                         else
                         {
-                            rowError = "學生不存在所選狀態內!!";
+                            // 當作新增，給後面程式處理
+                           if(stu== null)
+                           {                               
+                               // 檢查一般狀態是否存在，不存在新增一筆
+                               if(StudNumberStatusDict.ContainsKey(wtNum+"一般"))
+                               {
+                                   rowError = "學號" + wtNum + " 已經有學生使用，無法新增。";
+                               }else
+                               {
+                                   JHStudentRecord newStu = new JHStudentRecord();
+                                   newStu.StudentNumber = wtNum;
+                                   if (importFields.ContainsKey("姓名") && GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["姓名"]].StringValue) != "")
+                                   {
+                                       newStu.Name = GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["姓名"]].StringValue);                                       
+                                   }
+                                   newStu.Status = K12.Data.StudentRecord.StudentStatus.一般;
+                                   string sid=JHStudent.Insert(newStu);
+                                   stu = JHStudent.SelectByID(sid);
+                               }
+                           }
                         }
-                        if (rowError == "" && stu == null)
-                            rowError = "學生資料有誤!!";
+
                         #endregion
                         if (rowError == "")
                         {
@@ -820,7 +773,7 @@ namespace BasicInformation
                 }
                 #endregion
             }
-            #endregion
+            
 
             #region 驗證資料
             List<string> list = new List<string>();
@@ -1214,11 +1167,7 @@ namespace BasicInformation
         #endregion
 
         private void wizard1_WizardPageChanged(object sender, WizardPageChangeEventArgs e)
-        {
-            if (e.NewPage.BackButtonVisible == eWizardButtonState.False)
-                cboStudStatus.Enabled = true;
-            else
-                cboStudStatus.Enabled = false;
+        {           
 
             advButton.Visible = (e.NewPage == wizardPage1);
         }

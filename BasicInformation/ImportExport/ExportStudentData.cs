@@ -17,9 +17,6 @@ namespace BasicInformation
             this.Image = null;
             this.Text = "匯出學生基本資料(測試版)";
             _FieldNameList = new List<string>();
-            _FieldNameList.Add("學生系統編號");
-            _FieldNameList.Add("姓名");
-            _FieldNameList.Add("學號");
             _FieldNameList.Add("身分證號");
             _FieldNameList.Add("國籍");
             _FieldNameList.Add("出生地");
@@ -31,9 +28,7 @@ namespace BasicInformation
             _FieldNameList.Add("GivenName");
             _FieldNameList.Add("MiddleName");
             _FieldNameList.Add("FamilyName");
-            _FieldNameList.Add("班級");
             _FieldNameList.Add("年級");
-            _FieldNameList.Add("座號");
             _FieldNameList.Add("父親姓名");
             _FieldNameList.Add("父親學歷");
             _FieldNameList.Add("父親職業");
@@ -127,9 +122,6 @@ namespace BasicInformation
                         {
                             switch (field)
                             {
-                                case "學生系統編號": row.Add(field, StudRec.ID);break;
-                                case "姓名": row.Add(field, StudRec.Name); break;
-                                case "學號": row.Add(field, StudRec.StudentNumber); break;
                                 case "身分證號": row.Add(field, StudRec.IDNumber); break;
                                 case "國籍": row.Add(field, StudRec.Nationality); break;
                                 case "出生地": row.Add(field, StudRec.BirthPlace); break;
@@ -155,15 +147,9 @@ namespace BasicInformation
                                 if (StudentRecord_ExtDict.ContainsKey(StudRec.ID))
                                     row.Add(field, StudentRecord_ExtDict[StudRec.ID].FamilyName);  break;                                    
     
-                                case "班級": 
-                                    if(StudRec.Class !=null)
-                                        row.Add(field, StudRec.Class.Name); break;
                                 case "年級": 
                                     if(StudRec.Class !=null && StudRec.Class.GradeYear.HasValue)
                                     row.Add(field, StudRec.Class.GradeYear.Value.ToString()); break;
-                                case "座號": 
-                                    if(StudRec.SeatNo.HasValue)
-                                    row.Add(field, StudRec.SeatNo.Value.ToString()); break;
                                 case "父親姓名": 
                                     if(ParentRecordDict.ContainsKey(StudRec.ID))
                                         row.Add(field, ParentRecordDict[StudRec.ID].FatherName); break;
