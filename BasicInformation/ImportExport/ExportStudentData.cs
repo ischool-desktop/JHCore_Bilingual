@@ -15,7 +15,7 @@ namespace BasicInformation
         public ExportStudentData()
         {
             this.Image = null;
-            this.Text = "匯出學生基本資料(測試版)";
+            this.Text = "匯出學生基本資料(2015)";
             _FieldNameList = new List<string>();
             _FieldNameList.Add("身分證號");
             _FieldNameList.Add("國籍");

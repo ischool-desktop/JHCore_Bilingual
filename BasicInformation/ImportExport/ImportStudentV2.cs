@@ -530,6 +530,7 @@ namespace BasicInformation
             #region 產生RowData資料
             if (importFields.ContainsKey("學生系統編號"))
             {
+                List<string> chkStudentIDSameList = new List<string>();
                 #region 用編號驗證資料
                 for (int i = 1; i <= wb.Worksheets[0].Cells.MaxDataRow; i++)
                 {
@@ -538,6 +539,10 @@ namespace BasicInformation
                     if(chkStudRecDict.ContainsKey(id))
                     {
                         string rowError = "";
+                        if (!chkStudentIDSameList.Contains(id))
+                            chkStudentIDSameList.Add(id);
+                        else
+                            rowError = "工作表內 學生系統編號：" + id + " 資料重複";
                         #region 驗明正身
                         JHStudentRecord stu = chkStudRecDict[id];
                     
@@ -647,6 +652,7 @@ namespace BasicInformation
             {
                 // 建立學號狀態所引
                 Dictionary<string,JHStudentRecord> StudNumberStatusDict = new Dictionary<string,JHStudentRecord> ();
+                List<string> chkWstSnumList = new List<string>();
                 foreach(JHStudentRecord rec in AllStudenRecList)
                 {
                     string key =rec.StudentNumber+rec.StatusStr;
@@ -665,6 +671,13 @@ namespace BasicInformation
                     {
                         string rowError = "";
                         #region 驗明正身
+                        if (!chkWstSnumList.Contains(num))
+                            chkWstSnumList.Add(num);
+                        else
+                        {
+                            rowError = "工作表內 學號：" + wtNum + ",狀態：" + StuStatus + " 資料重複";
+                            
+                        }
                         JHStudentRecord stu = null;
                         if (StudNumberStatusDict.ContainsKey(num))
                         {
@@ -690,36 +703,40 @@ namespace BasicInformation
                                if(StudNumberStatusDict.ContainsKey(wtNum+"一般"))
                                {
                                    rowError = "學號" + wtNum + " 已經有學生使用，無法新增。";
-                               }else
-                               {
-                                   JHStudentRecord newStu = new JHStudentRecord();
-                                   newStu.StudentNumber = wtNum;
-                                   if (importFields.ContainsKey("姓名") && GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["姓名"]].StringValue) != "")
-                                   {
-                                       newStu.Name = GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["姓名"]].StringValue);                                       
-                                   }
-                                   newStu.Status = K12.Data.StudentRecord.StudentStatus.一般;
-                                   string sid=JHStudent.Insert(newStu);
-                                   stu = JHStudent.SelectByID(sid);
                                }
+                               //else
+                               //{
+                               //    JHStudentRecord newStu = new JHStudentRecord();
+                               //    newStu.StudentNumber = wtNum;
+                               //    if (importFields.ContainsKey("姓名") && GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["姓名"]].StringValue) != "")
+                               //    {
+                               //        newStu.Name = GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["姓名"]].StringValue);                                       
+                               //    }
+                               //    newStu.Status = K12.Data.StudentRecord.StudentStatus.一般;
+                               //    string sid=JHStudent.Insert(newStu);
+                               //    stu = JHStudent.SelectByID(sid);
+                               //}
                            }
                         }
 
                         #endregion
                         if (rowError == "")
                         {
-                            RowData rowdata = new RowData();
-                            rowdata.ID = stu.ID;
-                            foreach (int index in fieldIndex.Keys)
+                            if(stu !=null)
                             {
-                                if (wb.Worksheets[0].Cells[i, index].Type == CellValueType.IsDateTime)
+                                RowData rowdata = new RowData();
+                                rowdata.ID = stu.ID;
+                                foreach (int index in fieldIndex.Keys)
                                 {
-                                    rowdata.Add(fieldIndex[index], wb.Worksheets[0].Cells[i, index].DateTimeValue.ToString());
+                                    if (wb.Worksheets[0].Cells[i, index].Type == CellValueType.IsDateTime)
+                                    {
+                                        rowdata.Add(fieldIndex[index], wb.Worksheets[0].Cells[i, index].DateTimeValue.ToString());
+                                    }
+                                    else
+                                        rowdata.Add(fieldIndex[index], GetTrimText("" + wb.Worksheets[0].Cells[i, index].StringValue));
                                 }
-                                else
-                                    rowdata.Add(fieldIndex[index], GetTrimText("" + wb.Worksheets[0].Cells[i, index].StringValue));
+                                rowDataIndex.Add(rowdata, i);
                             }
-                            rowDataIndex.Add(rowdata, i);
                         }
                         else
                         {

@@ -156,8 +156,8 @@ namespace BasicInformation
                 wizard.ShowDialog();
             };
 
-            rbItemExport["學籍相關匯出"]["匯出學生基本資料(測試版)"].Enable = Permissions.匯出學生基本資料New_雙語部權限;
-            rbItemExport["學籍相關匯出"]["匯出學生基本資料(測試版)"].Click += delegate
+            rbItemExport["學籍相關匯出"]["匯出學生基本資料(2015)"].Enable = Permissions.匯出學生基本資料New_雙語部權限;
+            rbItemExport["學籍相關匯出"]["匯出學生基本資料(2015)"].Click += delegate
             {
                 SmartSchool.API.PlugIn.Export.Exporter exporter = new ExportStudentData();
                 ExportStudentV2 wizard = new ExportStudentV2(exporter.Text, exporter.Image);
@@ -165,8 +165,8 @@ namespace BasicInformation
                 wizard.ShowDialog();
             };
 
-            rbItemImport["學籍相關匯入"]["匯入學生基本資料(測試版)"].Enable = Permissions.匯入學生基本資料New_雙語部權限;
-            rbItemImport["學籍相關匯入"]["匯入學生基本資料(測試版)"].Click += delegate
+            rbItemImport["學籍相關匯入"]["匯入學生基本資料(2015)"].Enable = Permissions.匯入學生基本資料New_雙語部權限;
+            rbItemImport["學籍相關匯入"]["匯入學生基本資料(2015)"].Click += delegate
             {
                 SmartSchool.API.PlugIn.Import.Importer importer = new ImportStudentData();
                 ImportStudentV2 wizard = new ImportStudentV2(importer.Text, importer.Image);
@@ -202,8 +202,8 @@ namespace BasicInformation
 
             TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.匯出學生基本資料_雙語部, "匯出學生基本資料(雙語部)"));
             TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.匯入學生基本資料_雙語部, "匯入學生基本資料(雙語部)"));
-            TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.匯出學生基本資料New_雙語部, "匯出學生基本資料(測試版)"));
-            TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.匯入學生基本資料New_雙語部, "匯入學生基本資料(測試版)"));
+            TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.匯出學生基本資料New_雙語部, "匯出學生基本資料(2015)"));
+            TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.匯入學生基本資料New_雙語部, "匯入學生基本資料(2015)"));
         }
 
         /// <summary>
