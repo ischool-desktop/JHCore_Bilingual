@@ -59,7 +59,8 @@ namespace BasicInformation
             _FieldNameList.Add("聯絡:村里");
             _FieldNameList.Add("聯絡:鄰");
             _FieldNameList.Add("聯絡:其他");
-
+            _FieldNameList.Add("戶籍地址");
+            _FieldNameList.Add("聯絡地址");
         }
 
         public override void InitializeExport(SmartSchool.API.PlugIn.Export.ExportWizard wizard)
@@ -246,6 +247,14 @@ namespace BasicInformation
                                 case "聯絡:其他":
                                     if(AddressRecordDict.ContainsKey(StudRec.ID))
                                     row.Add(field,AddressRecordDict[StudRec.ID].MailingDetail); break;
+
+                                case "戶籍地址":
+                                    if(AddressRecordDict.ContainsKey(StudRec.ID))
+                                    row.Add(field,AddressRecordDict[StudRec.ID].PermanentAddress); break;
+
+                                case "聯絡地址":
+                                    if(AddressRecordDict.ContainsKey(StudRec.ID))
+                                    row.Add(field,AddressRecordDict[StudRec.ID].MailingAddress); break;
                             }
                         }
                     }
