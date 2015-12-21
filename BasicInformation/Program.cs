@@ -138,23 +138,23 @@ namespace BasicInformation
             RibbonBarButton rbItemImport = K12.Presentation.NLDPanels.Student.RibbonBarItems["資料統計"]["匯入"];
             RibbonBarButton rbItemExport = K12.Presentation.NLDPanels.Student.RibbonBarItems["資料統計"]["匯出"];
 
-            rbItemExport["學籍相關匯出"]["匯出學生基本資料(雙語部)"].Enable = Permissions.匯出學生基本資料_雙語部權限;
-            rbItemExport["學籍相關匯出"]["匯出學生基本資料(雙語部)"].Click += delegate
-            {
-                SmartSchool.API.PlugIn.Export.Exporter exporter = new ExportSchoolObject();
-                ExportStudentV2 wizard = new ExportStudentV2(exporter.Text, exporter.Image);
-                exporter.InitializeExport(wizard);
-                wizard.ShowDialog();
-            };
+            //rbItemExport["學籍相關匯出"]["匯出學生基本資料(雙語部)"].Enable = Permissions.匯出學生基本資料_雙語部權限;
+            //rbItemExport["學籍相關匯出"]["匯出學生基本資料(雙語部)"].Click += delegate
+            //{
+            //    SmartSchool.API.PlugIn.Export.Exporter exporter = new ExportSchoolObject();
+            //    ExportStudentV2 wizard = new ExportStudentV2(exporter.Text, exporter.Image);
+            //    exporter.InitializeExport(wizard);
+            //    wizard.ShowDialog();
+            //};
 
-            rbItemImport["學籍相關匯入"]["匯入學生基本資料(雙語部)"].Enable = Permissions.匯入學生基本資料_雙語部權限;
-            rbItemImport["學籍相關匯入"]["匯入學生基本資料(雙語部)"].Click += delegate
-            {
-                SmartSchool.API.PlugIn.Import.Importer importer = new ImportSchoolObject();
-                ImportStudentV2 wizard = new ImportStudentV2(importer.Text, importer.Image);
-                importer.InitializeImport(wizard);
-                wizard.ShowDialog();
-            };
+            //rbItemImport["學籍相關匯入"]["匯入學生基本資料(雙語部)"].Enable = Permissions.匯入學生基本資料_雙語部權限;
+            //rbItemImport["學籍相關匯入"]["匯入學生基本資料(雙語部)"].Click += delegate
+            //{
+            //    SmartSchool.API.PlugIn.Import.Importer importer = new ImportSchoolObject();
+            //    ImportStudentV2 wizard = new ImportStudentV2(importer.Text, importer.Image);
+            //    importer.InitializeImport(wizard);
+            //    wizard.ShowDialog();
+            //};
 
             rbItemExport["學籍相關匯出"]["匯出學生基本資料(2015)"].Enable = Permissions.匯出學生基本資料New_雙語部權限;
             rbItemExport["學籍相關匯出"]["匯出學生基本資料(2015)"].Click += delegate
@@ -200,8 +200,8 @@ namespace BasicInformation
             FISCA.Permission.Catalog TestCatalog4 = FISCA.Permission.RoleAclSource.Instance["學生"]["功能按鈕"];
             TestCatalog4.Add(new FISCA.Permission.RibbonFeature(Permissions.批次修改入學及畢業日期_雙語部, "批次修改入學及畢業日期"));
 
-            TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.匯出學生基本資料_雙語部, "匯出學生基本資料(雙語部)"));
-            TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.匯入學生基本資料_雙語部, "匯入學生基本資料(雙語部)"));
+            //TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.匯出學生基本資料_雙語部, "匯出學生基本資料(雙語部)"));
+            //TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.匯入學生基本資料_雙語部, "匯入學生基本資料(雙語部)"));
             TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.匯出學生基本資料New_雙語部, "匯出學生基本資料(2015)"));
             TestCatalog2.Add(new FISCA.Permission.RibbonFeature(Permissions.匯入學生基本資料New_雙語部, "匯入學生基本資料(2015)"));
         }

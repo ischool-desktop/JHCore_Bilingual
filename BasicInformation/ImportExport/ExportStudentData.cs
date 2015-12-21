@@ -74,9 +74,9 @@ namespace BasicInformation
                 // 取得學生資料
                 List<StudentRecord> StudentRecList = K12.Data.Student.SelectByIDs(e.List);
 
-                // 學生排序 班座排序
-                StudentRecList = (from data in StudentRecList orderby data.Class != null ? data.Class.Name.PadLeft(3,'0') : "000" ascending,data.SeatNo.HasValue ? data.SeatNo.Value:999 ascending select data).ToList();
-
+                // 學生排序 年級、班座排序
+                StudentRecList.Sort(SortStudent);
+                
                 // 取得電話
                 Dictionary<string, PhoneRecord> PhoneRecordDict = new Dictionary<string, PhoneRecord>();
                 List<PhoneRecord> PhoneRecordList = K12.Data.Phone.SelectByStudentIDs(e.List);
@@ -279,5 +279,26 @@ namespace BasicInformation
             };
         }
 
+        private int SortStudent(StudentRecord s1,StudentRecord s2)
+        {
+            if (s1.Class == null || s2.Class ==null)
+                return 1;
+
+            if(s1.Class.GradeYear.HasValue==false || s2.Class.GradeYear.HasValue==false)
+                return 1;
+
+            string strS1 = "",strS2="";
+
+            strS1 += s1.Class.GradeYear.HasValue? s1.Class.GradeYear.Value.ToString().PadLeft(3,'0'):"999";
+            strS2 += s2.Class.GradeYear.HasValue ? s2.Class.GradeYear.Value.ToString().PadLeft(3, '0') : "999";
+
+            strS1 += s1.Class.Name.PadLeft(20, '0');
+            strS2 += s2.Class.Name.PadLeft(20, '0');
+
+            strS1 += s1.SeatNo.HasValue ? s1.SeatNo.Value.ToString().PadLeft(3, '0') : "999";
+            strS2 += s2.SeatNo.HasValue ? s2.SeatNo.Value.ToString().PadLeft(3, '0') : "999";
+
+            return strS1.CompareTo(strS2);
+        }
     }
 }
