@@ -33,16 +33,19 @@ namespace BasicInformation
             _FieldNameList.Add("父親學歷");
             _FieldNameList.Add("父親職業");
             _FieldNameList.Add("父親電話");
+            _FieldNameList.Add("父親電子郵件");
             _FieldNameList.Add("母親姓名");
             _FieldNameList.Add("母親學歷");
             _FieldNameList.Add("母親職業");
             _FieldNameList.Add("母親電話");
+            _FieldNameList.Add("母親電子郵件");
             _FieldNameList.Add("戶籍電話");
             _FieldNameList.Add("聯絡電話");
             _FieldNameList.Add("行動電話");
             _FieldNameList.Add("其它電話1");
             _FieldNameList.Add("監護人姓名");
             _FieldNameList.Add("監護人電話");
+            _FieldNameList.Add("監護人電子郵件");
             _FieldNameList.Add("入學日期");
             _FieldNameList.Add("畢業日期");
             _FieldNameList.Add("登入帳號");
@@ -163,6 +166,11 @@ namespace BasicInformation
                                 case "父親電話": 
                                     if(ParentRecordDict.ContainsKey(StudRec.ID))
                                         row.Add(field, ParentRecordDict[StudRec.ID].FatherPhone); break;
+
+                                case "父親電子郵件":
+                                    if (ParentRecordDict.ContainsKey(StudRec.ID))
+                                        row.Add(field, ParentRecordDict[StudRec.ID].FatherEMail); break;
+                                    
                                 case "母親姓名": 
                                     if(ParentRecordDict.ContainsKey(StudRec.ID))
                                         row.Add(field, ParentRecordDict[StudRec.ID].MotherName); break;
@@ -175,6 +183,10 @@ namespace BasicInformation
                                 case "母親電話": 
                                     if(ParentRecordDict.ContainsKey(StudRec.ID))
                                         row.Add(field, ParentRecordDict[StudRec.ID].MotherPhone); break;
+
+                                case "母親電子郵件":
+                                    if (ParentRecordDict.ContainsKey(StudRec.ID))
+                                        row.Add(field, ParentRecordDict[StudRec.ID].MotherEMail); break;
                                 
                                 case "戶籍電話": 
                                     if(PhoneRecordDict.ContainsKey(StudRec.ID))
@@ -194,6 +206,9 @@ namespace BasicInformation
                                 case "監護人電話": 
                                     if(ParentRecordDict.ContainsKey(StudRec.ID))
                                     row.Add(field,ParentRecordDict[StudRec.ID].CustodianPhone); break;
+                                case "監護人電子郵件":
+                                    if (ParentRecordDict.ContainsKey(StudRec.ID))
+                                        row.Add(field, ParentRecordDict[StudRec.ID].CustodianEMail); break;
                                 case "入學日期": 
                                 if (StudentRecord_ExtDict.ContainsKey(StudRec.ID) && StudentRecord_ExtDict[StudRec.ID].EntranceDate.HasValue)
                                     row.Add(field, StudentRecord_ExtDict[StudRec.ID].EntranceDate.Value.ToShortDateString());  break;

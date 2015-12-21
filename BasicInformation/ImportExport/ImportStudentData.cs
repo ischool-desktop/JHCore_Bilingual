@@ -38,16 +38,19 @@ namespace BasicInformation
             _FieldNameList.Add("父親學歷");
             _FieldNameList.Add("父親職業");
             _FieldNameList.Add("父親電話");
+            _FieldNameList.Add("父親電子郵件");
             _FieldNameList.Add("母親姓名");
             _FieldNameList.Add("母親學歷");
             _FieldNameList.Add("母親職業");
             _FieldNameList.Add("母親電話");
+            _FieldNameList.Add("母親電子郵件");
             _FieldNameList.Add("戶籍電話");
             _FieldNameList.Add("聯絡電話");
             _FieldNameList.Add("行動電話");
             _FieldNameList.Add("其它電話1");
             _FieldNameList.Add("監護人姓名");
             _FieldNameList.Add("監護人電話");
+            _FieldNameList.Add("監護人電子郵件");
             _FieldNameList.Add("入學日期");
             _FieldNameList.Add("畢業日期");
             _FieldNameList.Add("登入帳號");
@@ -513,6 +516,18 @@ namespace BasicInformation
 
                         ParentRecordDict[StudentID].Father.Phone=value;
                     }
+
+                    if (rd.ContainsKey("父親電子郵件"))
+                    {
+                        string value = rd["父親電子郵件"].ToString();
+                        string oldValue = ParentRecordDict[StudentID].Father.EMail;
+                        if (oldValue != value)
+                            sbLog.AppendLine(string.Format("父親電子郵件由「{0}」改為「{1}」", oldValue, value));
+
+                        ParentRecordDict[StudentID].Father.EMail = value;
+                    }
+
+
                     if (rd.ContainsKey("母親姓名")) { 
                         string value = rd["母親姓名"].ToString();
                         string oldValue = ParentRecordDict[StudentID].Mother.Name;
@@ -545,6 +560,18 @@ namespace BasicInformation
 
                         ParentRecordDict[StudentID].Mother.Phone = value;
                     }
+
+                    if (rd.ContainsKey("母親電子郵件"))
+                    {
+                        string value = rd["母親電子郵件"].ToString();
+                        string oldValue = ParentRecordDict[StudentID].Mother.EMail;
+                        if (oldValue != value)
+                            sbLog.AppendLine(string.Format("母親電子郵件由「{0}」改為「{1}」", oldValue, value));
+
+                        ParentRecordDict[StudentID].Mother.EMail = value;
+                    }
+
+
                     if (rd.ContainsKey("監護人姓名")) { 
                         string value = rd["監護人姓名"].ToString();
                         string oldValue = ParentRecordDict[StudentID].Custodian.Name;
@@ -561,6 +588,17 @@ namespace BasicInformation
 
                         ParentRecordDict[StudentID].Custodian.Phone = value;
                     }
+
+                    if (rd.ContainsKey("監護人電子郵件"))
+                    {
+                        string value = rd["監護人電子郵件"].ToString();
+                        string oldValue = ParentRecordDict[StudentID].Custodian.EMail;
+                        if (oldValue != value)
+                            sbLog.AppendLine(string.Format("監護人電子郵件由「{0}」改為「{1}」", oldValue, value));
+
+                        ParentRecordDict[StudentID].Custodian.EMail = value;
+                    }
+
 
                     updateParentRecList.Add(ParentRecordDict[StudentID]);
                 }
