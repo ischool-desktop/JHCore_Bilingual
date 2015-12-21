@@ -51,6 +51,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtParentPhone = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtEMail = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.SuspendLayout();
             // 
             // label6
@@ -361,10 +363,41 @@
             this.txtParentPhone.Size = new System.Drawing.Size(156, 25);
             this.txtParentPhone.TabIndex = 2;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(293, 149);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 17);
+            this.label3.TabIndex = 226;
+            this.label3.Text = "電子郵件";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtEMail
+            // 
+            // 
+            // 
+            // 
+            this.txtEMail.Border.Class = "TextBoxBorder";
+            this.txtEMail.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtEMail.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.txtEMail.Location = new System.Drawing.Point(372, 145);
+            this.txtEMail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEMail.MaxLength = 20;
+            this.txtEMail.Name = "txtEMail";
+            this.txtEMail.Size = new System.Drawing.Size(156, 25);
+            this.txtEMail.TabIndex = 225;
+            // 
             // ParentInfoPalmerwormItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtEMail);
             this.Controls.Add(this.btnParentType);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtParentPhone);
@@ -387,7 +420,7 @@
             this.Controls.Add(this.cboAlive);
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Name = "ParentInfoPalmerwormItem";
-            this.Size = new System.Drawing.Size(550, 190);
+            this.Size = new System.Drawing.Size(550, 190);            
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -418,5 +451,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private DevComponents.DotNetBar.Controls.TextBoxX txtParentPhone;
+        private System.Windows.Forms.Label label3;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtEMail;
     }
 }
