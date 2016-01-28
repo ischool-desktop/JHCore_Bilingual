@@ -759,6 +759,10 @@ namespace BasicInformation
 
             }
 
+            // 處理學生資料
+            foreach (string key in StudentRecordDict.Keys)
+                updateStudentRecList.Add(StudentRecordDict[key]);
+
             if (updateStudentRecList.Count > 0)
                 JHStudent.Update(updateStudentRecList);
 
@@ -778,6 +782,11 @@ namespace BasicInformation
                 updateStudentRecord_ExtList.SaveAll();
 
             FISCA.LogAgent.ApplicationLog.Log("匯入學生基本資料(New)", "匯入", sbLog.ToString());
+            
+            // 同步
+            JHSchool.Student.Instance.SyncAllBackground();            
+            JHSchool.Data.JHStudent.RemoveAll();
+            JHSchool.Data.JHStudent.SelectAll();
 
         }
         void wizard_ValidateRow(object sender, SmartSchool.API.PlugIn.Import.ValidateRowEventArgs e)

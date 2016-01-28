@@ -710,22 +710,29 @@ namespace BasicInformation
                                //    newStu.StudentNumber = wtNum;
                                //    if (importFields.ContainsKey("姓名") && GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["姓名"]].StringValue) != "")
                                //    {
-                               //        newStu.Name = GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["姓名"]].StringValue);                                       
+                               //        newStu.Name = GetTrimText("" + wb.Worksheets[0].Cells[i, importFields["姓名"]].StringValue);
                                //    }
                                //    newStu.Status = K12.Data.StudentRecord.StudentStatus.一般;
-                               //    string sid=JHStudent.Insert(newStu);
+                               //    string sid = JHStudent.Insert(newStu);
                                //    stu = JHStudent.SelectByID(sid);
                                //}
+                               stu = new JHStudentRecord();
                            }
                         }
 
                         #endregion
                         if (rowError == "")
-                        {
+                        {                           
+
                             if(stu !=null)
                             {
                                 RowData rowdata = new RowData();
-                                rowdata.ID = stu.ID;
+                                // 新增加用學號
+                                if (string.IsNullOrEmpty(stu.ID))
+                                    rowdata.ID = "new" + wtNum;
+                                else
+                                    rowdata.ID = stu.ID;
+
                                 foreach (int index in fieldIndex.Keys)
                                 {
                                     if (wb.Worksheets[0].Cells[i, index].Type == CellValueType.IsDateTime)
