@@ -387,7 +387,7 @@
             this.txtEMail.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.txtEMail.Location = new System.Drawing.Point(372, 145);
             this.txtEMail.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEMail.MaxLength = 20;
+            this.txtEMail.MaxLength = 500;
             this.txtEMail.Name = "txtEMail";
             this.txtEMail.Size = new System.Drawing.Size(156, 25);
             this.txtEMail.TabIndex = 225;
@@ -420,7 +420,7 @@
             this.Controls.Add(this.cboAlive);
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Name = "ParentInfoPalmerwormItem";
-            this.Size = new System.Drawing.Size(550, 190);            
+            this.Size = new System.Drawing.Size(550, 190);
             this.ResumeLayout(false);
             this.PerformLayout();
 
