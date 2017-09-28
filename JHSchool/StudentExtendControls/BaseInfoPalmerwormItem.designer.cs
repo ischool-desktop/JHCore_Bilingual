@@ -171,7 +171,7 @@
             this.txtEngName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtEngName.Location = new System.Drawing.Point(108, 168);
             this.txtEngName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEngName.MaxLength = 30;
+            this.txtEngName.MaxLength = 0;
             this.txtEngName.Name = "txtEngName";
             this.txtEngName.Size = new System.Drawing.Size(138, 25);
             this.txtEngName.TabIndex = 7;

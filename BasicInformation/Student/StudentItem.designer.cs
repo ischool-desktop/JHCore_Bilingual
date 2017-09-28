@@ -161,6 +161,7 @@
             this.txtName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtName.Location = new System.Drawing.Point(367, 15);
             this.txtName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtName.MaxLength = 0;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(138, 25);
             this.txtName.TabIndex = 0;
@@ -186,7 +187,7 @@
             this.txtEngName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtEngName.Location = new System.Drawing.Point(367, 47);
             this.txtEngName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEngName.MaxLength = 30;
+            this.txtEngName.MaxLength = 0;
             this.txtEngName.Name = "txtEngName";
             this.txtEngName.Size = new System.Drawing.Size(138, 25);
             this.txtEngName.TabIndex = 1;
@@ -235,7 +236,7 @@
             this.contextMenuBar1.Location = new System.Drawing.Point(65, 69);
             this.contextMenuBar1.Margin = new System.Windows.Forms.Padding(4);
             this.contextMenuBar1.Name = "contextMenuBar1";
-            this.contextMenuBar1.Size = new System.Drawing.Size(239, 27);
+            this.contextMenuBar1.Size = new System.Drawing.Size(239, 26);
             this.contextMenuBar1.Stretch = true;
             this.contextMenuBar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2003;
             this.contextMenuBar1.TabIndex = 210;
@@ -483,7 +484,7 @@
             this.txtChineseName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtChineseName.Location = new System.Drawing.Point(367, 79);
             this.txtChineseName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtChineseName.MaxLength = 30;
+            this.txtChineseName.MaxLength = 0;
             this.txtChineseName.Name = "txtChineseName";
             this.txtChineseName.Size = new System.Drawing.Size(138, 25);
             this.txtChineseName.TabIndex = 2;
@@ -630,7 +631,7 @@
             this.txtGivenName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtGivenName.Location = new System.Drawing.Point(51, 169);
             this.txtGivenName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtGivenName.MaxLength = 50;
+            this.txtGivenName.MaxLength = 0;
             this.txtGivenName.Name = "txtGivenName";
             this.txtGivenName.Size = new System.Drawing.Size(138, 25);
             this.txtGivenName.TabIndex = 4;
@@ -644,7 +645,7 @@
             this.txtMiddleName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtMiddleName.Location = new System.Drawing.Point(211, 169);
             this.txtMiddleName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMiddleName.MaxLength = 50;
+            this.txtMiddleName.MaxLength = 0;
             this.txtMiddleName.Name = "txtMiddleName";
             this.txtMiddleName.Size = new System.Drawing.Size(138, 25);
             this.txtMiddleName.TabIndex = 5;
@@ -670,7 +671,7 @@
             this.txtFamilyName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtFamilyName.Location = new System.Drawing.Point(368, 169);
             this.txtFamilyName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFamilyName.MaxLength = 50;
+            this.txtFamilyName.MaxLength = 0;
             this.txtFamilyName.Name = "txtFamilyName";
             this.txtFamilyName.Size = new System.Drawing.Size(138, 25);
             this.txtFamilyName.TabIndex = 6;
